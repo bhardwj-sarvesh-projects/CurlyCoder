@@ -3,7 +3,7 @@
 // Inspects user input for /ponytail commands and writes mode to flag file
 
 const { getDefaultMode, isDeactivationCommand, writeDefaultMode } = require('./ponytail-config');
-const { clearMode, setMode, writeHookOutput } = require('./ponytail-runtime');
+const { clearMode, setMode, writeHookOutput, readMode } = require('./ponytail-runtime');
 
 let input = '';
 let done = false;
@@ -23,6 +23,7 @@ function finish() {
       const arg = parts[1] || '';
 
       let mode = null;
+      let isReportOnly = false;
 
       if (cmd === '/ponytail-review' || cmd === '/ponytail:ponytail-review') {
         mode = 'review';
@@ -43,10 +44,21 @@ function finish() {
         else if (arg === 'full') mode = 'full';
         else if (arg === 'ultra') mode = 'ultra';
         else if (arg === 'off') mode = 'off';
-        else mode = getDefaultMode();
+        else if (arg === '') {
+          isReportOnly = true;
+          mode = readMode() || getDefaultMode();
+        } else {
+          mode = getDefaultMode();
+        }
       }
 
-      if (mode && mode !== 'off') {
+      if (isReportOnly) {
+        writeHookOutput(
+          'UserPromptSubmit',
+          mode,
+          'PONYTAIL MODE ACTIVE — level: ' + mode,
+        );
+      } else if (mode && mode !== 'off') {
         setMode(mode);
         writeHookOutput(
           'UserPromptSubmit',
