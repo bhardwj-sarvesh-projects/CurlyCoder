@@ -34,6 +34,8 @@ function run(script, env, input = '') {
 delete process.env.CLAUDE_CONFIG_DIR;
 delete process.env.PLUGIN_DATA;
 delete process.env.COPILOT_PLUGIN_DATA;
+// A leaked subagent matcher would scope the inject-into-every-subagent assertions.
+delete process.env.PONYTAIL_SUBAGENT_MATCHER;
 delete process.env.QODER_SESSION_ID;
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'ponytail-hooks-'));
@@ -228,6 +230,74 @@ assert.equal(result.status, 0, result.stderr);
 output = JSON.parse(result.stdout);
 assert.equal(output.systemMessage, 'PONYTAIL:FULL');
 assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
+assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL MODE ACTIVE — level: full/);
+
+// SubagentStart scoping (issue #506): PONYTAIL_SUBAGENT_MATCHER limits the
+// injection to agent types whose name matches the regex. Unset keeps the
+// inject-into-every-subagent behavior asserted above. The matcher is
+// case-insensitive and unanchored, and every uncertain case fails open.
+const scopeHome = path.join(temp, 'scope-home');
+const scopeFlag = path.join(scopeHome, '.claude', '.ponytail-active');
+fs.mkdirSync(path.dirname(scopeFlag), { recursive: true });
+fs.writeFileSync(scopeFlag, 'full');
+const scopeEnv = { HOME: scopeHome, USERPROFILE: scopeHome };
+
+// Matching agent_type → inject; the match is case-insensitive.
+result = run(
+  'ponytail-subagent.js',
+  { ...scopeEnv, PONYTAIL_SUBAGENT_MATCHER: 'general|plan' },
+  JSON.stringify({ agent_type: 'General-purpose' }),
+);
+assert.equal(result.status, 0, result.stderr);
+output = JSON.parse(result.stdout);
+assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
+assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL MODE ACTIVE — level: full/);
+
+// agent_type the matcher rejects → stay silent.
+result = run(
+  'ponytail-subagent.js',
+  { ...scopeEnv, PONYTAIL_SUBAGENT_MATCHER: 'general|plan' },
+  JSON.stringify({ agent_type: 'Explore' }),
+);
+assert.equal(result.status, 0, result.stderr);
+assert.equal(result.stdout, '', 'a non-matching agent_type must skip the injection');
+
+// Anchored regex → exact match only; a superset name is rejected.
+result = run(
+  'ponytail-subagent.js',
+  { ...scopeEnv, PONYTAIL_SUBAGENT_MATCHER: '^general$' },
+  JSON.stringify({ agent_type: 'general-purpose' }),
+);
+assert.equal(result.status, 0, result.stderr);
+assert.equal(result.stdout, '', 'an anchored matcher must not match a superset agent_type');
+
+// Matcher set but agent_type absent → the platform didn't report it; fail
+// open and inject rather than silently dropping the persona (issue #252).
+result = run(
+  'ponytail-subagent.js',
+  { ...scopeEnv, PONYTAIL_SUBAGENT_MATCHER: 'general' },
+  JSON.stringify({}),
+);
+assert.equal(result.status, 0, result.stderr);
+output = JSON.parse(result.stdout);
+assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL MODE ACTIVE — level: full/);
+
+// Invalid regex → must not crash; fall back to injecting everywhere.
+result = run(
+  'ponytail-subagent.js',
+  { ...scopeEnv, PONYTAIL_SUBAGENT_MATCHER: '(' },
+  JSON.stringify({ agent_type: 'anything' }),
+);
+assert.equal(result.status, 0, result.stderr);
+output = JSON.parse(result.stdout);
+assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
+
+// The default (no matcher) path must not depend on stdin: even with stdin
+// closed empty it injects synchronously, preserving the #252 behavior on
+// Windows where the piped JSON can be swallowed (#443).
+result = run('ponytail-subagent.js', scopeEnv, '');
+assert.equal(result.status, 0, result.stderr);
+output = JSON.parse(result.stdout);
 assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL MODE ACTIVE — level: full/);
 
 // Qoder: no SessionStart event, so UserPromptSubmit does double duty —
