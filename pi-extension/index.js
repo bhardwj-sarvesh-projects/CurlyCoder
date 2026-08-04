@@ -73,8 +73,10 @@ export default function ponytailExtension(pi) {
     const c = ctx || lastCtx;
     // ponytail: hide the indicator but keep the ruleset active (#324).
     if (hideStatus) return;
-    if (!c?.ui?.setStatus || !c.ui.theme?.fg) return;
-    const theme = c.ui.theme;
+    if (!c?.ui?.setStatus) return;
+    // ponytail: try/catch guards against pi-web theme proxy throwing before initTheme
+    let theme;
+    try { theme = c.ui.theme; if (!theme?.fg) return; } catch { return; }
     if (currentMode === "off") {
       c.ui.setStatus("ponytail", "");
       return;
