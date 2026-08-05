@@ -127,11 +127,10 @@ Same steps in the Claude Code Desktop app's Code tab: type the two `/plugin` com
 
 ```bash
 codex plugin marketplace add DietrichGebert/ponytail
-codex
+codex plugin add ponytail@ponytail
 ```
 
-Open `/plugins`, select the Ponytail marketplace, and install Ponytail. Then
-open `/hooks`, review and trust its two lifecycle hooks, and start a new thread.
+Run `codex` and open `/hooks`, review and trust its two lifecycle hooks, and start a new thread.
 
 This same install also covers the Codex desktop app: restart the app after installing and it picks up the plugin.
 
