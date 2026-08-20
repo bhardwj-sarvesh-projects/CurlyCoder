@@ -1,4 +1,4 @@
-// Behavior gate: does the ponytail ruleset actually PRODUCE its refined
+// Behavior gate: does the CODELEAN ruleset actually PRODUCE its refined
 // behaviors, not just carry the text? One check per probe (vars.probe), each
 // targeting a rule that a field review (rcstack, phases 0-8) showed mattered:
 //   hardware     - "hardware is never the spec ideal, leave the calibration knob"

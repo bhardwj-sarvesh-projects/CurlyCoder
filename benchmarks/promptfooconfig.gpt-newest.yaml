@@ -1,6 +1,6 @@
-# Ponytail vs baseline, newest OpenAI: gpt-5.5 (top) + gpt-4.1-mini, gpt-5.4-mini.
+# CODELEAN vs baseline, newest OpenAI: gpt-5.5 (top) + gpt-4.1-mini, gpt-5.4-mini.
 #   npx promptfoo@latest eval -c benchmarks/promptfooconfig.gpt-newest.yaml --env-file .env --repeat 30
-description: "Ponytail vs baseline, newest OpenAI (gpt-5.5 + minis). LOC + correctness, cost telemetry."
+description: "CODELEAN vs baseline, newest OpenAI (gpt-5.5 + minis). LOC + correctness, cost telemetry."
 
 providers:
   - id: openai:gpt-5.5
@@ -13,8 +13,8 @@ providers:
 prompts:
   - id: file://arms/baseline.js
     label: baseline (no skill)
-  - id: file://arms/ponytail.js
-    label: ponytail
+  - id: file://arms/CODELEAN.js
+    label: CODELEAN
 
 defaultTest:
   assert:

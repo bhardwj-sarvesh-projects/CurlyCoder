@@ -1,6 +1,6 @@
 """
-Ponytail local benchmark — runs the same 5 tasks against any Ollama model.
-No promptfoo required. Compares baseline vs caveman vs ponytail on code LOC
+CODELEAN local benchmark — runs the same 5 tasks against any Ollama model.
+No promptfoo required. Compares baseline vs caveman vs CODELEAN on code LOC
 and wall-clock time. Results are printed as a table and saved to a JSON file.
 
 Usage:
@@ -33,7 +33,7 @@ def load_arms():
     return {
         "baseline": None,
         "caveman":  (ROOT / "benchmarks/arms/caveman-SKILL.md").read_text(encoding="utf-8"),
-        "ponytail": (ROOT / "skills/ponytail/SKILL.md").read_text(encoding="utf-8"),
+        "CODELEAN": (ROOT / "skills/CODELEAN/SKILL.md").read_text(encoding="utf-8"),
     }
 
 
@@ -133,7 +133,7 @@ def run(model, repeat, ollama_url):
     print("  LOC vs baseline (median totals)")
     print(f"{'=' * 60}")
     base_total = sum(med_loc["baseline"][t] for t in task_ids)
-    for arm in ("caveman", "ponytail"):
+    for arm in ("caveman", "CODELEAN"):
         arm_total = sum(med_loc[arm][t] for t in task_ids)
         pct = (1 - arm_total / base_total) * 100 if base_total else 0
         sign = "less" if pct >= 0 else "more"
@@ -145,7 +145,7 @@ def run(model, repeat, ollama_url):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Ponytail local benchmark via Ollama")
+    parser = argparse.ArgumentParser(description="CODELEAN local benchmark via Ollama")
     parser.add_argument("--model",      default="llama3.2", help="Ollama model name (default: llama3.2)")
     parser.add_argument("--repeat",     type=int, default=1, help="Runs per cell; median reported (default: 1)")
     parser.add_argument("--ollama-url", default="http://localhost:11434", help="Ollama base URL")

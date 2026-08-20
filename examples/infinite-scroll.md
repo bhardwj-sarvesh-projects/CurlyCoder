@@ -2,7 +2,7 @@
 
 **Task:** "Load more items when the user scrolls to the bottom."
 
-## Without Ponytail
+## Without CODELEAN
 
 ```bash
 npm install react-infinite-scroll-component
@@ -29,10 +29,10 @@ export function Feed({ items, fetchMore, hasMore }) {
 
 A dependency to watch scroll position and fire a callback.
 
-## With Ponytail
+## With CODELEAN
 
 ```jsx
-// ponytail: IntersectionObserver does this, no scroll listener needed
+// CODELEAN: IntersectionObserver does this, no scroll listener needed
 import { useEffect, useRef } from "react";
 
 export function Feed({ items, fetchMore, hasMore }) {

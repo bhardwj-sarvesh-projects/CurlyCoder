@@ -89,8 +89,8 @@ test('every hook command points at a script that ships in hooks/', () => {
 // `if {}` wrapper that can swallow the piped prompt JSON, so stdin 'end' never
 // fires. The hook must never wait on stdin forever — that freezes the whole
 // session. It has to self-exit even when stdin stays open and empty.
-test('ponytail-mode-tracker self-exits when stdin never closes (no freeze)', async () => {
-  const hook = path.join(root, 'hooks', 'ponytail-mode-tracker.js');
+test('CODELEAN-mode-tracker self-exits when stdin never closes (no freeze)', async () => {
+  const hook = path.join(root, 'hooks', 'CODELEAN-mode-tracker.js');
   // stdin is a pipe we never write to or end, reproducing the deadlock.
   const child = spawn(process.execPath, [hook], { stdio: ['pipe', 'ignore', 'ignore'] });
 

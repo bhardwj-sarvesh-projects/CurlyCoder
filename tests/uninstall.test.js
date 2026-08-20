@@ -17,24 +17,24 @@ function runUninstall(env) {
 
 delete process.env.CLAUDE_CONFIG_DIR;
 
-const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'ponytail-uninstall-'));
+const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'CODELEAN-uninstall-'));
 process.on('exit', () => fs.rmSync(temp, { recursive: true, force: true }));
 
 const home = path.join(temp, 'home');
 const claudeDir = path.join(home, '.claude');
 fs.mkdirSync(claudeDir, { recursive: true });
 
-const flagPath = path.join(claudeDir, '.ponytail-active');
+const flagPath = path.join(claudeDir, '.CODELEAN-active');
 fs.writeFileSync(flagPath, 'full');
 
-const configDir = path.join(temp, 'config-home', 'ponytail');
+const configDir = path.join(temp, 'config-home', 'CODELEAN');
 fs.mkdirSync(configDir, { recursive: true });
 const configPath = path.join(configDir, 'config.json');
 fs.writeFileSync(configPath, JSON.stringify({ defaultMode: 'ultra' }));
 
 const settingsPath = path.join(claudeDir, 'settings.json');
 fs.writeFileSync(settingsPath, JSON.stringify({
-  statusLine: { type: 'command', command: 'bash /some/path/ponytail-statusline.sh' },
+  statusLine: { type: 'command', command: 'bash /some/path/CODELEAN-statusline.sh' },
 }));
 
 const env = {
@@ -52,7 +52,7 @@ const settingsAfter = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
 assert.equal(
   settingsAfter.statusLine,
   undefined,
-  'ponytail statusLine entry must be removed',
+  'CODELEAN statusLine entry must be removed',
 );
 
 // A user's own, unrelated statusLine must survive untouched.
@@ -69,10 +69,10 @@ assert.equal(
   "a user's own statusLine must not be touched",
 );
 
-// #374: a combined statusline (another plugin && ponytail) must keep the other
+// #374: a combined statusline (another plugin && CODELEAN) must keep the other
 // plugin's part — uninstall must not nuke the whole command or leave a husk.
 fs.writeFileSync(settingsPath, JSON.stringify({
-  statusLine: { type: 'command', command: 'bash ~/caveman-statusline.sh && bash /p/ponytail-statusline.sh' },
+  statusLine: { type: 'command', command: 'bash ~/caveman-statusline.sh && bash /p/CODELEAN-statusline.sh' },
 }));
 
 result = runUninstall(env);
@@ -81,13 +81,13 @@ const settingsAfter3 = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
 assert.equal(
   settingsAfter3.statusLine.command,
   'bash ~/caveman-statusline.sh',
-  'a combined statusLine must keep the non-ponytail command',
+  'a combined statusLine must keep the non-CODELEAN command',
 );
 
 // #434: a malformed settings.json must not crash the script mid-cleanup. It
 // can't be safely edited, so uninstall warns and leaves the file byte-for-byte
 // intact instead of throwing a SyntaxError after other state was already removed.
-const malformedSettings = '{ "statusLine": { "command": "ponytail-statusline.sh", broken';
+const malformedSettings = '{ "statusLine": { "command": "CODELEAN-statusline.sh", broken';
 fs.writeFileSync(settingsPath, malformedSettings);
 
 result = runUninstall(env);

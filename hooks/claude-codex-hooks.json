@@ -6,9 +6,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/ponytail-activate.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CODELEAN-activate.js\"",
             "timeout": 5,
-            "statusMessage": "Loading ponytail mode..."
+            "statusMessage": "Loading CODELEAN mode..."
           }
         ]
       }
@@ -18,9 +18,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/ponytail-subagent.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CODELEAN-subagent.js\"",
             "timeout": 5,
-            "statusMessage": "Loading ponytail mode..."
+            "statusMessage": "Loading CODELEAN mode..."
           }
         ]
       }
@@ -30,9 +30,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/ponytail-mode-tracker.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CODELEAN-mode-tracker.js\"",
             "timeout": 5,
-            "statusMessage": "Tracking ponytail mode..."
+            "statusMessage": "Tracking CODELEAN mode..."
           }
         ]
       }

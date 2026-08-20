@@ -2,9 +2,9 @@
 
 **Task:** "Add rate limiting to my FastAPI endpoint so users can't spam it."
 
-Verbatim model output from a benchmark run, Claude Haiku 4.5, no-skill arm vs ponytail arm, temperature 1, source `benchmarks/output.json`. Reproduce: `npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml`.
+Verbatim model output from a benchmark run, Claude Haiku 4.5, no-skill arm vs CODELEAN arm, temperature 1, source `benchmarks/output.json`. Reproduce: `npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml`.
 
-## Without Ponytail, 128 lines of code
+## Without CODELEAN, 128 lines of code
 
 # Rate Limiting in FastAPI
 
@@ -250,7 +250,7 @@ async def test_rate_limit():
 
 **Recommendation:** Use `slowapi` for most cases, it's the most popular and easiest to implement! 🚀
 
-## With Ponytail, 10 lines of code
+## With CODELEAN, 10 lines of code
 
 ```python
 from fastapi import FastAPI, HTTPException

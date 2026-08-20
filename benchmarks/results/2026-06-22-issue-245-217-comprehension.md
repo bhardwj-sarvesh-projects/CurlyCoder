@@ -2,12 +2,12 @@
 
 *2026-06-22. Claude Code sessions on seeded repos. Sonnet 4.6, Opus 4.8, Haiku 4.5.*
 
-Two issues argued ponytail was lazy in the wrong place:
+Two issues argued CODELEAN was lazy in the wrong place:
 
-- [#245 "Dangerously lazy"](https://github.com/DietrichGebert/ponytail/issues/245): the "shortest
+- [#245 "Dangerously lazy"](https://github.com/bhardwj-sarvesh-projects/CODELEAN/issues/245): the "shortest
   diff wins" reflex makes the agent patch the nearest symptom instead of tracing the problem end to
   end, and ship a confident wrong fix.
-- [#217 "Missing rung"](https://github.com/DietrichGebert/ponytail/issues/217): rungs 2–4 reuse code
+- [#217 "Missing rung"](https://github.com/bhardwj-sarvesh-projects/CODELEAN/issues/217): rungs 2–4 reuse code
   from *outside* the project (stdlib, platform, deps); nothing covered "did I already write this
   here?", a common source of duplicated AI slop.
 
@@ -23,7 +23,7 @@ cuts the corner the issue is about.
   you touch and fix the shared function once — one guard there is a smaller diff than one per
   caller; patching only the path the ticket names leaves a sibling caller still broken."*
 
-The framing matters: the root-cause fix is presented as the *lazier* (smaller) diff, so ponytail's
+The framing matters: the root-cause fix is presented as the *lazier* (smaller) diff, so CODELEAN's
 own instinct pulls toward it rather than away.
 
 ## The #245 reproducer
@@ -37,7 +37,7 @@ scored separately.
 
 ## Results — `trace-transfer`, n=6, root-cause-fix rate
 
-| model | baseline (no skill) | ponytail (with fix) |
+| model | baseline (no skill) | CODELEAN (with fix) |
 |---|--:|--:|
 | **Sonnet 4.6** | 1/6 (0.17) | **6/6 (1.0)** |
 | **Opus 4.8** | 1/6 (0.17) | **6/6 (1.0)** (held across 4 runs) |
@@ -47,7 +47,7 @@ On both capable models the fix is decisive and verified by reading the produced 
 cells repair the shared `_debit()` (one even comments it is "the shared guard for every path that
 removes money"). Baseline patches only the named `transfer()`.
 
-A control confirms it is the *operational* wording, not prose: pre-fix ponytail and a plain-prose
+A control confirms it is the *operational* wording, not prose: pre-fix CODELEAN and a plain-prose
 version ("trace the flow end to end") both scored 0/3 on Opus; only the grep-the-callers directive
 moved it to 6/6.
 
@@ -65,14 +65,14 @@ Haiku; the fix helps the models that have the headroom to act on guidance.
 Two reuse probes (`reuse-slug`, `reuse-money`) hide a distinctively-behaved helper in a separate
 module the agent must discover; a re-implementation diverges observably (e.g. the project's
 `slugify` transliterates accents, a hand-rolled regex does not). Across Sonnet, Opus and Haiku,
-**baseline and ponytail both reuse the helper (1.0 each)** — the duplication failure does not
+**baseline and CODELEAN both reuse the helper (1.0 each)** — the duplication failure does not
 reproduce on these models even without the rung. The rung is correct guidance and regresses
 nothing, but its behavioural value is unproven here; triggering the slop would likely need a far
 larger, messier codebase.
 
 ## Regression check: did the rule edits break anything?
 
-Pre-fix vs post-fix ponytail across the full 27-task runnable suite (safety + quality + open/vibe),
+Pre-fix vs post-fix CODELEAN across the full 27-task runnable suite (safety + quality + open/vibe),
 Haiku, n=3:
 
 - **Safety: identical.** All seven deterministic safety tasks score 1.0 safe before and after —
@@ -89,10 +89,10 @@ too, a small-model + "code-first" output interaction, not introduced here.
 ## Verdict
 
 - **#245: fixed and validated on the capable tiers** (Sonnet 4.6, the model it was reported on, and
-  Opus 4.8): baseline 1/6 → ponytail 6/6, with verified root-cause fixes. Small models remain a
+  Opus 4.8): baseline 1/6 → CODELEAN 6/6, with verified root-cause fixes. Small models remain a
   capability ceiling where baseline also fails.
 - **#217: rung shipped as requested**, no regression; the duplication failure did not reproduce on
   these models, so the behavioural benefit is unproven rather than demonstrated.
 
 Reproduce: `python run.py --selftest` then
-`python run.py --task trace-transfer --arms baseline,ponytail --models sonnet --runs 6`.
+`python run.py --task trace-transfer --arms baseline,CODELEAN --models sonnet --runs 6`.

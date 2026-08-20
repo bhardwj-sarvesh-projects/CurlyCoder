@@ -1,32 +1,32 @@
-# Ponytail v4 hardening — A–F benchmark vs Caveman (2026-06-12)
+# CODELEAN v4 hardening — A–F benchmark vs Caveman (2026-06-12)
 
-Response to the hardening brief in `C:\dev\ponytail-bench\PONYTAIL-BENCHMARK-WRITEUP.md`.
-Harness reused as-is: same 6 tasks (specs reconstructed in `ponytail-bench\specs.md` —
+Response to the hardening brief in `C:\dev\CODELEAN-bench\CODELEAN-BENCHMARK-WRITEUP.md`.
+Harness reused as-is: same 6 tasks (specs reconstructed in `CODELEAN-bench\specs.md` —
 the originals were not preserved; both new arms got identical text), same scorer
 (`score.py`, arms now auto-discovered), same adversarial probes (`probe_e.py`,
 `probe_f.py`), same extension protocol (phase-1 git commit, cost = `git diff
 --numstat` insertions + new-file LOC). Caveman = `JuliusBrussee/caveman` SKILL.md
-verbatim (full level), saved at `ponytail-bench\caveman-SKILL.md`. One fresh
+verbatim (full level), saved at `CODELEAN-bench\caveman-SKILL.md`. One fresh
 subagent per task × arm, same model for all 16 runs. Caveat: this model/harness
 differs from the original Cursor runs, so comparisons to the old treatment
-numbers are directional; the ponytail4-vs-caveman head-to-head is same-model.
+numbers are directional; the CODELEAN4-vs-caveman head-to-head is same-model.
 
 ## v4 changes (the hardening, ~10 lines of prompt total)
 
 1. **Test reflex** (brief 5.1): non-trivial logic leaves ONE runnable check —
    assert-based `demo()`/`__main__` self-check or one small `test_*.py`. No
    frameworks. One-liners need no test.
-2. **Ceiling comments** (5.2): a `ponytail:` shortcut with a known ceiling must
+2. **Ceiling comments** (5.2): a `CODELEAN:` shortcut with a known ceiling must
    name the ceiling and the upgrade path in the comment.
 3. **Robust variant rule** (5.3): between two same-size stdlib options, take the
    edge-case-correct one.
 
 Applied to SKILL.md, all five cross-agent rule copies, the hook fallback, and a
-guard line in ponytail-review (never flag the minimal check as bloat).
+guard line in CODELEAN-review (never flag the minimal check as bloat).
 
 ## Build phase — non-blank LOC / .py files (scorer-verified)
 
-| Task | Control (orig) | Treatment v3 (orig) | **Ponytail v4** | **Caveman** |
+| Task | Control (orig) | Treatment v3 (orig) | **CODELEAN v4** | **Caveman** |
 |---|--:|--:|--:|--:|
 | A log CLI | 970 / 13 | 150 / 1 | **145 / 2** | 283 / 1 |
 | B file sync | 587 / 9 | 175 / 2 | **99 / 1** | 228 / 2 |
@@ -78,7 +78,7 @@ locks at 3× the LOC).
    B–F: assert-based `__main__` checks; all executed). This was the #1 gap (was 1/4).
 3. LOC within ~20% of v3 treatment numbers — **pass on intent**: every arm at or
    below v3 (A −3%, C −14%; B/D/E/F 25–43% *below* — leaner, not bloated).
-4. Ceiling-bearing `ponytail:` comments name upgrade paths — **pass**, verified
+4. Ceiling-bearing `CODELEAN:` comments name upgrade paths — **pass**, verified
    per arm: global lock→per-account locks (F), no token TTL→add TTL (E),
    sequential sends→async/threaded + hardcoded route→routing table (C),
    special-cased `unique`→DATASET_RULES registry (D), observed-hours stats→
@@ -87,7 +87,7 @@ locks at 3× the LOC).
    - Safety: tie at 100% (≥, never regressed to win on size).
    - Size: LOC strictly better 6/6; files ≤ on 5/6 (A caveat above).
    - Extension cost: strictly better on both tasks.
-   - Reviewability: strictly better — every v4 simplification is `ponytail:`-marked
+   - Reviewability: strictly better — every v4 simplification is `CODELEAN:`-marked
      with its ceiling; Caveman's code marks only spec-allowed simulated transports,
      and its design trade-offs live in the chat report, invisible to a later reviewer.
 
@@ -99,7 +99,7 @@ through this harness (no skill, "build production-normal", same model, same
 specs), making all three arms same-model. Control2 passes both probes (8/8,
 6/6) and all 10 demo/test runs exit 0; extensions on C and D re-verified.
 
-| Whole benchmark (6 builds + C/D extensions) | Control2 | Caveman | Ponytail v4 |
+| Whole benchmark (6 builds + C/D extensions) | Control2 | Caveman | CODELEAN v4 |
 |---|--:|--:|--:|
 | Build LOC | 3,629 | 1,440 | **490** |
 | Build LOC per task (A-F) | 946/656/808/677/260/282 | 283/228/396/218/148/167 | **145/99/73/70/49/54** |
@@ -111,7 +111,7 @@ specs), making all three arms same-model. Control2 passes both probes (8/8,
 Wall times carry parallel-scheduling noise (arms ran concurrently, n=1 per
 cell); token counts are exact from agent telemetry. The README "Numbers"
 section now cites this same-model dataset and retires the older 5-task v3
-figures (still recorded in `2026-06-12-caveman-vs-ponytail.md`).
+figures (still recorded in `2026-06-12-caveman-vs-CODELEAN.md`).
 
 ## Residual (honest notes)
 
@@ -122,4 +122,4 @@ figures (still recorded in `2026-06-12-caveman-vs-ponytail.md`).
   future eval if it bites in practice.
 - Caveman is a prose-compression skill that explicitly writes code "normal" —
   it loses on code size by design. The meaningful result is that adding the
-  test reflex did not erode ponytail's size advantage or its 100% probe record.
+  test reflex did not erode CODELEAN's size advantage or its 100% probe record.

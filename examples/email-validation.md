@@ -2,9 +2,9 @@
 
 **Task:** "Write me a Python function that validates email addresses."
 
-Verbatim model output from a benchmark run, Claude Haiku 4.5, no-skill arm vs ponytail arm, temperature 1, source `benchmarks/output.json`. Reproduce: `npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml`.
+Verbatim model output from a benchmark run, Claude Haiku 4.5, no-skill arm vs CODELEAN arm, temperature 1, source `benchmarks/output.json`. Reproduce: `npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml`.
 
-## Without Ponytail, 75 lines of code
+## Without CODELEAN, 75 lines of code
 
 # Email Validation Function
 
@@ -142,7 +142,7 @@ if __name__ == "__main__":
 
 **Recommendation**: Use the `email-validator` library for production applications, as it properly handles RFC 5321/5322 standards. Use the simple regex version for quick scripts or when you want to avoid dependencies.
 
-## With Ponytail, 3 lines of code
+## With CODELEAN, 3 lines of code
 
 ```python
 import re

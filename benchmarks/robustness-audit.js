@@ -1,14 +1,14 @@
-// Robustness audit (issue #65 follow-up): find where ponytail actually breaks on a
+// Robustness audit (issue #65 follow-up): find where CODELEAN actually breaks on a
 // weak model. 12 tasks with classic edge-case traps. Each has a known-good and a
 // known-lazy-wrong reference so the instrument is verified before any API spend.
 //   node robustness-audit.js --selftest   # no API: prove every check is correct
-//   node robustness-audit.js              # baseline vs ponytail, gpt-5.4-mini, n=20
+//   node robustness-audit.js              # baseline vs CODELEAN, gpt-5.4-mini, n=20
 const { execSync } = require('child_process');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-// ponytail: probe once at load; mirrors correctness.js
+// CODELEAN: probe once at load; mirrors correctness.js
 let pythonCmd;
 function python() {
   if (pythonCmd) return pythonCmd;
@@ -29,7 +29,7 @@ try {
     .map(l => { const i = l.indexOf('='); return [l.slice(0, i).trim(), l.slice(i + 1).trim()]; }));
 } catch (_) { /* no .env — fine for --selftest */ }
 const KEY = process.env.OPENAI_API_KEY || kv.OPENAI_API_KEY;
-const SKILL = fs.readFileSync(path.join(ROOT, 'skills', 'ponytail', 'SKILL.md'), 'utf8');
+const SKILL = fs.readFileSync(path.join(ROOT, 'skills', 'CODELEAN', 'SKILL.md'), 'utf8');
 
 // task = { name, prompt, names, arity, cases: [[argsArray, expected], ...], good, bad }
 const TASKS = [
@@ -93,7 +93,7 @@ const TASKS = [
     cases: [[['racecar'], true], [['A man, a plan, a canal: Panama'], true], [['hello'], false], [[''], true], [["No 'x' in Nixon"], true], [['ab'], false]],
     good: "def is_palindrome(s):\n    c = [ch.lower() for ch in s if ch.isalnum()]\n    return c == c[::-1]",
     bad: 'def is_palindrome(s):\n    return s == s[::-1]' },
-  // Validators: the parse != validate trap. email is ponytail's one measured soft spot
+  // Validators: the parse != validate trap. email is CODELEAN's one measured soft spot
   // on gpt-5.4-mini (~4-5%, parseaddr); the rest hold parity. See results writeup.
   { name: 'email', arity: 1, names: ['validate_email', 'is_valid_email', 'email_validator', 'is_valid', 'validate'],
     prompt: 'Write me a Python function that validates email addresses.',
@@ -178,7 +178,7 @@ if (process.argv.includes('--selftest')) {
 }
 
 (async () => {
-  const arms = { baseline: null, ponytail: SKILL };
+  const arms = { baseline: null, CODELEAN: SKILL };
   const grid = {};
   for (const t of TASKS) {
     grid[t.name] = {};
@@ -191,14 +191,14 @@ if (process.argv.includes('--selftest')) {
       }
       grid[t.name][arm] = { pass, n: N - err };
     }
-    const b = grid[t.name].baseline, p = grid[t.name].ponytail;
-    const flag = p.pass < b.pass ? '  <-- PONYTAIL REGRESSION' : (p.pass < p.n ? '  (both imperfect)' : '');
-    console.log(`${t.name.padEnd(16)} baseline ${b.pass}/${b.n}   ponytail ${p.pass}/${p.n}${flag}`);
+    const b = grid[t.name].baseline, p = grid[t.name].CODELEAN;
+    const flag = p.pass < b.pass ? '  <-- CODELEAN REGRESSION' : (p.pass < p.n ? '  (both imperfect)' : '');
+    console.log(`${t.name.padEnd(16)} baseline ${b.pass}/${b.n}   CODELEAN ${p.pass}/${p.n}${flag}`);
   }
-  console.log('\n=== ponytail holes (ponytail < baseline) ===');
+  console.log('\n=== CODELEAN holes (CODELEAN < baseline) ===');
   let any = false;
   for (const t of TASKS) {
-    const b = grid[t.name].baseline, p = grid[t.name].ponytail;
+    const b = grid[t.name].baseline, p = grid[t.name].CODELEAN;
     if (p.pass < b.pass) { console.log(`  ${t.name}: ${b.pass} -> ${p.pass}`); any = true; }
   }
   if (!any) console.log('  none');

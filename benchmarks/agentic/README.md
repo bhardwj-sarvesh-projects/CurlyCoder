@@ -1,7 +1,7 @@
 # Agentic benchmark
 
 The single-shot benchmark (`../promptfooconfig.yaml`) measures one prompt, one completion.
-A fair critique ([#126](https://github.com/DietrichGebert/ponytail/issues/126)) is that this
+A fair critique ([#126](https://github.com/bhardwj-sarvesh-projects/CODELEAN/issues/126)) is that this
 does not reflect how a coding agent is actually used, and that counting lines of a
 conversational answer (which dumps multiple options and commentary) inflates the baseline.
 
@@ -25,11 +25,11 @@ the job properly, so any difference is the skill's effect, not the model being c
 
 ## Arms
 
-`baseline` (no skill) · `ponytail` · `caveman` · `yagni` ("Follow YAGNI principles.") ·
+`baseline` (no skill) · `CODELEAN` · `caveman` · `yagni` ("Follow YAGNI principles.") ·
 `yagni-oneliner` ("Follow YAGNI principles, and prefer one-liner solutions.")
 
 The last two are the seven-word prompts from the #126 writeup, included on purpose: if a one-line
-instruction matches ponytail, the benchmark should show it.
+instruction matches CODELEAN, the benchmark should show it.
 
 ## Tasks
 
@@ -65,7 +65,7 @@ path, unsafe on the adversarial input. That is exactly the code a binary correct
 - **correct** (gate): produced code runs and returns the right answer on normal input.
 - **safe** (gate): produced code survives the adversarial input. Deterministic, stdlib-only.
 - **src_loc / src_files**: over-engineering proxy. **Tests are excluded** and tracked separately
-  (`wrote_tests_rate`), since writing a test is the discipline ponytail prescribes, not bloat.
+  (`wrote_tests_rate`), since writing a test is the discipline CODELEAN prescribes, not bloat.
 - **cost / duration / turns**: straight from the Claude Code CLI JSON.
 
 Every instrument ships a `good` and a `bad` reference and is verified by `--selftest` (the good
@@ -112,7 +112,7 @@ python complete.py --run runs/<stamp>  # completeness-score every workspace
 ## Reproduce
 
 Needs the `claude` CLI (this is the harness, no SDK), Python 3, an authenticated Claude Code, and a
-clone of the template at the pinned commit (set `PONYTAIL_TMPL` to its path, or drop it at
+clone of the template at the pinned commit (set `CODELEAN_TMPL` to its path, or drop it at
 `fixtures/full-stack-fastapi-template`):
 
 ```bash
@@ -124,10 +124,10 @@ cd full-stack-fastapi-template && git checkout cd83fc1
 python run.py --selftest                                    # prove the instruments, no API -- run first
 # LOC tier (12 real-repo features):
 python run.py --task tmpl-fe-datepicker,tmpl-fe-colorpicker,tmpl-fe-command,tmpl-fe-dropzone,tmpl-fe-wizard,tmpl-fe-rating,tmpl-be-duplicate,tmpl-be-search,tmpl-be-count,tmpl-be-archive,tmpl-be-bulkdelete,tmpl-be-csv \
-  --arms baseline,caveman,ponytail,yagni-oneliner --models haiku --runs 4 --workers 6
+  --arms baseline,caveman,CODELEAN,yagni-oneliner --models haiku --runs 4 --workers 6
 # safety tier (7 surgical tasks):
 python run.py --task safe-path,critic-email,rate-limit,sql-user,auth-token,csv-sum,cache \
-  --arms baseline,caveman,ponytail,yagni-oneliner --models haiku --runs 4 --workers 6
+  --arms baseline,caveman,CODELEAN,yagni-oneliner --models haiku --runs 4 --workers 6
 python run.py --rescore runs/<stamp>                        # recompute metrics offline, no API
 ```
 
@@ -154,12 +154,12 @@ re-applied offline with `--rescore`, you never pay the API twice for a measureme
 
 **2026-06-18, Haiku 4.5, `n=4`.** Two tiers:
 
-- **12 real-repo features** (LOC via `git diff`): ponytail cuts **60–94%** on features with an
+- **12 real-repo features** (LOC via `git diff`): CODELEAN cuts **60–94%** on features with an
   over-build trap (date picker 404→23, color picker 287→23, dropzone 251→95) and is a wash on
   irreducible code (backend CRUD). It never writes more. Colin's one-liner prompt is erratic, great
   on the color picker, near or above baseline on the date picker, wizard, and command palette.
 - **6 surgical safety tasks** (produced code executed against adversarial input): baseline,
-  caveman, and ponytail are **100% safe** (20/20); `yagni-oneliner` is **95%** (19/20), it dropped
+  caveman, and CODELEAN are **100% safe** (20/20); `yagni-oneliner` is **95%** (19/20), it dropped
   the path-traversal guard once on `safe-path`, the one task where it wrote the fewest lines. The
   lines it cut were the guard.
 
@@ -167,6 +167,6 @@ Full writeup with per-task tables and analysis:
 [results/2026-06-18-agentic.md](../results/2026-06-18-agentic.md).
 
 > The earlier `results/2026-06-17-agentic-safety.md` run (the ~4% gap) is **superseded**: its
-> baseline was contaminated by the ponytail plugin's `SessionStart` hook firing on every arm, so
-> the baseline was secretly running ponytail. Isolation is now enforced with `--setting-sources
+> baseline was contaminated by the CODELEAN plugin's `SessionStart` hook firing on every arm, so
+> the baseline was secretly running CODELEAN. Isolation is now enforced with `--setting-sources
 > project,local` plus a per-arm `--plugin-dir`.

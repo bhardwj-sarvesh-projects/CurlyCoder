@@ -1,4 +1,4 @@
-"""Hermes plugin for Ponytail."""
+"""Hermes plugin for CODELEAN."""
 
 from __future__ import annotations
 
@@ -12,17 +12,17 @@ DEFAULT_MODE = "full"
 RUNTIME_MODES = {"off", "lite", "full", "ultra"}
 CONFIG_MODES = RUNTIME_MODES | {"review"}
 SKILL_COMMANDS = {
-    "ponytail-review": "Review the current diff or provided target for over-engineering.",
-    "ponytail-audit": "Audit the repo for over-engineering and deletion opportunities.",
-    "ponytail-debt": "List every deliberate `ponytail:` shortcut and its upgrade path.",
-    "ponytail-gain": "Show the measured-impact scoreboard (less code, less cost, more speed).",
-    "ponytail-help": "Show the Ponytail command reference.",
+    "CODELEAN-review": "Review the current diff or provided target for over-engineering.",
+    "CODELEAN-audit": "Audit the repo for over-engineering and deletion opportunities.",
+    "CODELEAN-debt": "List every deliberate `CODELEAN:` shortcut and its upgrade path.",
+    "CODELEAN-gain": "Show the measured-impact scoreboard (less code, less cost, more speed).",
+    "CODELEAN-help": "Show the CODELEAN command reference.",
 }
 
 ROOT = Path(__file__).resolve().parent
 SKILLS_DIR = ROOT / "skills"
-PONYTAIL_SKILL = SKILLS_DIR / "ponytail" / "SKILL.md"
-REVIEW_SKILL = SKILLS_DIR / "ponytail-review" / "SKILL.md"
+CODELEAN_SKILL = SKILLS_DIR / "CODELEAN" / "SKILL.md"
+REVIEW_SKILL = SKILLS_DIR / "CODELEAN-review" / "SKILL.md"
 
 _current_mode = None
 
@@ -43,14 +43,14 @@ def _normalize_config_mode(mode: str | None) -> str | None:
 
 def _config_dir() -> Path:
     if os.environ.get("XDG_CONFIG_HOME"):
-        return Path(os.environ["XDG_CONFIG_HOME"]) / "ponytail"
+        return Path(os.environ["XDG_CONFIG_HOME"]) / "CODELEAN"
     if os.name == "nt":
-        return Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming")) / "ponytail"
-    return Path.home() / ".config" / "ponytail"
+        return Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming")) / "CODELEAN"
+    return Path.home() / ".config" / "CODELEAN"
 
 
 def _default_mode() -> str:
-    env_mode = _normalize_config_mode(os.environ.get("PONYTAIL_DEFAULT_MODE"))
+    env_mode = _normalize_config_mode(os.environ.get("CODELEAN_DEFAULT_MODE"))
     if env_mode:
         return env_mode
     try:
@@ -89,7 +89,7 @@ def _filter_skill_body_for_mode(body: str, mode: str) -> str:
 
 def _fallback_instructions(mode: str) -> str:
     return (
-        f"PONYTAIL MODE ACTIVE — level: {mode}\n\n"
+        f"CODELEAN MODE ACTIVE — level: {mode}\n\n"
         "You are a lazy senior developer. Lazy means efficient, not careless. "
         "The best code is the code never written.\n\n"
         "Before any code, stop at the first rung that holds: YAGNI, stdlib, "
@@ -103,21 +103,21 @@ def _fallback_instructions(mode: str) -> str:
 
 
 def build_injected_context(mode: str | None = None) -> str:
-    """Return the mode-filtered Ponytail context injected before LLM turns."""
+    """Return the mode-filtered CODELEAN context injected before LLM turns."""
     configured = _normalize_config_mode(mode) or _default_mode()
     if configured == "off":
         return ""
     if configured == "review":
         try:
             body = REVIEW_SKILL.read_text(encoding="utf-8")
-            return f"PONYTAIL MODE ACTIVE — level: review\n\n{_strip_frontmatter(body)}"
+            return f"CODELEAN MODE ACTIVE — level: review\n\n{_strip_frontmatter(body)}"
         except OSError:
-            return "PONYTAIL MODE ACTIVE — level: review. Review diffs for unnecessary complexity."
+            return "CODELEAN MODE ACTIVE — level: review. Review diffs for unnecessary complexity."
 
     effective = _normalize_runtime_mode(configured) or DEFAULT_MODE
     try:
-        body = PONYTAIL_SKILL.read_text(encoding="utf-8")
-        return f"PONYTAIL MODE ACTIVE — level: {effective}\n\n{_filter_skill_body_for_mode(body, effective)}"
+        body = CODELEAN_SKILL.read_text(encoding="utf-8")
+        return f"CODELEAN MODE ACTIVE — level: {effective}\n\n{_filter_skill_body_for_mode(body, effective)}"
     except OSError:
         return _fallback_instructions(effective)
 
@@ -132,7 +132,7 @@ def _skill_prompt(command: str, args: str = "") -> str:
     tail = args.strip()
     target = f"\n\nUser arguments: {tail}" if tail else ""
     return (
-        f"Load and follow the Hermes plugin skill `ponytail:{command}`. "
+        f"Load and follow the Hermes plugin skill `CODELEAN:{command}`. "
         f"{SKILL_COMMANDS[command]}{target}"
     )
 
@@ -151,13 +151,14 @@ def _slash_access_denied(event: Any, gateway: Any, command: str) -> bool:
 
 
 def rewrite_gateway_command(event: Any = None, gateway: Any = None, **_: Any) -> dict[str, str] | None:
-    """Rewrite authorized gateway /ponytail-* commands into normal agent prompts."""
+    """Rewrite authorized gateway /CODELEAN-* commands into normal agent prompts."""
     text = str(getattr(event, "text", "") or "").strip()
     if not text.startswith("/"):
         return None
     head, _, rest = text[1:].partition(" ")
-    command = head.replace("_", "-").lower()
-    if command not in SKILL_COMMANDS:
+    command_name = head.replace("_", "-").lower()
+    command = next((name for name in SKILL_COMMANDS if name.lower() == command_name), None)
+    if command is None:
         return None
     if _slash_access_denied(event, gateway, command):
         return None
@@ -169,12 +170,12 @@ def _handle_mode_command(raw_args: str) -> str:
     arg = (raw_args or "").strip().lower()
     if not arg:
         mode = _current_mode or _default_mode()
-        return f"Ponytail mode: {mode}. Use `/ponytail lite|full|ultra|off`."
+        return f"CODELEAN mode: {mode}. Use `/CODELEAN lite|full|ultra|off`."
     mode = _normalize_runtime_mode(arg)
     if not mode:
-        return "Usage: /ponytail [lite|full|ultra|off]"
+        return "Usage: /CODELEAN [lite|full|ultra|off]"
     _current_mode = mode
-    return f"Ponytail mode set to {mode}."
+    return f"CODELEAN mode set to {mode}."
 
 
 def _make_skill_command_handler(ctx: Any, command: str) -> Callable[[str], str]:
@@ -193,19 +194,19 @@ def _make_skill_command_handler(ctx: Any, command: str) -> Callable[[str], str]:
 
 
 def register(ctx: Any) -> None:
-    """Register Ponytail hooks, skills, and slash commands with Hermes."""
+    """Register CODELEAN hooks, skills, and slash commands with Hermes."""
     for child in sorted(SKILLS_DIR.iterdir() if SKILLS_DIR.exists() else []):
         skill_md = child / "SKILL.md"
         if child.is_dir() and skill_md.exists():
-            ctx.register_skill(child.name, skill_md)
+            ctx.register_skill(child.name.upper() if child.name == "codelean" else child.name.replace("codelean-", "CODELEAN-", 1), skill_md)
 
     ctx.register_hook("pre_llm_call", _pre_llm_call)
     ctx.register_hook("pre_gateway_dispatch", rewrite_gateway_command)
 
     ctx.register_command(
-        "ponytail",
+        "CODELEAN",
         _handle_mode_command,
-        description="Set Ponytail lazy senior dev mode: lite, full, ultra, or off.",
+        description="Set CODELEAN lazy senior dev mode: lite, full, ultra, or off.",
         args_hint="[lite|full|ultra|off]",
     )
     for command, description in SKILL_COMMANDS.items():

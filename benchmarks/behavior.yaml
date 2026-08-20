@@ -1,4 +1,4 @@
-# Ponytail behavior gates: does the ruleset actually produce its refined
+# CODELEAN behavior gates: does the ruleset actually produce its refined
 # behaviors (not just carry the text)? Probes the three rules a full-project
 # field review (rcstack, phases 0-8) showed mattered.
 #
@@ -9,8 +9,8 @@
 # is proven separately by tests/behavior.test.js, which needs no API key.
 #
 # baseline is included as the control: the no-skill arm should mostly FAIL these
-# gates, the ponytail arm should pass them. That delta is the point.
-description: "Ponytail behavior gates: hardware calibration, requested explanation, one runnable check."
+# gates, the CODELEAN arm should pass them. That delta is the point.
+description: "CODELEAN behavior gates: hardware calibration, requested explanation, one runnable check."
 
 providers:
   - id: anthropic:messages:claude-opus-4-8
@@ -19,8 +19,8 @@ providers:
 prompts:
   - id: file://arms/baseline.js
     label: baseline (no skill)
-  - id: file://arms/ponytail.js
-    label: ponytail
+  - id: file://arms/CODELEAN.js
+    label: CODELEAN
 
 defaultTest:
   assert:

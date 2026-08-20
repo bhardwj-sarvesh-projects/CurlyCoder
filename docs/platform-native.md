@@ -79,7 +79,7 @@ Libraries people install that the runtime already ships.
 
 **Debounce one-liner** (no library):
 ```js
-// ponytail: 3 lines beats a dependency
+// CODELEAN: 3 lines beats a dependency
 let t;
 const debounce = (fn, ms) => (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
 ```

@@ -2,7 +2,7 @@
 
 **Task:** "Parse and build URL query strings."
 
-## Without Ponytail
+## Without CODELEAN
 
 ```bash
 npm install query-string
@@ -21,10 +21,10 @@ const url = qs.stringify({ page: 2, sort: "name", tags: ["js", "css"] });
 // → "page=2&sort=name&tags=js&tags=css"
 ```
 
-## With Ponytail
+## With CODELEAN
 
 ```js
-// ponytail: URLSearchParams does this
+// CODELEAN: URLSearchParams does this
 const params = new URLSearchParams(location.search);
 
 // Read

@@ -19,7 +19,7 @@ completeness also drops is doing less, not less-bloated -- and now the bench sho
 
 Judge: claude-sonnet-4-6, key from ../../.env (shared with judge.py). ~$0.003/cell.
 
-ponytail: reuses judge.py's HTTP/key/source plumbing instead of duplicating it -- one rubric
+CODELEAN: reuses judge.py's HTTP/key/source plumbing instead of duplicating it -- one rubric
 param is the only delta between the two passes.
 """
 import argparse, json, sys
@@ -31,7 +31,7 @@ from judge import load_key, source_text, judge_call, parse_score, RUNS_DIR, JUDG
 
 SCORE_KEY = "completeness"
 FLAG_AT = 1                 # cells scoring <= this are under-delivery (stub/partial) and get listed
-ARMS_ORDER = ["baseline", "caveman", "ponytail", "yagni", "yagni-oneliner"]
+ARMS_ORDER = ["baseline", "caveman", "CODELEAN", "yagni", "yagni-oneliner"]
 
 RUBRIC = (
     "You are a senior engineer checking whether a code submission ACTUALLY IMPLEMENTS the task it "

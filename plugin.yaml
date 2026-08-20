@@ -1,21 +1,21 @@
-name: ponytail
+name: CODELEAN
 version: 4.9.0
 description: Lazy senior dev mode for Hermes Agent, always-on context, bundled skills, and slash commands.
-author: Dietrich Gebert
+author: Sarvesh Bhardwj
 provides_hooks:
   - pre_llm_call
   - pre_gateway_dispatch
 provides_commands:
-  - ponytail
-  - ponytail-review
-  - ponytail-audit
-  - ponytail-debt
-  - ponytail-gain
-  - ponytail-help
+  - CODELEAN
+  - CODELEAN-review
+  - CODELEAN-audit
+  - CODELEAN-debt
+  - CODELEAN-gain
+  - CODELEAN-help
 provides_skills:
-  - ponytail
-  - ponytail-review
-  - ponytail-audit
-  - ponytail-debt
-  - ponytail-gain
-  - ponytail-help
+  - codelean
+  - codelean-review
+  - codelean-audit
+  - codelean-debt
+  - codelean-gain
+  - codelean-help

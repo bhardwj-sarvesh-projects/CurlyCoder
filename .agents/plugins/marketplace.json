@@ -1,14 +1,14 @@
 {
-  "name": "ponytail",
+  "name": "CODELEAN",
   "interface": {
-    "displayName": "Ponytail"
+    "displayName": "CODELEAN"
   },
   "plugins": [
     {
-      "name": "ponytail",
+      "name": "CODELEAN",
       "source": {
         "source": "url",
-        "url": "https://github.com/DietrichGebert/ponytail.git",
+        "url": "https://github.com/bhardwj-sarvesh-projects/CODELEAN.git",
         "ref": "main"
       },
       "policy": {

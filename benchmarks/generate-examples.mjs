@@ -1,5 +1,5 @@
 // Generate examples/*.md verbatim from a real benchmark run (output.json):
-// each file shows the same task answered with no skill vs with ponytail, same model.
+// each file shows the same task answered with no skill vs with CODELEAN, same model.
 //   node benchmarks/generate-examples.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
 import loc from './loc.js';
@@ -27,13 +27,13 @@ for (const [re, slug, title] of meta) {
 
 **Task:** "${b.vars.task}"
 
-Verbatim model output from a benchmark run — Claude Haiku 4.5, no-skill arm vs ponytail arm, temperature 1, source \`benchmarks/output.json\`. Reproduce: \`npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml\`.
+Verbatim model output from a benchmark run — Claude Haiku 4.5, no-skill arm vs CODELEAN arm, temperature 1, source \`benchmarks/output.json\`. Reproduce: \`npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml\`.
 
-## Without Ponytail — ${bL} lines of code
+## Without CODELEAN — ${bL} lines of code
 
 ${b.response.output.trim()}
 
-## With Ponytail — ${pL} lines of code
+## With CODELEAN — ${pL} lines of code
 
 ${p.response.output.trim()}
 
@@ -48,7 +48,7 @@ const tbl = rows.map(([t, s, b, p]) => `| [${t}](${s}.md) | ${b} | ${p} |`).join
 const readme = `# Examples
 
 Real model output, verbatim from benchmark runs — the same task answered by the same model
-with no skill (\`## Without Ponytail\`) and with ponytail (\`## With Ponytail\`), so you can
+with no skill (\`## Without CODELEAN\`) and with CODELEAN (\`## With CODELEAN\`), so you can
 compare side by side. Model: Claude Haiku 4.5, temperature 1, source \`benchmarks/output.json\`.
 
 These are not hand-written. Reproduce them yourself:

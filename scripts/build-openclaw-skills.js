@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Generate the OpenClaw / ClawHub skill package (.openclaw/skills/) from the
 // canonical skills/. OpenClaw skills are SKILL.md (frontmatter + body), the same
-// format ponytail already uses, with one difference: `description` must be a
+// format CODELEAN already uses, with one difference: `description` must be a
 // single line under 160 chars. The canonical descriptions are long (tuned for
 // Claude's skill picker), so each ships a short one here. The body is copied
 // verbatim from skills/<name>/SKILL.md so the ruleset never drifts; only the
@@ -14,15 +14,15 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const HOMEPAGE = 'https://github.com/DietrichGebert/ponytail';
+const HOMEPAGE = 'https://github.com/bhardwj-sarvesh-projects/CODELEAN';
 
 const DESCRIPTIONS = {
-  'ponytail': 'Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests.',
-  'ponytail-review': 'Review a diff for over-engineering. Finds what to delete: reinvented stdlib, needless deps, speculative abstractions. One line per finding.',
-  'ponytail-audit': 'Audit the whole repo for over-engineering. A ranked list of what to delete, simplify, or replace with stdlib or native features.',
-  'ponytail-debt': 'Harvest every ponytail: shortcut comment into one debt ledger, so deferrals get tracked instead of forgotten. One-shot report.',
-  'ponytail-gain': 'Show ponytail measured impact as a scoreboard: less code, less cost, more speed, from the benchmark medians. One-shot display.',
-  'ponytail-help': "Quick reference for ponytail's modes, skills, and commands. One-shot display.",
+  'CODELEAN': 'Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests.',
+  'CODELEAN-review': 'Review a diff for over-engineering. Finds what to delete: reinvented stdlib, needless deps, speculative abstractions. One line per finding.',
+  'CODELEAN-audit': 'Audit the whole repo for over-engineering. A ranked list of what to delete, simplify, or replace with stdlib or native features.',
+  'CODELEAN-debt': 'Harvest every CODELEAN: shortcut comment into one debt ledger, so deferrals get tracked instead of forgotten. One-shot report.',
+  'CODELEAN-gain': 'Show CODELEAN measured impact as a scoreboard: less code, less cost, more speed, from the benchmark medians. One-shot display.',
+  'CODELEAN-help': "Quick reference for CODELEAN's modes, skills, and commands. One-shot display.",
 };
 
 const NAMES = Object.keys(DESCRIPTIONS);

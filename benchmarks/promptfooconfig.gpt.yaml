@@ -1,7 +1,7 @@
-# Reproduces Pyseph's issue-65 setup: baseline vs ponytail, gpt-4.1-mini + gpt-5.4-mini.
+# Reproduces Pyseph's issue-65 setup: baseline vs CODELEAN, gpt-4.1-mini + gpt-5.4-mini.
 # Reuses the repo's arms + loc/correctness gates. Needs OPENAI_API_KEY in ../.env.
 #   npx promptfoo@latest eval -c benchmarks/promptfooconfig.gpt.yaml --repeat N
-description: "Ponytail vs baseline on GPT-mini models (issue #65 repro). LOC + correctness gate."
+description: "CODELEAN vs baseline on GPT-mini models (issue #65 repro). LOC + correctness gate."
 
 providers:
   - id: openai:gpt-4.1-mini
@@ -12,8 +12,8 @@ providers:
 prompts:
   - id: file://arms/baseline.js
     label: baseline (no skill)
-  - id: file://arms/ponytail.js
-    label: ponytail
+  - id: file://arms/CODELEAN.js
+    label: CODELEAN
 
 defaultTest:
   assert:
