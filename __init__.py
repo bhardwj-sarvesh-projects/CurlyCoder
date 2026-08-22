@@ -21,8 +21,8 @@ SKILL_COMMANDS = {
 
 ROOT = Path(__file__).resolve().parent
 SKILLS_DIR = ROOT / "skills"
-CODELEAN_SKILL = SKILLS_DIR / "CODELEAN" / "SKILL.md"
-REVIEW_SKILL = SKILLS_DIR / "CODELEAN-review" / "SKILL.md"
+CODELEAN_SKILL = SKILLS_DIR / "codelean" / "SKILL.md"
+REVIEW_SKILL = SKILLS_DIR / "codelean-review" / "SKILL.md"
 
 _current_mode = None
 

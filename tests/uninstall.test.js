@@ -34,7 +34,7 @@ fs.writeFileSync(configPath, JSON.stringify({ defaultMode: 'ultra' }));
 
 const settingsPath = path.join(claudeDir, 'settings.json');
 fs.writeFileSync(settingsPath, JSON.stringify({
-  statusLine: { type: 'command', command: 'bash /some/path/CODELEAN-statusline.sh' },
+  statusLine: { type: 'command', command: 'bash /some/path/codelean-statusline.sh' },
 }));
 
 const env = {
@@ -72,7 +72,7 @@ assert.equal(
 // #374: a combined statusline (another plugin && CODELEAN) must keep the other
 // plugin's part — uninstall must not nuke the whole command or leave a husk.
 fs.writeFileSync(settingsPath, JSON.stringify({
-  statusLine: { type: 'command', command: 'bash ~/caveman-statusline.sh && bash /p/CODELEAN-statusline.sh' },
+  statusLine: { type: 'command', command: 'bash ~/caveman-statusline.sh && bash /p/codelean-statusline.sh' },
 }));
 
 result = runUninstall(env);
@@ -87,7 +87,7 @@ assert.equal(
 // #434: a malformed settings.json must not crash the script mid-cleanup. It
 // can't be safely edited, so uninstall warns and leaves the file byte-for-byte
 // intact instead of throwing a SyntaxError after other state was already removed.
-const malformedSettings = '{ "statusLine": { "command": "CODELEAN-statusline.sh", broken';
+const malformedSettings = '{ "statusLine": { "command": "codelean-statusline.sh", broken';
 fs.writeFileSync(settingsPath, malformedSettings);
 
 result = runUninstall(env);

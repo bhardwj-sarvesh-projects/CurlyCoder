@@ -40,10 +40,10 @@ instructions, keep its copied rule text aligned with `AGENTS.md`.
 
 ## Portable Behavior
 
-- `skills/CODELEAN/SKILL.md`: lazy senior dev mode
-- `skills/CODELEAN-review/SKILL.md`: over-engineering review
-- `skills/CODELEAN-audit/SKILL.md`: whole-repo over-engineering audit
-- `skills/CODELEAN-debt/SKILL.md`: harvest `CODELEAN:` shortcuts into a tracked ledger
-- `skills/CODELEAN-gain/SKILL.md`: measured-impact scoreboard from the benchmark
-- `skills/CODELEAN-help/SKILL.md`: quick reference
+- `skills/codelean/SKILL.md`: lazy senior dev mode
+- `skills/codelean-review/SKILL.md`: over-engineering review
+- `skills/codelean-audit/SKILL.md`: whole-repo over-engineering audit
+- `skills/codelean-debt/SKILL.md`: harvest `CODELEAN:` shortcuts into a tracked ledger
+- `skills/codelean-gain/SKILL.md`: measured-impact scoreboard from the benchmark
+- `skills/codelean-help/SKILL.md`: quick reference
 - `AGENTS.md`: compact always-on instruction set for agents without skill support

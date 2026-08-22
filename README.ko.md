@@ -231,7 +231,7 @@ CODELEAN을 Devin 플러그인으로 설치한다. 스킬은 `/CODELEAN:CODELEAN
 clawhub install CODELEAN
 ```
 
-ClawHub에서 CODELEAN을 OpenClaw 스킬로 설치한다. review, audit, debt, gain, help 스킬도 같은 식으로 깐다(`clawhub install CODELEAN-review` 등). OpenClaw는 코딩 작업에 이를 적용하고 `/CODELEAN` 명령으로도 열어 준다. ClawHub가 없으면 [`.openclaw/skills/CODELEAN`](.openclaw/skills/)을 `~/.openclaw/skills/`에 복사하면 된다.
+ClawHub에서 CODELEAN을 OpenClaw 스킬로 설치한다. review, audit, debt, gain, help 스킬도 같은 식으로 깐다(`clawhub install CODELEAN-review` 등). OpenClaw는 코딩 작업에 이를 적용하고 `/CODELEAN` 명령으로도 열어 준다. ClawHub가 없으면 [`.openclaw/skills/codelean`](.openclaw/skills/)을 `~/.openclaw/skills/`에 복사하면 된다.
 
 ### Grok Build
 

@@ -18,13 +18,13 @@ prompt menu, or that pull context through tools. See issue #70.
   (`{ mode, instructions }`), for hosts that pull context via tools or code
   execution. Read-only.
 
-Mode resolution reuses `hooks/CODELEAN-config.js`, so `CODELEAN_DEFAULT_MODE`
+Mode resolution reuses `hooks/codelean-config.js`, so `CODELEAN_DEFAULT_MODE`
 and `~/.config/CODELEAN/config.json` work the same as everywhere else.
 
 ## Run it
 
 ```bash
-cd CODELEAN-mcp
+cd codelean-mcp
 npm install
 node index.js        # speaks MCP over stdio
 ```
@@ -32,7 +32,7 @@ node index.js        # speaks MCP over stdio
 Point an MCP host at that command. Example client entry:
 
 ```json
-{ "mcpServers": { "CODELEAN": { "command": "node", "args": ["CODELEAN-mcp/index.js"] } } }
+{ "mcpServers": { "CODELEAN": { "command": "node", "args": ["codelean-mcp/index.js"] } } }
 ```
 
 ## Test

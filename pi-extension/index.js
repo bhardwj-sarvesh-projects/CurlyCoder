@@ -11,8 +11,8 @@ const {
   normalizePersistedMode,
   isDeactivationCommand,
   writeDefaultMode,
-} = require("../hooks/CODELEAN-config.js");
-const { getCODELEANInstructions, filterSkillBodyForMode } = require("../hooks/CODELEAN-instructions.js");
+} = require("../hooks/codelean-config.js");
+const { getCODELEANInstructions, filterSkillBodyForMode } = require("../hooks/codelean-instructions.js");
 
 export { filterSkillBodyForMode };
 export const readDefaultMode = getDefaultMode;

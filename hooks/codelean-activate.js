@@ -60,7 +60,7 @@ if (!isCodex && !isCopilot) try {
   if (!hasStatusline && !fs.existsSync(nudgeFlagPath)) {
     try { fs.writeFileSync(nudgeFlagPath, ''); } catch (e) { /* best-effort */ }
     const isWindows = process.platform === 'win32';
-    const scriptName = isWindows ? 'CODELEAN-statusline.ps1' : 'CODELEAN-statusline.sh';
+    const scriptName = isWindows ? 'codelean-statusline.ps1' : 'codelean-statusline.sh';
     const scriptPath = path.join(__dirname, scriptName);
     if (isShellSafe(scriptPath)) {
       const command = isWindows

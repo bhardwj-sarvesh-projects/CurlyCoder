@@ -244,7 +244,7 @@ Installs CODELEAN as a Devin plugin; skills are available as `/CODELEAN:CODELEAN
 clawhub install CODELEAN
 ```
 
-Installs CODELEAN as an OpenClaw skill from ClawHub; the review, audit, debt, gain, and help skills install the same way (`clawhub install CODELEAN-review`, and so on). OpenClaw applies it on coding tasks and also exposes it as a `/CODELEAN` command. Without ClawHub, copy [`.openclaw/skills/CODELEAN`](.openclaw/skills/) into `~/.openclaw/skills/`.
+Installs CODELEAN as an OpenClaw skill from ClawHub; the review, audit, debt, gain, and help skills install the same way (`clawhub install CODELEAN-review`, and so on). OpenClaw applies it on coding tasks and also exposes it as a `/CODELEAN` command. Without ClawHub, copy [`.openclaw/skills/codelean`](.openclaw/skills/) into `~/.openclaw/skills/`.
 
 ### Grok Build
 

@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node CODELEAN_DIR/hooks/CODELEAN-mode-tracker.js"
+            "command": "node CODELEAN_DIR/hooks/codelean-mode-tracker.js"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node CODELEAN_DIR/hooks/CODELEAN-subagent.js"
+            "command": "node CODELEAN_DIR/hooks/codelean-subagent.js"
           }
         ]
       }

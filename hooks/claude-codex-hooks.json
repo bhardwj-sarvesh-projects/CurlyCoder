@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CODELEAN-activate.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/codelean-activate.js\"",
             "timeout": 5,
             "statusMessage": "Loading CODELEAN mode..."
           }
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CODELEAN-subagent.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/codelean-subagent.js\"",
             "timeout": 5,
             "statusMessage": "Loading CODELEAN mode..."
           }
@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CODELEAN-mode-tracker.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/codelean-mode-tracker.js\"",
             "timeout": 5,
             "statusMessage": "Tracking CODELEAN mode..."
           }

@@ -90,7 +90,7 @@ test('every hook command points at a script that ships in hooks/', () => {
 // fires. The hook must never wait on stdin forever — that freezes the whole
 // session. It has to self-exit even when stdin stays open and empty.
 test('CODELEAN-mode-tracker self-exits when stdin never closes (no freeze)', async () => {
-  const hook = path.join(root, 'hooks', 'CODELEAN-mode-tracker.js');
+  const hook = path.join(root, 'hooks', 'codelean-mode-tracker.js');
   // stdin is a pipe we never write to or end, reproducing the deadlock.
   const child = spawn(process.execPath, [hook], { stdio: ['pipe', 'ignore', 'ignore'] });
 

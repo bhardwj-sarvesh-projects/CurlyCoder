@@ -24,7 +24,7 @@ const VERSIONED_MANIFESTS = [
 ];
 // Gemini auto-discovers these by directory; the manifest is only useful if they exist.
 const REUSED_COMMANDS = ['commands/CODELEAN.toml', 'commands/CODELEAN-review.toml'];
-const REUSED_SKILLS = ['skills/CODELEAN/SKILL.md'];
+const REUSED_SKILLS = ['skills/codelean/SKILL.md'];
 // Gemini CLI auto-loads this exact path for extension hooks. CODELEAN's
 // Claude/Codex hook map uses events Gemini does not support, so it must stay
 // behind the host-specific plugin manifests instead.

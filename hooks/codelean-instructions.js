@@ -6,7 +6,7 @@ const path = require('path');
 const { DEFAULT_MODE, normalizeMode, normalizePersistedMode } = require('./CODELEAN-config');
 
 const INDEPENDENT_MODES = new Set(['review']);
-const SKILL_PATH = path.join(__dirname, '..', 'skills', 'CODELEAN', 'SKILL.md');
+const SKILL_PATH = path.join(__dirname, '..', 'skills', 'codelean', 'SKILL.md');
 
 function filterSkillBodyForMode(body, mode) {
   const effectiveMode = normalizeMode(mode) || DEFAULT_MODE;
