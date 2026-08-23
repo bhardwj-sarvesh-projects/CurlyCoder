@@ -17,13 +17,13 @@ const canonical = agents.replace(/\n\n\(Yes, this file also applies[\s\S]*?\)$/,
 
 // Compact copies: same body as AGENTS.md, host-specific frontmatter stripped.
 const copies = [
-  ['.cursor/rules/CODELEAN.mdc', stripFrontmatter],
-  ['.windsurf/rules/CODELEAN.md', text => text.trim()],
-  ['.clinerules/CODELEAN.md', text => text.trim()],
-  ['.agents/rules/CODELEAN.md', text => text.trim()],
-  ['.qoder/rules/CODELEAN.md', text => text.trim()],
+  ['.cursor/rules/codelean.mdc', stripFrontmatter],
+  ['.windsurf/rules/codelean.md', text => text.trim()],
+  ['.clinerules/codelean.md', text => text.trim()],
+  ['.agents/rules/codelean.md', text => text.trim()],
+  ['.qoder/rules/codelean.md', text => text.trim()],
   ['.github/copilot-instructions.md', text => text.trim()],
-  ['.kiro/steering/CODELEAN.md', stripFrontmatter],
+  ['.kiro/steering/codelean.md', stripFrontmatter],
 ];
 
 let failed = false;
@@ -57,8 +57,8 @@ const INVARIANTS = [
   'Lazy code without its check is unfinished', // one-check promoted to headline
 ];
 
-const skill = read('skills/codelean/SKILL.md');
-const sources = [['skills/codelean/SKILL.md', skill], ['AGENTS.md', agents]];
+const skill = read('skills/CODELEAN/SKILL.md');
+const sources = [['skills/CODELEAN/SKILL.md', skill], ['AGENTS.md', agents]];
 for (const phrase of INVARIANTS) {
   for (const [label, text] of sources) {
     if (!text.includes(phrase)) {
