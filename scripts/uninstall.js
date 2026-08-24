@@ -7,9 +7,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const { getConfigPath, getClaudeDir } = require('../hooks/codelean-config');
+const { getConfigPath, getClaudeDir } = require('../hooks/CODELEAN-config');
 
-const STATUSLINE_SCRIPT = 'codelean-statusline';
+const STATUSLINE_SCRIPT = 'CODELEAN-statusline';
 
 function removeIfExists(filePath, label) {
   try {

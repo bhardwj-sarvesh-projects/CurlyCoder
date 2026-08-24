@@ -21,7 +21,7 @@ const copies = [
   ['.windsurf/rules/codelean.md', text => text.trim()],
   ['.clinerules/codelean.md', text => text.trim()],
   ['.agents/rules/codelean.md', text => text.trim()],
-  ['.qoder/rules/codelean.md', text => text.trim()],
+  ['.qoder/rules/CODELEAN.md', text => text.trim()],
   ['.github/copilot-instructions.md', text => text.trim()],
   ['.kiro/steering/codelean.md', stripFrontmatter],
 ];
@@ -57,8 +57,8 @@ const INVARIANTS = [
   'Lazy code without its check is unfinished', // one-check promoted to headline
 ];
 
-const skill = read('skills/codelean/SKILL.md');
-const sources = [['skills/codelean/SKILL.md', skill], ['AGENTS.md', agents]];
+const skill = read('skills/CODELEAN/SKILL.md');
+const sources = [['skills/CODELEAN/SKILL.md', skill], ['AGENTS.md', agents]];
 for (const phrase of INVARIANTS) {
   for (const [label, text] of sources) {
     if (!text.includes(phrase)) {

@@ -33,7 +33,7 @@ def load_arms():
     return {
         "baseline": None,
         "caveman":  (ROOT / "benchmarks/arms/caveman-SKILL.md").read_text(encoding="utf-8"),
-        "CODELEAN": (ROOT / "skills/codelean/SKILL.md").read_text(encoding="utf-8"),
+        "CODELEAN": (ROOT / "skills/CODELEAN/SKILL.md").read_text(encoding="utf-8"),
     }
 
 

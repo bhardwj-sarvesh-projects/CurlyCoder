@@ -34,7 +34,7 @@ RUNS_DIR = Path(__file__).resolve().parent / "runs"
 def _skill(rel): return (ROOT / rel).read_text(encoding="utf-8")
 ARMS = {
     "baseline":       lambda: None,
-    "CODELEAN":       lambda: _skill("skills/codelean/SKILL.md"),
+    "CODELEAN":       lambda: _skill("skills/CODELEAN/SKILL.md"),
     "caveman":        lambda: _skill("benchmarks/arms/caveman-SKILL.md"),
     "yagni":          lambda: "Follow YAGNI principles.",
     "yagni-oneliner": lambda: "Follow YAGNI principles, and prefer one-liner solutions.",

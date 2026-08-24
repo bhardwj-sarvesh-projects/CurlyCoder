@@ -4,8 +4,8 @@
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
-const { getCODELEANInstructions } = require("../hooks/codelean-instructions.js");
-const { getDefaultMode, normalizeMode } = require("../hooks/codelean-config.js");
+const { getCODELEANInstructions } = require("../hooks/CODELEAN-instructions.js");
+const { getDefaultMode, normalizeMode } = require("../hooks/CODELEAN-config.js");
 
 // The three intensities the server offers. "off" has no instructions to serve.
 export const MODES = ["lite", "full", "ultra"];

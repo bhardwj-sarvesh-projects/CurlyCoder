@@ -17,10 +17,10 @@
   "bugs": {
     "url": "https://github.com/bhardwj-sarvesh-projects/codelean/issues"
   },
-  "main": "./.opencode/plugins/codelean.mjs",
+  "main": "./.opencode/plugins/CODELEAN.mjs",
   "exports": {
-    ".": "./.opencode/plugins/codelean.mjs",
-    "./plugin": "./.opencode/plugins/codelean.mjs"
+    ".": "./.opencode/plugins/CODELEAN.mjs",
+    "./plugin": "./.opencode/plugins/CODELEAN.mjs"
   },
   "files": [
     "AGENTS.md",

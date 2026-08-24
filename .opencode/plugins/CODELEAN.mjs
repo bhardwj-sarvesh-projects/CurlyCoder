@@ -19,8 +19,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // The shared instruction builder is CommonJS; bridge to it from this ES module.
 const require = createRequire(import.meta.url);
-const { getCODELEANInstructions } = require('../../hooks/codelean-instructions');
-const { getDefaultMode, normalizePersistedMode } = require('../../hooks/codelean-config');
+const { getCODELEANInstructions } = require('../../hooks/CODELEAN-instructions');
+const { getDefaultMode, normalizePersistedMode } = require('../../hooks/CODELEAN-config');
 const { parseCommandFile } = require('./CODELEAN-frontmatter.cjs');
 
 // OpenCode has no flag-file convention of its own; keep mode beside its config.

@@ -11,9 +11,9 @@ const root = path.join(__dirname, '..');
 // isShellSafe gates the statusline setup snippet (issue #200): ordinary install
 // paths pass, paths carrying shell metacharacters are rejected so they never get
 // embedded in a shell command.
-const { DEFAULT_MODE, getDefaultMode, isShellSafe, writeDefaultMode } = require('../hooks/codelean-config');
-assert.equal(isShellSafe('C:\\Users\\x\\.claude\\plugins\\CODELEAN\\hooks\\codelean-statusline.ps1'), true);
-assert.equal(isShellSafe('/home/u/.claude/plugins/CODELEAN/hooks/codelean-statusline.sh'), true);
+const { DEFAULT_MODE, getDefaultMode, isShellSafe, writeDefaultMode } = require('../hooks/CODELEAN-config');
+assert.equal(isShellSafe('C:\\Users\\x\\.claude\\plugins\\CODELEAN\\hooks\\CODELEAN-statusline.ps1'), true);
+assert.equal(isShellSafe('/home/u/.claude/plugins/CODELEAN/hooks/CODELEAN-statusline.sh'), true);
 assert.equal(isShellSafe('/tmp/a"&calc.exe&"/x.sh'), false);
 assert.equal(isShellSafe('/tmp/$(calc)/x.sh'), false);
 assert.equal(isShellSafe('/tmp/a;rm -rf/x.sh'), false);
@@ -55,7 +55,7 @@ const codexEnv = {
 };
 const codexState = path.join(pluginData, '.CODELEAN-active');
 
-let result = run('codelean-activate.js', codexEnv);
+let result = run('CODELEAN-activate.js', codexEnv);
 assert.equal(result.status, 0, result.stderr);
 assert.equal(fs.readFileSync(codexState, 'utf8'), 'ultra');
 let output = JSON.parse(result.stdout);
@@ -68,7 +68,7 @@ assert.match(
 );
 
 result = run(
-  'codelean-mode-tracker.js',
+  'CODELEAN-mode-tracker.js',
   codexEnv,
   JSON.stringify({ prompt: '@CODELEAN lite' }),
 );
@@ -79,7 +79,7 @@ assert.equal(output.systemMessage, 'CODELEAN:LITE');
 
 // Querying bare @CODELEAN should report the active level ('lite') without resetting it to default ('ultra')
 result = run(
-  'codelean-mode-tracker.js',
+  'CODELEAN-mode-tracker.js',
   codexEnv,
   JSON.stringify({ prompt: '@CODELEAN' }),
 );
@@ -94,7 +94,7 @@ assert.match(
 );
 
 result = run(
-  'codelean-mode-tracker.js',
+  'CODELEAN-mode-tracker.js',
   codexEnv,
   JSON.stringify({ prompt: 'normal mode' }),
 );
@@ -104,12 +104,12 @@ output = JSON.parse(result.stdout);
 assert.equal(output.systemMessage, 'CODELEAN:OFF');
 
 // A request that merely mentions "normal mode" must not deactivate CODELEAN.
-result = run('codelean-mode-tracker.js', codexEnv, JSON.stringify({ prompt: '@CODELEAN lite' }));
+result = run('CODELEAN-mode-tracker.js', codexEnv, JSON.stringify({ prompt: '@CODELEAN lite' }));
 assert.equal(result.status, 0, result.stderr);
 assert.equal(fs.readFileSync(codexState, 'utf8'), 'lite');
 
 result = run(
-  'codelean-mode-tracker.js',
+  'CODELEAN-mode-tracker.js',
   codexEnv,
   JSON.stringify({ prompt: 'add a normal mode toggle next to dark mode' }),
 );
@@ -127,7 +127,7 @@ const claudeEnv = {
 };
 delete claudeEnv.PLUGIN_DATA;
 
-result = run('codelean-activate.js', claudeEnv);
+result = run('CODELEAN-activate.js', claudeEnv);
 assert.equal(result.status, 0, result.stderr);
 assert.equal(
   fs.readFileSync(path.join(home, '.claude', '.CODELEAN-active'), 'utf8'),
@@ -138,7 +138,7 @@ assert.equal(
 const home2 = path.join(temp, 'home2');
 fs.mkdirSync(home2, { recursive: true });
 const customConfigDir = path.join(temp, 'custom-claude');
-result = run('codelean-activate.js', {
+result = run('CODELEAN-activate.js', {
   HOME: home2,
   USERPROFILE: home2,
   CLAUDE_CONFIG_DIR: customConfigDir,
@@ -167,7 +167,7 @@ assert.ok(
   fs.existsSync(path.join(customConfigDir, '.CODELEAN-statusline-nudged')),
   'first nudge must write the once-only flag (#483)',
 );
-const secondNudge = run('codelean-activate.js', {
+const secondNudge = run('CODELEAN-activate.js', {
   HOME: home2,
   USERPROFILE: home2,
   CLAUDE_CONFIG_DIR: customConfigDir,
@@ -181,7 +181,7 @@ assert.ok(
 
 const copilotData = path.join(temp, 'copilot-data');
 const codexData = path.join(temp, 'codex-data-shadow');
-result = run('codelean-activate.js', {
+result = run('CODELEAN-activate.js', {
   HOME: home,
   USERPROFILE: home,
   COPILOT_PLUGIN_DATA: copilotData,
@@ -208,7 +208,7 @@ const vscodePluginRoot = path.join(
   vscodeHome, '.vscode', 'agent-plugins', 'github.com', 'bhardwj-sarvesh-projects', 'CODELEAN', 'hooks',
 );
 fs.mkdirSync(vscodeHome, { recursive: true });
-result = run('codelean-activate.js', {
+result = run('CODELEAN-activate.js', {
   HOME: vscodeHome,
   USERPROFILE: vscodeHome,
   CLAUDE_PLUGIN_ROOT: vscodePluginRoot,
@@ -229,7 +229,7 @@ assert.equal(
 );
 
 result = run(
-  'codelean-mode-tracker.js',
+  'CODELEAN-mode-tracker.js',
   {
     HOME: home,
     USERPROFILE: home,
@@ -257,7 +257,7 @@ fs.mkdirSync(path.dirname(subFlag), { recursive: true });
 const subEnv = { HOME: subHome, USERPROFILE: subHome };
 
 fs.writeFileSync(subFlag, 'full');
-result = run('codelean-subagent.js', subEnv);
+result = run('CODELEAN-subagent.js', subEnv);
 assert.equal(result.status, 0, result.stderr);
 output = JSON.parse(result.stdout);
 assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
@@ -268,7 +268,7 @@ assert.match(
 
 // No flag → CODELEAN off → inject nothing (empty stdout, no failure).
 fs.unlinkSync(subFlag);
-result = run('codelean-subagent.js', subEnv);
+result = run('CODELEAN-subagent.js', subEnv);
 assert.equal(result.status, 0, result.stderr);
 assert.equal(result.stdout, '', 'SubagentStart must stay silent when CODELEAN is off');
 
@@ -277,7 +277,7 @@ assert.equal(result.stdout, '', 'SubagentStart must stay silent when CODELEAN is
 const subCodex = path.join(temp, 'sub-codex');
 fs.mkdirSync(subCodex, { recursive: true });
 fs.writeFileSync(path.join(subCodex, '.CODELEAN-active'), 'full');
-result = run('codelean-subagent.js', { HOME: subHome, USERPROFILE: subHome, PLUGIN_DATA: subCodex });
+result = run('CODELEAN-subagent.js', { HOME: subHome, USERPROFILE: subHome, PLUGIN_DATA: subCodex });
 assert.equal(result.status, 0, result.stderr);
 output = JSON.parse(result.stdout);
 assert.equal(output.systemMessage, 'CODELEAN:FULL');
@@ -297,7 +297,7 @@ const scopeEnv = { HOME: scopeHome, USERPROFILE: scopeHome };
 
 // Matching agent_type → inject; the match is case-insensitive.
 result = run(
-  'codelean-subagent.js',
+  'CODELEAN-subagent.js',
   { ...scopeEnv, CODELEAN_SUBAGENT_MATCHER: 'general|plan' },
   JSON.stringify({ agent_type: 'General-purpose' }),
 );
@@ -308,7 +308,7 @@ assert.match(output.hookSpecificOutput.additionalContext, /CODELEAN MODE ACTIVE 
 
 // agent_type the matcher rejects → stay silent.
 result = run(
-  'codelean-subagent.js',
+  'CODELEAN-subagent.js',
   { ...scopeEnv, CODELEAN_SUBAGENT_MATCHER: 'general|plan' },
   JSON.stringify({ agent_type: 'Explore' }),
 );
@@ -317,7 +317,7 @@ assert.equal(result.stdout, '', 'a non-matching agent_type must skip the injecti
 
 // Anchored regex → exact match only; a superset name is rejected.
 result = run(
-  'codelean-subagent.js',
+  'CODELEAN-subagent.js',
   { ...scopeEnv, CODELEAN_SUBAGENT_MATCHER: '^general$' },
   JSON.stringify({ agent_type: 'general-purpose' }),
 );
@@ -327,7 +327,7 @@ assert.equal(result.stdout, '', 'an anchored matcher must not match a superset a
 // Matcher set but agent_type absent → the platform didn't report it; fail
 // open and inject rather than silently dropping the persona (issue #252).
 result = run(
-  'codelean-subagent.js',
+  'CODELEAN-subagent.js',
   { ...scopeEnv, CODELEAN_SUBAGENT_MATCHER: 'general' },
   JSON.stringify({}),
 );
@@ -337,7 +337,7 @@ assert.match(output.hookSpecificOutput.additionalContext, /CODELEAN MODE ACTIVE 
 
 // Invalid regex → must not crash; fall back to injecting everywhere.
 result = run(
-  'codelean-subagent.js',
+  'CODELEAN-subagent.js',
   { ...scopeEnv, CODELEAN_SUBAGENT_MATCHER: '(' },
   JSON.stringify({ agent_type: 'anything' }),
 );
@@ -348,7 +348,7 @@ assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
 // The default (no matcher) path must not depend on stdin: even with stdin
 // closed empty it injects synchronously, preserving the #252 behavior on
 // Windows where the piped JSON can be swallowed (#443).
-result = run('codelean-subagent.js', scopeEnv, '');
+result = run('CODELEAN-subagent.js', scopeEnv, '');
 assert.equal(result.status, 0, result.stderr);
 output = JSON.parse(result.stdout);
 assert.match(output.hookSpecificOutput.additionalContext, /CODELEAN MODE ACTIVE — level: full/);
@@ -371,7 +371,7 @@ const qoderEnv = {
 // First prompt: no flag file yet → mode-tracker initializes from default,
 // writes flag, and injects the ruleset.
 result = run(
-  'codelean-mode-tracker.js',
+  'CODELEAN-mode-tracker.js',
   qoderEnv,
   JSON.stringify({ prompt: 'write a function' }),
 );
@@ -386,7 +386,7 @@ assert.match(
 
 // /CODELEAN ultra: mode tracker updates flag and injects ultra ruleset.
 result = run(
-  'codelean-mode-tracker.js',
+  'CODELEAN-mode-tracker.js',
   qoderEnv,
   JSON.stringify({ prompt: '/CODELEAN ultra' }),
 );
@@ -400,7 +400,7 @@ assert.match(
 
 // "stop CODELEAN": deactivates, clears flag, no ruleset output.
 result = run(
-  'codelean-mode-tracker.js',
+  'CODELEAN-mode-tracker.js',
   qoderEnv,
   JSON.stringify({ prompt: 'stop CODELEAN' }),
 );
@@ -414,7 +414,7 @@ assert.equal(output.hookSpecificOutput.additionalContext, 'CODELEAN MODE OFF');
 // CODELEAN-subagent.js script; the isQoder branch outputs hookSpecificOutput
 // JSON instead of raw stdout.
 fs.writeFileSync(qoderState, 'full');
-result = run('codelean-subagent.js', qoderEnv);
+result = run('CODELEAN-subagent.js', qoderEnv);
 assert.equal(result.status, 0, result.stderr);
 output = JSON.parse(result.stdout);
 assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
@@ -448,19 +448,19 @@ const defEnv = { HOME: defHome, USERPROFILE: defHome, XDG_CONFIG_HOME: path.join
 const defConfig = path.join(defHome, '.config', 'CODELEAN', 'config.json');
 const defFlag = path.join(defHome, '.claude', '.CODELEAN-active');
 
-result = run('codelean-mode-tracker.js', defEnv, JSON.stringify({ prompt: '/CODELEAN default lite' }));
+result = run('CODELEAN-mode-tracker.js', defEnv, JSON.stringify({ prompt: '/CODELEAN default lite' }));
 assert.equal(result.status, 0, result.stderr);
 assert.equal(JSON.parse(fs.readFileSync(defConfig, 'utf8')).defaultMode, 'lite', '/CODELEAN default must persist the default');
 assert.equal(fs.existsSync(defFlag), false, '/CODELEAN default must not change the session mode');
 
 // A plain switch is transient: sets the session flag, leaves the default alone.
-result = run('codelean-mode-tracker.js', defEnv, JSON.stringify({ prompt: '/CODELEAN ultra' }));
+result = run('CODELEAN-mode-tracker.js', defEnv, JSON.stringify({ prompt: '/CODELEAN ultra' }));
 assert.equal(result.status, 0, result.stderr);
 assert.equal(fs.readFileSync(defFlag, 'utf8'), 'ultra', 'plain switch must set the session mode');
 assert.equal(JSON.parse(fs.readFileSync(defConfig, 'utf8')).defaultMode, 'lite', 'plain switch must not persist the default');
 
 // review is not a valid default (#377) — the command is ignored, config unchanged.
-result = run('codelean-mode-tracker.js', defEnv, JSON.stringify({ prompt: '/CODELEAN default review' }));
+result = run('CODELEAN-mode-tracker.js', defEnv, JSON.stringify({ prompt: '/CODELEAN default review' }));
 assert.equal(result.status, 0, result.stderr);
 assert.equal(JSON.parse(fs.readFileSync(defConfig, 'utf8')).defaultMode, 'lite', 'review must not be accepted as a default');
 

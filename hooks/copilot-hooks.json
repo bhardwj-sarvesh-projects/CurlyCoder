@@ -4,16 +4,16 @@
     "sessionStart": [
       {
         "type": "command",
-        "bash": "node \"${PLUGIN_ROOT}/hooks/codelean-activate.js\"",
-        "powershell": "node \"${PLUGIN_ROOT}\\hooks\\codelean-activate.js\"",
+        "bash": "node \"${PLUGIN_ROOT}/hooks/CODELEAN-activate.js\"",
+        "powershell": "node \"${PLUGIN_ROOT}\\hooks\\CODELEAN-activate.js\"",
         "timeoutSec": 5
       }
     ],
     "userPromptSubmitted": [
       {
         "type": "command",
-        "bash": "node \"${PLUGIN_ROOT}/hooks/codelean-mode-tracker.js\"",
-        "powershell": "node \"${PLUGIN_ROOT}\\hooks\\codelean-mode-tracker.js\"",
+        "bash": "node \"${PLUGIN_ROOT}/hooks/CODELEAN-mode-tracker.js\"",
+        "powershell": "node \"${PLUGIN_ROOT}\\hooks\\CODELEAN-mode-tracker.js\"",
         "timeoutSec": 5
       }
     ]

@@ -39,7 +39,7 @@ test('qoder hooks config exists and registers UserPromptSubmit', () => {
   assert.ok(hooksConfig.hooks.UserPromptSubmit, 'must register UserPromptSubmit hook');
   assert.ok(Array.isArray(hooksConfig.hooks.UserPromptSubmit), 'UserPromptSubmit must be an array');
   const cmd = hooksConfig.hooks.UserPromptSubmit[0].hooks[0].command;
-  assert.ok(cmd.includes('codelean-mode-tracker.js'), 'must point at codelean-mode-tracker.js');
+  assert.ok(cmd.includes('CODELEAN-mode-tracker.js'), 'must point at CODELEAN-mode-tracker.js');
 });
 
 test('qoder rules file exists and is non-empty', () => {
@@ -76,7 +76,7 @@ test('qoder rules match AGENTS.md canonical body', () => {
 });
 
 test('qoder runtime detects QODER_SESSION_ID and writes hookSpecificOutput JSON', () => {
-  const { isQoder } = require('../hooks/codelean-runtime');
+  const { isQoder } = require('../hooks/CODELEAN-runtime');
   // isQoder is resolved at module load time from process.env; in the test
   // process QODER_SESSION_ID is unset, so isQoder must be false here.
   // The positive path is exercised in hooks.test.js via spawnSync.

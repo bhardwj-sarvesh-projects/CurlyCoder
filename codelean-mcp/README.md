@@ -18,7 +18,7 @@ prompt menu, or that pull context through tools. See issue #70.
   (`{ mode, instructions }`), for hosts that pull context via tools or code
   execution. Read-only.
 
-Mode resolution reuses `hooks/codelean-config.js`, so `CODELEAN_DEFAULT_MODE`
+Mode resolution reuses `hooks/CODELEAN-config.js`, so `CODELEAN_DEFAULT_MODE`
 and `~/.config/CODELEAN/config.json` work the same as everywhere else.
 
 ## Run it
