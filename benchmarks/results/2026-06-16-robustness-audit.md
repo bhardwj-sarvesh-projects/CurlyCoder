@@ -1,6 +1,6 @@
 # Robustness audit: does CURLYCODER degrade weak models? (2026-06-16)
 
-Follow-up to [issue #65](https://github.com/bhardwj-sarvesh-projects/CODELEAN/issues/65). After fixing
+Follow-up to [issue #65](https://github.com/bhardwj-sarvesh-projects/CurlyCoder/issues/65). After fixing
 the correctness-gate bugs, the open question was the real one: does CURLYCODER's push toward
 the shortest solution make weak models produce *wrong* code on edge cases? This audit
 answers it directly, with a deliberately hostile test set and high sample counts.
@@ -8,15 +8,15 @@ answers it directly, with a deliberately hostile test set and high sample counts
 ## TL;DR
 
 - Across **12 classic edge-case traps** (off-by-one, n=0, leap-century, subtractive Roman,
-  deep nesting, …) on **two weak models** (`gpt-4.1-mini`, `gpt-5.4-mini`), CURLYCODER holds
-  **baseline parity** — it does not produce more wrong answers than the unconstrained model.
+  deep nesting, â€¦) on **two weak models** (`gpt-4.1-mini`, `gpt-5.4-mini`), CURLYCODER holds
+  **baseline parity** â€” it does not produce more wrong answers than the unconstrained model.
 - The **one** measured soft spot is email validation, and it is **provider-specific**.
   OpenAI models, at every size, sometimes reach for `email.utils.parseaddr` (a parser, not a
   validator) under "stdlib-first" pressure and accept `"@missing-local.com"`. On Claude,
   CURLYCODER's target platform, email is **100%** (haiku/sonnet/opus, n=40 each).
 - The slip is **not fixable by skill text**: 8 distinct SKILL.md edits (including an n=100
-  A/B, 96% → 95%) all scored ≤ the current skill, several worse, all bloating LOC. Counter-
-  instructions make small models overthink and fail *more*. Nothing was shipped — adding
+  A/B, 96% â†’ 95%) all scored â‰¤ the current skill, several worse, all bloating LOC. Counter-
+  instructions make small models overthink and fail *more*. Nothing was shipped â€” adding
   skill text that doesn't move the number is exactly the cargo-cult CURLYCODER exists to avoid.
 
 ## Method
@@ -44,18 +44,18 @@ of the traps (the lazy version passes the common case, fails the edge):
 | clamp | value already in range |
 | chunk | trailing remainder |
 
-The only sub-20 cell in the first run was `gpt-5.4-mini` flatten at 19/20 — a single
+The only sub-20 cell in the first run was `gpt-5.4-mini` flatten at 19/20 â€” a single
 stochastic miss that **did not reproduce**: 50/50 at n=50. (`clamp` showed 19/19, i.e. one
 API error, not a wrong answer.)
 
 ## Validators: the email slip is provider-specific
 
 The one place CURLYCODER measurably affects correctness is **email validation**, via the
-parse ≠ validate trap: under "stdlib-first" pressure a model reaches for
-`email.utils.parseaddr` — a *parser* that accepts malformed input like `@missing-local.com`
-— instead of writing an explicit check. The split is by **provider**, not model size.
+parse â‰  validate trap: under "stdlib-first" pressure a model reaches for
+`email.utils.parseaddr` â€” a *parser* that accepts malformed input like `@missing-local.com`
+â€” instead of writing an explicit check. The split is by **provider**, not model size.
 
-**OpenAI (email, baseline vs CURLYCODER, n=50–100):**
+**OpenAI (email, baseline vs CURLYCODER, n=50â€“100):**
 
 | model | baseline | CURLYCODER |
 |---|--:|--:|
@@ -90,9 +90,9 @@ stdlib tool is a parser.
 ## The fix that wasn't
 
 SKILL.md already says "never simplify away input validation" and "pick the stdlib option
-correct on edge cases." We tried hard to push the OpenAI rate to 100% by editing the skill —
+correct on edge cases." We tried hard to push the OpenAI rate to 100% by editing the skill â€”
 **8 distinct edits** across counter-pressure wording, a check-mandate, explicit-over-delegate,
-a few-shot example, combinations, and three placements. Every one scored ≤ the current skill;
+a few-shot example, combinations, and three placements. Every one scored â‰¤ the current skill;
 several were far worse (one cratered to 78%); all bloated median LOC. The definitive n=100
 A/B of the most promising edit:
 
@@ -103,7 +103,7 @@ NEW skill: 95/100 (95.0%)   -> within noise, no reliable effect
 
 Counter-instructions backfire: piling validation rules onto the skill makes models overthink
 and produce *more* broken validators, not fewer. The reflex to reach for `parseaddr` lives in
-the OpenAI models' training, and no skill wording reliably overrides it — so nothing was
+the OpenAI models' training, and no skill wording reliably overrides it â€” so nothing was
 shipped. Adding skill text that doesn't work is the cargo-cult CURLYCODER exists to prevent.
 
 ## Conclusion

@@ -6,7 +6,7 @@ Three arms (no skill, [caveman](https://github.com/JuliusBrussee/caveman), CURLY
 
 ### Claude (Haiku / Sonnet / Opus)
 
-Requires an Anthropic API key and **Node.js ≥ 22.22.0** (promptfoo's engine constraint,
+Requires an Anthropic API key and **Node.js â‰¥ 22.22.0** (promptfoo's engine constraint,
 check with `node --version` and upgrade if needed):
 
 ```bash
@@ -63,7 +63,7 @@ Versus baseline, CURLYCODER writes **80-94% less code**, costs **42-75% less**, 
 
 > **Read this number honestly (updated 2026-06-18).** The gap above is single-shot, against a bare
 > model that answers with several options plus commentary, so it counts prose, not just code, and
-> overstates the win. [#126](https://github.com/bhardwj-sarvesh-projects/CODELEAN/issues/126) was right about
+> overstates the win. [#126](https://github.com/bhardwj-sarvesh-projects/CurlyCoder/issues/126) was right about
 > that. The [agentic benchmark](agentic/) re-runs the comparison as a *real Claude Code session on a
 > real public repo*: CURLYCODER cuts **60-94%** on features with an over-build trap (custom component
 > vs native input), is a wash on already-minimal code, never writes more, and stays **100% safe**
@@ -99,10 +99,10 @@ over-build and blocked tasks, can cost more on large completion-forced agentic r
 
 ### Prerequisites
 
-Running the benchmark requires **Python 3**, **pandas**, and **Node.js ≥ 22.22.0** (promptfoo's engine constraint; see [Reproduce](#reproduce)).
+Running the benchmark requires **Python 3**, **pandas**, and **Node.js â‰¥ 22.22.0** (promptfoo's engine constraint; see [Reproduce](#reproduce)).
 
 ## Notes
 
 - Caveman is a prose-compression skill (it leaves code "normal"), so it lands between baseline and CURLYCODER on code size and wins mainly on prose tokens.
-- Cost reflects single-shot calls (one prompt, one completion), not real multi-turn agent sessions. In a session the ruleset re-injects and the ladder deliberates every turn across many turns, so per-session cost can come out higher or lower than these numbers. Prompt caching offsets some of the re-injection, but a measured agentic A/B ([#121](https://github.com/bhardwj-sarvesh-projects/CODELEAN/issues/121)) found CURLYCODER can also raise tool calls and cost on completion-forced tasks. Treat these as generation numbers, not a session-cost promise.
+- Cost reflects single-shot calls (one prompt, one completion), not real multi-turn agent sessions. In a session the ruleset re-injects and the ladder deliberates every turn across many turns, so per-session cost can come out higher or lower than these numbers. Prompt caching offsets some of the re-injection, but a measured agentic A/B ([#121](https://github.com/bhardwj-sarvesh-projects/CurlyCoder/issues/121)) found CURLYCODER can also raise tool calls and cost on completion-forced tasks. Treat these as generation numbers, not a session-cost promise.
 - These are everyday tasks. For production-grade specs, where an unconstrained agent bloats much harder, see the writeups in `results/`.

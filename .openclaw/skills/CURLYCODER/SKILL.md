@@ -1,7 +1,7 @@
 ---
 name: CURLYCODER
 description: "Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests."
-homepage: https://github.com/bhardwj-sarvesh-projects/CODELEAN
+homepage: https://github.com/bhardwj-sarvesh-projects/CurlyCoder
 license: MIT
 ---
 

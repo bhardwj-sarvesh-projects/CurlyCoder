@@ -6,8 +6,8 @@
     "name": "Sarvesh Bhardwj",
     "url": "https://github.com/bhardwj-sarvesh-projects"
   },
-  "homepage": "https://github.com/bhardwj-sarvesh-projects/CODELEAN",
-  "repository": "https://github.com/bhardwj-sarvesh-projects/CODELEAN",
+  "homepage": "https://github.com/bhardwj-sarvesh-projects/CurlyCoder",
+  "repository": "https://github.com/bhardwj-sarvesh-projects/CurlyCoder",
   "license": "MIT",
   "keywords": ["yagni", "minimalism", "code-review", "productivity"],
   "skills": "./skills/",
@@ -19,7 +19,7 @@
     "developerName": "Sarvesh Bhardwj",
     "category": "Productivity",
     "capabilities": ["Instructions", "Lifecycle hooks"],
-    "websiteURL": "https://github.com/bhardwj-sarvesh-projects/CODELEAN",
+    "websiteURL": "https://github.com/bhardwj-sarvesh-projects/CurlyCoder",
     "defaultPrompt": [
       "Use CURLYCODER mode for this task.",
       "Review this diff for over-engineering.",

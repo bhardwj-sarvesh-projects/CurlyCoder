@@ -1,4 +1,4 @@
-// CURLYCODER — OpenCode plugin.
+// CURLYCODER â€” OpenCode plugin.
 //
 // Injects the CURLYCODER ruleset into every chat's system prompt at the active
 // intensity, persists /CURLYCODER mode switches, and registers slash commands so
@@ -6,8 +6,8 @@
 // instruction builder so Claude Code, Codex, pi, and OpenCode all read one
 // source of truth.
 //
-// OpenCode loads this as a server plugin — add it to your opencode.json:
-//   { "plugin": ["@bhardwj-sarvesh-projects/CODELEAN"] }
+// OpenCode loads this as a server plugin â€” add it to your opencode.json:
+//   { "plugin": ["@bhardwj-sarvesh-projects/curlycoder"] }
 
 import { createRequire } from 'module';
 import fs from 'fs';
@@ -83,7 +83,7 @@ export default async ({ client } = {}) => {
     },
 
     // Persist `/CURLYCODER <level>` so the next turn's injection follows it.
-    // CURLYCODER: mode applies from the next message, not the current one — the
+    // CURLYCODER: mode applies from the next message, not the current one â€” the
     // transform reads the flag the command writes. Good enough; switch to a
     // synchronous store if same-turn switching ever matters.
     'command.execute.before': async (input) => {

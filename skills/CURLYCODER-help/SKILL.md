@@ -16,7 +16,7 @@ write flag files, or persist anything.
 | Level | Trigger | What change |
 |-------|---------|-------------|
 | **Lite** | `/CURLYCODER lite` | Build what's asked, name the lazier alternative in one line. |
-| **Full** | `/CURLYCODER` | The ladder enforced: YAGNI → stdlib → native → one line → minimum. Default. |
+| **Full** | `/CURLYCODER` | The ladder enforced: YAGNI â†’ stdlib â†’ native â†’ one line â†’ minimum. Default. |
 | **Ultra** | `/CURLYCODER ultra` | YAGNI extremist. Deletion before addition. Challenges requirements before building. |
 
 Level sticks until changed or session end.
@@ -68,4 +68,4 @@ If `/plugin` is not recognized, your Claude Code is out of date. Update it (`npm
 
 ## More
 
-Full docs + examples: https://github.com/bhardwj-sarvesh-projects/CODELEAN
+Full docs + examples: https://github.com/bhardwj-sarvesh-projects/CurlyCoder

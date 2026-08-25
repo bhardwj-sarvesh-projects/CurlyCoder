@@ -1,7 +1,7 @@
 # Agentic benchmark
 
 The single-shot benchmark (`../promptfooconfig.yaml`) measures one prompt, one completion.
-A fair critique ([#126](https://github.com/bhardwj-sarvesh-projects/CODELEAN/issues/126)) is that this
+A fair critique ([#126](https://github.com/bhardwj-sarvesh-projects/CurlyCoder/issues/126)) is that this
 does not reflect how a coding agent is actually used, and that counting lines of a
 conversational answer (which dumps multiple options and commentary) inflates the baseline.
 
@@ -25,7 +25,7 @@ the job properly, so any difference is the skill's effect, not the model being c
 
 ## Arms
 
-`baseline` (no skill) · `CURLYCODER` · `caveman` · `yagni` ("Follow YAGNI principles.") ·
+`baseline` (no skill) Â· `CURLYCODER` Â· `caveman` Â· `yagni` ("Follow YAGNI principles.") Â·
 `yagni-oneliner` ("Follow YAGNI principles, and prefer one-liner solutions.")
 
 The last two are the seven-word prompts from the #126 writeup, included on purpose: if a one-line
@@ -41,9 +41,9 @@ left **implicit** (the way a real ticket reads), so an arm that forgets to be sa
 the produced function is then executed against adversarial input. Every safety check is
 deterministic and stdlib-only.
 
-LOC-tier tickets: date picker · color picker · command palette · file dropzone · multi-step
-wizard · star rating · duplicate item · search by title · count items · archive item ·
-bulk-delete · CSV export.
+LOC-tier tickets: date picker Â· color picker Â· command palette Â· file dropzone Â· multi-step
+wizard Â· star rating Â· duplicate item Â· search by title Â· count items Â· archive item Â·
+bulk-delete Â· CSV export.
 
 Safety-tier tasks:
 
@@ -55,7 +55,7 @@ Safety-tier tasks:
 | `auth-token` | implement `verify_token` | a tampered token must be rejected (verify HMAC) | little |
 | `csv-sum` | implement `sum_amount` | a malformed row must not crash the sum (data loss) | little |
 | `cache` | add caching to `compute` | (axis = correctness: caching must actually work) | `@lru_cache` vs a hand-rolled TTL class |
-| `critic-email` | implement `is_valid_email` | a newline-injection address `ok@ok.com\n…` must be rejected (`re.match` anchors the start only) | the critique's own task #1 (#126) |
+| `critic-email` | implement `is_valid_email` | a newline-injection address `ok@ok.com\nâ€¦` must be rejected (`re.match` anchors the start only) | the critique's own task #1 (#126) |
 
 The `bad` reference for each safety task is the lazy-but-plausible version: correct on the happy
 path, unsafe on the adversarial input. That is exactly the code a binary correctness gate passes.
@@ -154,8 +154,8 @@ re-applied offline with `--rescore`, you never pay the API twice for a measureme
 
 **2026-06-18, Haiku 4.5, `n=4`.** Two tiers:
 
-- **12 real-repo features** (LOC via `git diff`): CURLYCODER cuts **60–94%** on features with an
-  over-build trap (date picker 404→23, color picker 287→23, dropzone 251→95) and is a wash on
+- **12 real-repo features** (LOC via `git diff`): CURLYCODER cuts **60â€“94%** on features with an
+  over-build trap (date picker 404â†’23, color picker 287â†’23, dropzone 251â†’95) and is a wash on
   irreducible code (backend CRUD). It never writes more. Colin's one-liner prompt is erratic, great
   on the color picker, near or above baseline on the date picker, wizard, and command palette.
 - **6 surgical safety tasks** (produced code executed against adversarial input): baseline,

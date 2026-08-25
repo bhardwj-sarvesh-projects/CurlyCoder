@@ -1,5 +1,5 @@
 {
-  "name": "@bhardwj-sarvesh-projects/codelean",
+  "name": "@bhardwj-sarvesh-projects/curlycoder",
   "version": "4.9.0",
   "description": "Lazy senior dev mode for AI agents. The best code is the code you never wrote.",
   "keywords": ["opencode-plugin", "opencode", "curlycoder", "pi-package", "pi", "skills", "qoder"],
@@ -9,13 +9,13 @@
     "email": "bhardwj.sarvesh@gmail.com",
     "url": "https://github.com/bhardwj-sarvesh-projects"
   },
-  "homepage": "https://github.com/bhardwj-sarvesh-projects/codelean",
+  "homepage": "https://github.com/bhardwj-sarvesh-projects/CurlyCoder",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bhardwj-sarvesh-projects/codelean.git"
+    "url": "git+https://github.com/bhardwj-sarvesh-projects/CurlyCoder.git"
   },
   "bugs": {
-    "url": "https://github.com/bhardwj-sarvesh-projects/codelean/issues"
+    "url": "https://github.com/bhardwj-sarvesh-projects/CurlyCoder/issues"
   },
   "main": "./.opencode/plugins/CURLYCODER.mjs",
   "exports": {
@@ -35,7 +35,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "node --test tests/*.test.js && npm test --prefix pi-extension && npm test --prefix codelean-mcp"
+    "test": "node --test tests/*.test.js && npm test --prefix pi-extension && npm test --prefix CurlyCoder-mcp"
   },
   "pi": {
     "extensions": ["./pi-extension/index.js"],
@@ -45,4 +45,3 @@
     "access": "public"
   }
 }
-

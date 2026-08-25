@@ -11,15 +11,15 @@ test('root npm test covers bundled subprojects', () => {
   const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 
   assert.match(packageJson.scripts.test, /npm test --prefix pi-extension/);
-  assert.match(packageJson.scripts.test, /npm test --prefix codelean-mcp/);
+  assert.match(packageJson.scripts.test, /npm test --prefix CurlyCoder-mcp/);
 });
 
 test('CI installs MCP dependencies before root npm test', () => {
   const workflow = fs.readFileSync(path.join(root, '.github', 'workflows', 'test.yml'), 'utf8');
 
-  assert.match(workflow, /npm install --prefix codelean-mcp/);
+  assert.match(workflow, /npm install --prefix CurlyCoder-mcp/);
   assert.ok(
-    workflow.indexOf('npm install --prefix codelean-mcp') < workflow.indexOf('npm test'),
+    workflow.indexOf('npm install --prefix CurlyCoder-mcp') < workflow.indexOf('npm test'),
     'MCP dependencies must be installed before the root test command runs',
   );
 });

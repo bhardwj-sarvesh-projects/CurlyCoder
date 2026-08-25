@@ -1,7 +1,7 @@
 ---
 name: CURLYCODER-gain
 description: "Show CURLYCODER measured impact as a scoreboard: less code, less cost, more speed, from the benchmark medians. One-shot display."
-homepage: https://github.com/bhardwj-sarvesh-projects/CODELEAN
+homepage: https://github.com/bhardwj-sarvesh-projects/CurlyCoder
 license: MIT
 ---
 

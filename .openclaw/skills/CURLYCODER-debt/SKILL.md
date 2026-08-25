@@ -1,7 +1,7 @@
 ---
 name: CURLYCODER-debt
 description: "Harvest every CURLYCODER: shortcut comment into one debt ledger, so deferrals get tracked instead of forgotten. One-shot report."
-homepage: https://github.com/bhardwj-sarvesh-projects/CODELEAN
+homepage: https://github.com/bhardwj-sarvesh-projects/CurlyCoder
 license: MIT
 ---
 

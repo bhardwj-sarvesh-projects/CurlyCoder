@@ -19,14 +19,14 @@ const PINNED_SEMVER = /^\d+\.\d+\.\d+$/;
 // Every file that declares the project version, and who reads it. Add new host
 // manifests here so a future ecosystem can't drift unnoticed.
 const VERSION_FILES = [
-  '.claude-plugin/plugin.json',  // Claude Code plugin — what users install
+  '.claude-plugin/plugin.json',  // Claude Code plugin â€” what users install
   '.codex-plugin/plugin.json',   // Codex plugin
   '.devin-plugin/plugin.json',   // Devin CLI plugin
   '.github/plugin/plugin.json',  // Copilot plugin
   '.qoder-plugin/plugin.json',   // Qoder plugin
   'gemini-extension.json',       // Gemini CLI extension
   'package.json',                // pi-package / repo root
-  'codelean-mcp/package.json',   // MCP server (private, internal-only)
+  'CurlyCoder-mcp/package.json',   // MCP server (private, internal-only)
 ];
 
 function readVersion(relPath) {
@@ -52,14 +52,14 @@ const versions = VERSION_FILES.map((relPath) => {
 // Every file must declare the same version.
 const distinct = [...new Set(versions.map(([, v]) => v))];
 if (distinct.length > 1) {
-  console.error('Version mismatch — every manifest must share one version:');
+  console.error('Version mismatch â€” every manifest must share one version:');
   for (const [relPath, version] of versions) console.error(`  ${version}\t${relPath}`);
   failed = true;
 }
 const shared = distinct.length === 1 ? distinct[0] : null;
 
 // On a release-tag push CI sets GITHUB_REF_TYPE=tag and GITHUB_REF_NAME=vX.Y.Z.
-// The shared version must equal the tag — this catches tagging a release whose
+// The shared version must equal the tag â€” this catches tagging a release whose
 // version files were never bumped, which mutual agreement alone cannot.
 if (shared && process.env.GITHUB_REF_TYPE === 'tag') {
   const tag = process.env.GITHUB_REF_NAME || '';

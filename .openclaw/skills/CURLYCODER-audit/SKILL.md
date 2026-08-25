@@ -1,7 +1,7 @@
 ---
 name: CURLYCODER-audit
 description: "Audit the whole repo for over-engineering. A ranked list of what to delete, simplify, or replace with stdlib or native features."
-homepage: https://github.com/bhardwj-sarvesh-projects/CODELEAN
+homepage: https://github.com/bhardwj-sarvesh-projects/CurlyCoder
 license: MIT
 ---
 

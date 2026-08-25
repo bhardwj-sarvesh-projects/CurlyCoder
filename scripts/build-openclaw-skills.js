@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const HOMEPAGE = 'https://github.com/bhardwj-sarvesh-projects/CODELEAN';
+const HOMEPAGE = 'https://github.com/bhardwj-sarvesh-projects/CurlyCoder';
 
 const DESCRIPTIONS = {
   'CURLYCODER': 'Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests.',

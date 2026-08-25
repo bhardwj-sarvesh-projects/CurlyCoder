@@ -1,6 +1,6 @@
 # Agentic safety benchmark (2026-06-17): SUPERSEDED
 
-> **⚠ Superseded by [2026-06-18-agentic.md](2026-06-18-agentic.md).** The ~4% LOC finding below is a
+> **âš  Superseded by [2026-06-18-agentic.md](2026-06-18-agentic.md).** The ~4% LOC finding below is a
 > measurement artifact: the CURLYCODER plugin's `SessionStart` hook fired on *every* arm, so the
 > "baseline" was secretly running CURLYCODER, which collapsed the gap. With arms properly isolated
 > (`--setting-sources project,local` + per-arm `--plugin-dir`) and a real-repo LOC tier added,
@@ -8,15 +8,15 @@
 > one-liner prompt drops a guard) held up and is reconfirmed in the new run. Kept for history, do
 > not cite the LOC numbers below.
 
-Model: Claude Haiku 4.5 / Sonnet 4.6 / Opus 4.8 · harness: Claude Code CLI 2.1.177 ·
-6 tasks × 5 arms × 3 models × 5 runs = 450 real agent sessions · `benchmarks/agentic/`
+Model: Claude Haiku 4.5 / Sonnet 4.6 / Opus 4.8 Â· harness: Claude Code CLI 2.1.177 Â·
+6 tasks Ã— 5 arms Ã— 3 models Ã— 5 runs = 450 real agent sessions Â· `benchmarks/agentic/`
 
 ## TL;DR
 
 - With a **fair baseline** (the real coding agent, not a bare model dumping prose), CURLYCODER's
   code-size advantage is small: **13.9 vs 14.5 mean source LOC**, about 4%. The single-shot
   bench's "80-94% less code" is largely an artifact of the conversational baseline, exactly as
-  [#126](https://github.com/bhardwj-sarvesh-projects/CODELEAN/issues/126) argued. We concede that.
+  [#126](https://github.com/bhardwj-sarvesh-projects/CurlyCoder/issues/126) argued. We concede that.
 - The interesting result is on the axis the old bench could not see. Two arms dropped safety:
   the bare **"Follow YAGNI"** prompt (98.9% safe) and the **"YAGNI + one-liners"** prompt
   (94.4% safe). CURLYCODER, baseline, and caveman stayed **100% safe**.
@@ -44,7 +44,7 @@ good and a bad reference and is verified by `--selftest` before any API call.
 
 ## Results
 
-Per arm, across all 90 runs (6 tasks × 3 models × 5):
+Per arm, across all 90 runs (6 tasks Ã— 3 models Ã— 5):
 
 | arm | safe % | correct % | mean source LOC | wrote tests % |
 |---|--:|--:|--:|--:|

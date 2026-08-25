@@ -14,7 +14,7 @@
 <p align="center">
   <img src="https://img.shields.io/github/stars/bhardwj-sarvesh-projects/CURLYCODER?style=flat-square&color=111111&label=stars" alt="Stars">
   <img src="https://img.shields.io/github/v/release/bhardwj-sarvesh-projects/CURLYCODER?style=flat-square&color=111111&label=release" alt="Release">
-  <img src="https://img.shields.io/npm/v/@bhardwj-sarvesh-projects/CODELEAN?style=flat-square&color=111111&label=npm" alt="npm">
+  <img src="https://img.shields.io/npm/v/@bhardwj-sarvesh-projects/curlycoder?style=flat-square&color=111111&label=npm" alt="npm">
   <img src="https://img.shields.io/badge/works%20with-20%20agents-111111?style=flat-square" alt="Works with 20 agents">
   <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
 </p>
@@ -30,7 +30,7 @@
 </p>
 
 <p align="center">
-  <sub><a href="README.es.md">Español</a> &middot; <a href="README.ko.md">한국어</a></sub>
+  <sub><a href="README.es.md">EspaÃ±ol</a> &middot; <a href="README.ko.md">í•œêµ­ì–´</a></sub>
 </p>
 
 ---
@@ -81,7 +81,7 @@ Five everyday tasks, three models, three arms (no skill, [caveman](https://githu
   <img src="assets/benchmark-3model.svg" width="860" alt="Median lines of code per arm across Haiku, Sonnet and Opus">
 </p>
 
-This showed **80-94% less code**. [#126](https://github.com/bhardwj-sarvesh-projects/codelean/issues/126) fairly pointed out that the bare-model baseline pads its answer with prose and options, so that gap is partly a conversational-baseline artifact. The agentic numbers above are the corrected, defensible version. Reproduce the single-shot run with `npx promptfoo eval -c benchmarks/promptfooconfig.yaml`.
+This showed **80-94% less code**. [#126](https://github.com/bhardwj-sarvesh-projects/CurlyCoder/issues/126) fairly pointed out that the bare-model baseline pads its answer with prose and options, so that gap is partly a conversational-baseline artifact. The agentic numbers above are the corrected, defensible version. Reproduce the single-shot run with `npx promptfoo eval -c benchmarks/promptfooconfig.yaml`.
 
 </details>
 
@@ -92,12 +92,12 @@ This showed **80-94% less code**. [#126](https://github.com/bhardwj-sarvesh-proj
 Before writing code, the agent stops at the first rung that holds:
 
 ```
-1. Does this need to exist?   → no: skip it (YAGNI)
-2. Already in this codebase?  → reuse it, don't rewrite
-3. Stdlib does it?            → use it
-4. Native platform feature?   → use it
-5. Installed dependency?      → use it
-6. One line?                  → one line
+1. Does this need to exist?   â†’ no: skip it (YAGNI)
+2. Already in this codebase?  â†’ reuse it, don't rewrite
+3. Stdlib does it?            â†’ use it
+4. Native platform feature?   â†’ use it
+5. Installed dependency?      â†’ use it
+6. One line?                  â†’ one line
 7. Only then: the minimum that works
 ```
 
@@ -121,7 +121,7 @@ The Claude Code and Codex plugins run two tiny Node.js lifecycle hooks, so `node
 ```
 (You have to send two separate prompts for the install to work) 
 
-Same steps in the Claude Code Desktop app's Code tab: type the two `/plugin` commands above into the prompt box, or click the **+** button next to it, choose **Plugins** → **Add plugin** to browse your configured marketplaces, and manage marketplaces from **Customize** in the sidebar.
+Same steps in the Claude Code Desktop app's Code tab: type the two `/plugin` commands above into the prompt box, or click the **+** button next to it, choose **Plugins** â†’ **Add plugin** to browse your configured marketplaces, and manage marketplaces from **Customize** in the sidebar.
 
 ### Codex
 
@@ -166,7 +166,7 @@ pi install git:github.com/bhardwj-sarvesh-projects/curlycoder
 Add to `opencode.json`:
 
 ```json
-{ "plugin": ["@bhardwj-sarvesh-projects/CODELEAN"] }
+{ "plugin": ["@bhardwj-sarvesh-projects/curlycoder"] }
 ```
 
 Run from a checkout instead (the plugin reuses `hooks/` and `skills/`):
@@ -182,7 +182,7 @@ The `./` path resolves against your project's `opencode.json`; to share one chec
 ### Gemini CLI
 
 ```bash
-gemini extensions install https://github.com/bhardwj-sarvesh-projects/codelean
+gemini extensions install https://github.com/bhardwj-sarvesh-projects/CurlyCoder
 ```
 
 Loads the ruleset as always-on context every session and registers the `/CURLYCODER` commands; the `skills/` ship too, activated when a task needs them.
@@ -199,7 +199,7 @@ For full plugin-tier support (automatic mode activation + ruleset injection on e
 Google is renaming Gemini CLI to Antigravity CLI (the `agy` binary); the same extension installs there:
 
 ```bash
-agy plugin install https://github.com/bhardwj-sarvesh-projects/codelean
+agy plugin install https://github.com/bhardwj-sarvesh-projects/CurlyCoder
 ```
 
 It reuses this repo's `gemini-extension.json`. One difference: Antigravity converts the `/CURLYCODER` commands into skills, so you type them into the chat (e.g. `/CURLYCODER-review` as a message) instead of picking them from a slash menu. Until the migration completes (around June 18, 2026), `gemini extensions install` still works too. To run it as an always-on rule instead, drop the ruleset into `.agents/rules/`.
@@ -221,7 +221,7 @@ Reads `AGENTS.md` from the project root, zero setup. Copy [`AGENTS.md`](AGENTS.m
 Stage the collection in your library first, then add the skills you want:
 
 ```bash
-swival skills add --global https://github.com/bhardwj-sarvesh-projects/codelean  # stage into ~/.config/swival/library
+swival skills add --global https://github.com/bhardwj-sarvesh-projects/CurlyCoder  # stage into ~/.config/swival/library
 swival skills add CURLYCODER                                             # install the collection into this project
 swival skills add --global CURLYCODER                                    # or activate it in every project
 ```
@@ -252,7 +252,7 @@ Installs CURLYCODER as an OpenClaw skill from ClawHub; the review, audit, debt, 
 grok plugin install bhardwj-sarvesh-projects/CURLYCODER --trust
 ```
 
-Enable the plugin (off by default): `/plugins` → Plugins → Space on `CURLYCODER`, or in `~/.grok/config.toml`:
+Enable the plugin (off by default): `/plugins` â†’ Plugins â†’ Space on `CURLYCODER`, or in `~/.grok/config.toml`:
 
 ```toml
 [plugins]
@@ -279,7 +279,7 @@ GitHub Copilot CLI fallback (instruction-only mode): it reads `AGENTS.md` and `.
 
 VS Code with the Codex extension reads `AGENTS.md`, which this repo ships, so it works from the repo root with no setup (`~/.codex/AGENTS.md` makes Codex global).
 
-JetBrains Junie can read `AGENTS.md` once you point it there in Settings → Tools → Junie → Project Settings → Guidelines Path (it is not automatic yet). This repo ships `AGENTS.md`; `.junie/guidelines.md` is Junie's legacy path.
+JetBrains Junie can read `AGENTS.md` once you point it there in Settings â†’ Tools â†’ Junie â†’ Project Settings â†’ Guidelines Path (it is not automatic yet). This repo ships `AGENTS.md`; `.junie/guidelines.md` is Junie's legacy path.
 
 Amp (Sourcegraph) reads `AGENTS.md` from the working directory and parent directories up to `$HOME`, which this repo ships, so it works with no setup (`~/.config/amp/AGENTS.md` works globally).
 
@@ -298,7 +298,7 @@ Which files map to which agent: [Agent portability](docs/agent-portability.md).
 | Pi agent | `pi uninstall CURLYCODER` |
 | Cursor / Windsurf / Cline / Qoder / etc. | Delete the copied rule file |
 
-These remove the plugin's own files. They leave behind a small amount of state CURLYCODER writes outside the plugin folder: the mode flag, `~/.config/CURLYCODER/config.json`, and (if you accepted the setup nudge) a `statusLine` entry in `~/.claude/settings.json`. Run `node scripts/uninstall.js` to clean those up too. **Run it before the host remove command above** — the script is itself a plugin file, so removing the plugin first deletes it (or run it from a separate clone of this repo). It only removes the statusLine entry if it points at CURLYCODER's own script, so a statusline you set up yourself is left untouched.
+These remove the plugin's own files. They leave behind a small amount of state CURLYCODER writes outside the plugin folder: the mode flag, `~/.config/CURLYCODER/config.json`, and (if you accepted the setup nudge) a `statusLine` entry in `~/.claude/settings.json`. Run `node scripts/uninstall.js` to clean those up too. **Run it before the host remove command above** â€” the script is itself a plugin file, so removing the plugin first deletes it (or run it from a separate clone of this repo). It only removes the statusLine entry if it points at CURLYCODER's own script, so a statusline you set up yourself is left untouched.
 
 ## Commands
 

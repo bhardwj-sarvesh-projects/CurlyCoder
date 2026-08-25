@@ -1,4 +1,4 @@
-# CODELEAN-mcp
+# CurlyCoder-mcp
 
 An MCP server that serves CURLYCODER's lazy-senior-dev instructions. It exposes
 the same ruleset the Claude hooks and Pi extension use, so every host emits
@@ -24,7 +24,7 @@ and `~/.config/CURLYCODER/config.json` work the same as everywhere else.
 ## Run it
 
 ```bash
-cd codelean-mcp
+cd CurlyCoder-mcp
 npm install
 node index.js        # speaks MCP over stdio
 ```
@@ -32,7 +32,7 @@ node index.js        # speaks MCP over stdio
 Point an MCP host at that command. Example client entry:
 
 ```json
-{ "mcpServers": { "CURLYCODER": { "command": "node", "args": ["codelean-mcp/index.js"] } } }
+{ "mcpServers": { "CURLYCODER": { "command": "node", "args": ["CurlyCoder-mcp/index.js"] } } }
 ```
 
 ## Test
