@@ -13,21 +13,21 @@ const { pathToFileURL } = require('url');
 // plugin resolves its state path once at load (as it does under a real OpenCode
 // process, where XDG_CONFIG_HOME is already set). The dynamic import below runs
 // after this assignment, so the ordering holds.
-const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'CODELEAN-opencode-'));
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'CURLYCODER-opencode-'));
 process.env.XDG_CONFIG_HOME = tmp;
-delete process.env.CODELEAN_DEFAULT_MODE;
-const statePath = path.join(tmp, 'opencode', '.CODELEAN-active');
+delete process.env.CURLYCODER_DEFAULT_MODE;
+const statePath = path.join(tmp, 'opencode', '.CURLYCODER-active');
 
 let loadPlugin, parseCommandFile;
 test.before(async () => {
-  const url = pathToFileURL(path.join(__dirname, '..', '.opencode', 'plugins', 'CODELEAN.mjs'));
+  const url = pathToFileURL(path.join(__dirname, '..', '.opencode', 'plugins', 'CURLYCODER.mjs'));
   const mod = await import(url);
   loadPlugin = mod.default;
   // The frontmatter parser used to be exported from the plugin module itself.
   // OpenCode's legacy loader treats every exported function as a plugin and
   // tried to invoke it with the plugin context object, which crashed. The
   // parser now lives in its own .cjs sibling; require it directly.
-  parseCommandFile = require(path.join(__dirname, '..', '.opencode', 'plugins', 'CODELEAN-frontmatter.cjs')).parseCommandFile;
+  parseCommandFile = require(path.join(__dirname, '..', '.opencode', 'plugins', 'CURLYCODER-frontmatter.cjs')).parseCommandFile;
 });
 
 function transform(hooks) {
@@ -40,21 +40,21 @@ test('system.transform injects the ruleset at the default mode (full)', async ()
   const hooks = await loadPlugin({});
   const system = await transform(hooks);
   assert.equal(system.length, 1);
-  assert.match(system[0], /CODELEAN MODE ACTIVE — level: full/);
+  assert.match(system[0], /CURLYCODER MODE ACTIVE — level: full/);
   assert.match(system[0], /lazy senior developer/);
 });
 
-test('command.execute.before persists /CODELEAN ultra, transform follows it', async () => {
+test('command.execute.before persists /CURLYCODER ultra, transform follows it', async () => {
   const hooks = await loadPlugin({});
-  await hooks['command.execute.before']({ command: 'CODELEAN', arguments: 'ultra', sessionID: 's' });
+  await hooks['command.execute.before']({ command: 'CURLYCODER', arguments: 'ultra', sessionID: 's' });
   assert.equal(fs.readFileSync(statePath, 'utf8'), 'ultra');
   const system = await transform(hooks);
-  assert.match(system[0], /CODELEAN MODE ACTIVE — level: ultra/);
+  assert.match(system[0], /CURLYCODER MODE ACTIVE — level: ultra/);
 });
 
-test('/CODELEAN off persists off and transform injects nothing', async () => {
+test('/CURLYCODER off persists off and transform injects nothing', async () => {
   const hooks = await loadPlugin({});
-  await hooks['command.execute.before']({ command: 'CODELEAN', arguments: 'off', sessionID: 's' });
+  await hooks['command.execute.before']({ command: 'CURLYCODER', arguments: 'off', sessionID: 's' });
   assert.equal(fs.readFileSync(statePath, 'utf8'), 'off');
   const system = await transform(hooks);
   assert.deepEqual(system, []);
@@ -67,13 +67,13 @@ test('system.transform merges into existing system entry (Qwen compat, #296)', a
   await hooks['experimental.chat.system.transform']({ model: {} }, output);
   assert.equal(output.system.length, 1, 'must not add a second system entry');
   assert.match(output.system[0], /You are a helpful assistant/);
-  assert.match(output.system[0], /CODELEAN MODE ACTIVE/);
+  assert.match(output.system[0], /CURLYCODER MODE ACTIVE/);
 });
 
-test('unsupported /CODELEAN arguments do not reset the current mode', async () => {
+test('unsupported /CURLYCODER arguments do not reset the current mode', async () => {
   const hooks = await loadPlugin({});
   fs.writeFileSync(statePath, 'ultra');
-  await hooks['command.execute.before']({ command: 'CODELEAN', arguments: 'status', sessionID: 's' });
+  await hooks['command.execute.before']({ command: 'CURLYCODER', arguments: 'status', sessionID: 's' });
   assert.equal(fs.readFileSync(statePath, 'utf8'), 'ultra');
 });
 

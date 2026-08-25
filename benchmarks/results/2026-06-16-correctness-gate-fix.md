@@ -1,8 +1,8 @@
-# Correctness under CODELEAN: gate fixes + GPT-mini reproduction (2026-06-16)
+# Correctness under CURLYCODER: gate fixes + GPT-mini reproduction (2026-06-16)
 
 Context: [issue #65](https://github.com/bhardwj-sarvesh-projects/CODELEAN/issues/65) asked whether
-CODELEAN degrades model performance. A community run (Pyseph) reported a large correctness
-drop on `gpt-4.1-mini` (10/15 with CODELEAN vs 15/15 without) and a small one on
+CURLYCODER degrades model performance. A community run (Pyseph) reported a large correctness
+drop on `gpt-4.1-mini` (10/15 with CURLYCODER vs 15/15 without) and a small one on
 `gpt-5.4-mini` (14/15 vs 15/15).
 
 Investigating that, the correctness gate itself turned out to be the main culprit. This
@@ -15,16 +15,16 @@ model setup.
   could not read unfenced code, and the debounce task tested for a deliverable the prompt
   never asked for.
 - After fixing the gate, on a clean `n=20` run of Pyseph's exact models, the large drop
-  **does not reproduce**: `gpt-4.1-mini` is 100% with *and* without CODELEAN.
-- CODELEAN roughly **halves** median code size, the original headline claim, with no
+  **does not reproduce**: `gpt-4.1-mini` is 100% with *and* without CURLYCODER.
+- CURLYCODER roughly **halves** median code size, the original headline claim, with no
   meaningful correctness cost on instruction-following models.
-- One genuine, small CODELEAN defect surfaced and is reported honestly below.
+- One genuine, small CURLYCODER defect surfaced and is reported honestly below.
 
 ## The gate bugs
 
 1. **Unfenced code was scored as "no code blocks."** `extractBlocks()` only matched
    ```` ```fenced``` ```` blocks. Models that reply with bare code (more common under
-   CODELEAN's terse style, and frequent on `gpt-5.4-mini`) scored an automatic fail even
+   CURLYCODER's terse style, and frequent on `gpt-5.4-mini`) scored an automatic fail even
    when the code was correct. This alone accounted for 41 of 74 failures in the first GPT run.
 2. **The debounce task tested the wrong deliverable.** The prompt said *"add debounce to a
    search input"* but the check expected a reusable `debounce(fn, delay)` utility it could
@@ -38,7 +38,7 @@ reusable `debounce(fn, delay)` function the check actually verifies.
 
 ## Method
 
-Two arms (baseline = no skill, CODELEAN), Pyseph's two models, the five repo tasks, `n=20`
+Two arms (baseline = no skill, CURLYCODER), Pyseph's two models, the five repo tasks, `n=20`
 per cell, run serially (`--max-concurrency 1`) so transient quota 429s never reduced the
 denominators. Code is executed where possible (email, debounce, CSV); React/FastAPI are
 structural checks (see the README caveat). Claude numbers are a free re-score of the
@@ -49,7 +49,7 @@ debounce responses predate the prompt fix and are excluded).
 
 ### GPT-mini (clean `n=20`, 0 errors, full denominators)
 
-| model | baseline | CODELEAN | median LOC (base → pony) |
+| model | baseline | CURLYCODER | median LOC (base → pony) |
 |---|--:|--:|--:|
 | gpt-4.1-mini | 100/100 | 100/100 | 15 → 7 |
 | gpt-5.4-mini | 100/100 | 98/100 | 16 → 7 |
@@ -60,20 +60,20 @@ debounce deliverable mismatch, not model degradation.
 
 ### Claude (fixed gate, re-score of committed responses, `n=10`, 4 tasks)
 
-| model | baseline | CODELEAN |
+| model | baseline | CURLYCODER |
 |---|--:|--:|
 | claude-haiku-4-5 | 38/40 (95%) | 40/40 (100%) |
 | claude-opus-4-8 | 40/40 (100%) | 40/40 (100%) |
 | claude-sonnet-4-6 | 28/40 (70%) | 40/40 (100%) |
 
-On instruction-following models CODELEAN ties or slightly *beats* baseline. The low
+On instruction-following models CURLYCODER ties or slightly *beats* baseline. The low
 `sonnet` baseline number is itself an over-engineering failure: the unconstrained validator
 returns a rich `{is_valid, message}` dict instead of a bool, so `if validate_email(addr)` is
-always truthy and accepts every address — a real bug CODELEAN's `return bool(...)` avoids.
+always truthy and accepts every address — a real bug CURLYCODER's `return bool(...)` avoids.
 
-## The one real CODELEAN defect
+## The one real CURLYCODER defect
 
-On `gpt-5.4-mini`, 2 of 20 CODELEAN email runs failed because the model reached for the
+On `gpt-5.4-mini`, 2 of 20 CURLYCODER email runs failed because the model reached for the
 laziest stdlib option:
 
 ```python
@@ -100,7 +100,7 @@ node -e 'const c=require("./correctness.js"),d=require("./output-10x.json");/* s
 
 ## Takeaway
 
-The "CODELEAN hurts correctness" reports trace to a benchmark that could not read terse
+The "CURLYCODER hurts correctness" reports trace to a benchmark that could not read terse
 output, not to the skill. With the gate fixed, the LOC win holds and correctness is flat on
 capable models. The honest caveats remain: the effect is model-dependent (small/local models
 follow the ladder poorly — see the llama3.2 writeup), and chasing the shortest answer can

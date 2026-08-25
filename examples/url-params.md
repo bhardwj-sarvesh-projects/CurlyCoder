@@ -2,7 +2,7 @@
 
 **Task:** "Parse and build URL query strings."
 
-## Without CODELEAN
+## Without CURLYCODER
 
 ```bash
 npm install query-string
@@ -21,10 +21,10 @@ const url = qs.stringify({ page: 2, sort: "name", tags: ["js", "css"] });
 // → "page=2&sort=name&tags=js&tags=css"
 ```
 
-## With CODELEAN
+## With CURLYCODER
 
 ```js
-// CODELEAN: URLSearchParams does this
+// CURLYCODER: URLSearchParams does this
 const params = new URLSearchParams(location.search);
 
 // Read

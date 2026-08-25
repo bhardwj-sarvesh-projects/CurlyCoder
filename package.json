@@ -2,7 +2,7 @@
   "name": "@bhardwj-sarvesh-projects/codelean",
   "version": "4.9.0",
   "description": "Lazy senior dev mode for AI agents. The best code is the code you never wrote.",
-  "keywords": ["opencode-plugin", "opencode", "codelean", "pi-package", "pi", "skills", "qoder"],
+  "keywords": ["opencode-plugin", "opencode", "curlycoder", "pi-package", "pi", "skills", "qoder"],
   "license": "MIT",
   "author": {
     "name": "Sarvesh Bhardwj",
@@ -17,10 +17,10 @@
   "bugs": {
     "url": "https://github.com/bhardwj-sarvesh-projects/codelean/issues"
   },
-  "main": "./.opencode/plugins/CODELEAN.mjs",
+  "main": "./.opencode/plugins/CURLYCODER.mjs",
   "exports": {
-    ".": "./.opencode/plugins/CODELEAN.mjs",
-    "./plugin": "./.opencode/plugins/CODELEAN.mjs"
+    ".": "./.opencode/plugins/CURLYCODER.mjs",
+    "./plugin": "./.opencode/plugins/CURLYCODER.mjs"
   },
   "files": [
     "AGENTS.md",

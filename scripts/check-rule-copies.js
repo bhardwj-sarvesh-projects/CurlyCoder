@@ -17,13 +17,13 @@ const canonical = agents.replace(/\n\n\(Yes, this file also applies[\s\S]*?\)$/,
 
 // Compact copies: same body as AGENTS.md, host-specific frontmatter stripped.
 const copies = [
-  ['.cursor/rules/codelean.mdc', stripFrontmatter],
-  ['.windsurf/rules/codelean.md', text => text.trim()],
-  ['.clinerules/codelean.md', text => text.trim()],
-  ['.agents/rules/codelean.md', text => text.trim()],
-  ['.qoder/rules/CODELEAN.md', text => text.trim()],
+  ['.cursor/rules/curlycoder.mdc', stripFrontmatter],
+  ['.windsurf/rules/curlycoder.md', text => text.trim()],
+  ['.clinerules/curlycoder.md', text => text.trim()],
+  ['.agents/rules/curlycoder.md', text => text.trim()],
+  ['.qoder/rules/CURLYCODER.md', text => text.trim()],
   ['.github/copilot-instructions.md', text => text.trim()],
-  ['.kiro/steering/codelean.md', stripFrontmatter],
+  ['.kiro/steering/curlycoder.md', stripFrontmatter],
 ];
 
 let failed = false;
@@ -37,7 +37,7 @@ for (const [relPath, normalize] of copies) {
 }
 
 // SKILL.md is the runtime source of truth and is longer than the compact body,
-// so it cannot be byte-compared. CODELEAN: canary, not full equality. Assert the
+// so it cannot be byte-compared. CURLYCODER: canary, not full equality. Assert the
 // load-bearing rules survive verbatim in both the source and AGENTS.md. Changing
 // a rule's wording trips this, which is the reminder to propagate it everywhere.
 // Upgrade path: generate the copies from SKILL.md if this ever misses a real drift.
@@ -57,8 +57,8 @@ const INVARIANTS = [
   'Lazy code without its check is unfinished', // one-check promoted to headline
 ];
 
-const skill = read('skills/CODELEAN/SKILL.md');
-const sources = [['skills/CODELEAN/SKILL.md', skill], ['AGENTS.md', agents]];
+const skill = read('skills/CURLYCODER/SKILL.md');
+const sources = [['skills/CURLYCODER/SKILL.md', skill], ['AGENTS.md', agents]];
 for (const phrase of INVARIANTS) {
   for (const [label, text] of sources) {
     if (!text.includes(phrase)) {

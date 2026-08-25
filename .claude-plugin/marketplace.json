@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "CODELEAN",
+  "name": "CURLYCODER",
   "description": "Lazy senior dev mode for AI agents. The best code is the code you never wrote.",
   "owner": {
     "name": "Sarvesh Bhardwj",
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "CODELEAN",
+      "name": "CURLYCODER",
       "description": "Forces the laziest solution that works. YAGNI, stdlib first, one line over fifty.",
       "source": "./",
       "category": "productivity"

@@ -1,7 +1,7 @@
 {
   "name": "codelean-mcp",
   "version": "4.9.0",
-  "description": "MCP server that serves CodeLean's lazy-senior-dev instructions as a prompt and a tool.",
+  "description": "MCP server that serves CurlyCoder's lazy-senior-dev instructions as a prompt and a tool.",
   "private": true,
   "type": "module",
   "license": "MIT",

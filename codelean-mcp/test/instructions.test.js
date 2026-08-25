@@ -8,7 +8,7 @@ test("resolveMode keeps valid intensities", () => {
 });
 
 test("resolveMode falls back to a runtime intensity for off/unknown/empty", () => {
-  // CODELEAN_DEFAULT_MODE could be anything in CI, so just assert the contract:
+  // CURLYCODER_DEFAULT_MODE could be anything in CI, so just assert the contract:
   // never returns "off", "review", or junk — always one of the served modes.
   for (const input of ["off", "review", "nonsense", "", undefined, null]) {
     assert.ok(MODES.includes(resolveMode(input)), `resolveMode(${input}) must be a served mode`);
@@ -17,6 +17,6 @@ test("resolveMode falls back to a runtime intensity for off/unknown/empty", () =
 
 test("buildInstructions returns the ruleset tagged with the resolved mode", () => {
   const text = buildInstructions("ultra");
-  assert.match(text, /CODELEAN MODE ACTIVE/);
+  assert.match(text, /CURLYCODER MODE ACTIVE/);
   assert.match(text, /ultra/);
 });

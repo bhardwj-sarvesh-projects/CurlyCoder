@@ -1,11 +1,11 @@
 {
-  "name": "CODELEAN",
+  "name": "CURLYCODER",
   "interface": {
-    "displayName": "CODELEAN"
+    "displayName": "CURLYCODER"
   },
   "plugins": [
     {
-      "name": "CODELEAN",
+      "name": "CURLYCODER",
       "source": {
         "source": "url",
         "url": "https://github.com/bhardwj-sarvesh-projects/CODELEAN.git",

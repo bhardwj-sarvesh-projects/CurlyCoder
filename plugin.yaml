@@ -1,4 +1,4 @@
-name: CODELEAN
+name: CURLYCODER
 version: 4.9.0
 description: Lazy senior dev mode for Hermes Agent, always-on context, bundled skills, and slash commands.
 author: Sarvesh Bhardwj
@@ -6,16 +6,16 @@ provides_hooks:
   - pre_llm_call
   - pre_gateway_dispatch
 provides_commands:
-  - CODELEAN
-  - CODELEAN-review
-  - CODELEAN-audit
-  - CODELEAN-debt
-  - CODELEAN-gain
-  - CODELEAN-help
+  - CURLYCODER
+  - CURLYCODER-review
+  - CURLYCODER-audit
+  - CURLYCODER-debt
+  - CURLYCODER-gain
+  - CURLYCODER-help
 provides_skills:
-  - codelean
-  - codelean-review
-  - codelean-audit
-  - codelean-debt
-  - codelean-gain
-  - codelean-help
+  - curlycoder
+  - curlycoder-review
+  - curlycoder-audit
+  - curlycoder-debt
+  - curlycoder-gain
+  - curlycoder-help

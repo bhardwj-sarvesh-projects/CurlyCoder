@@ -38,7 +38,7 @@ if (slugs.length === 0) {
   process.exit(1);
 }
 
-// "CODELEAN-review" -> "CODELEAN Review"
+// "CURLYCODER-review" -> "CURLYCODER Review"
 const displayName = (slug) =>
   slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 

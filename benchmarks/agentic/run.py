@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Agentic, multi-file benchmark for CODELEAN.
+"""Agentic, multi-file benchmark for CURLYCODER.
 
 Runs each (task x arm x model) through a real headless Claude Code session in an isolated
 temp workspace seeded with a starter file, then scores the produced files deterministically
@@ -19,7 +19,7 @@ over-engineering score is a later pass.
       Recompute metrics + aggregate from kept workspaces. No API. Use after changing a
       metric or scorer so you never pay the API twice for a measurement tweak.
 
-CODELEAN: the claude CLI is the harness (already installed, we run inside it). No SDK
+CURLYCODER: the claude CLI is the harness (already installed, we run inside it). No SDK
 dependency. The CLI's JSON output already carries cost/tokens/duration/permission_denials.
 """
 import argparse, concurrent.futures, datetime, json, os, re, shutil, signal, statistics, subprocess, sys, tempfile
@@ -34,7 +34,7 @@ RUNS_DIR = Path(__file__).resolve().parent / "runs"
 def _skill(rel): return (ROOT / rel).read_text(encoding="utf-8")
 ARMS = {
     "baseline":       lambda: None,
-    "CODELEAN":       lambda: _skill("skills/CODELEAN/SKILL.md"),
+    "CURLYCODER":       lambda: _skill("skills/CURLYCODER/SKILL.md"),
     "caveman":        lambda: _skill("benchmarks/arms/caveman-SKILL.md"),
     "yagni":          lambda: "Follow YAGNI principles.",
     "yagni-oneliner": lambda: "Follow YAGNI principles, and prefer one-liner solutions.",
@@ -44,14 +44,14 @@ MODELS = {"haiku": "claude-haiku-4-5-20251001", "sonnet": "claude-sonnet-4-6", "
 # Skills are plugins activated by a SessionStart hook. To test exactly one at a time we exclude the
 # user's globally-enabled plugins (--setting-sources project,local) and load one plugin from its
 # cache dir (--plugin-dir). The smoke test verifies activation by output style.
-PLUGIN_ARMS = ("CODELEAN", "caveman")          # arms activated via --plugin-dir (vs raw --append prompts)
+PLUGIN_ARMS = ("CURLYCODER", "caveman")          # arms activated via --plugin-dir (vs raw --append prompts)
 PLUGIN_CACHE = Path.home() / ".claude" / "plugins" / "cache"
 
 def _plugin_dir(name):
     """Resolve a plugin's cache dir portably -- hardcoding one machine's absolute path
-    (e.g. C:\\Users\\<you>\\...) made the CODELEAN/caveman arms unreproducible off that box.
+    (e.g. C:\\Users\\<you>\\...) made the CURLYCODER/caveman arms unreproducible off that box.
     Order: env override -> latest version dir under ~/.claude/plugins/cache -> clear error.
-    Resolved per-arm at use-site so a missing caveman install can't block a CODELEAN-only run."""
+    Resolved per-arm at use-site so a missing caveman install can't block a CURLYCODER-only run."""
     env = os.environ.get(f"{name.upper()}_PLUGIN_DIR")
     if env: return env
     base = PLUGIN_CACHE / name / name
@@ -65,7 +65,7 @@ CELL_TIMEOUT = 300  # seconds per cell; a hung agent is force-killed (process tr
 # Added to every arm's system prompt, identically. We measure code PRODUCTION, not execution: agents
 # write the implementation and stop. No live verification -- earlier attempts had agents open a browser,
 # hit the template's login wall, and retry, inflating tokens/time with flailing instead of code. Writing
-# tests is still explicitly allowed, so CODELEAN's "leave a runnable check" discipline is not suppressed.
+# tests is still explicitly allowed, so CURLYCODER's "leave a runnable check" discipline is not suppressed.
 NO_RUN = ("Write the implementation (include tests if you normally would for a change like this). "
           "Do not run a dev server, install dependencies, run a database, or open a browser to verify -- "
           "just write the code and stop. Only the code you write is measured, not its execution.")
@@ -95,7 +95,7 @@ def _selfcheck_split(p: Path):
     """Split a produced .py file at the first TOP-LEVEL self-check marker (a `__main__` guard or a
     demo()/selfcheck() function) through end of file. Returns (src_total, src_code, sc_total,
     sc_code), counted like _count. On a surgical task that delivers ONE function, an in-file self-
-    check is the runnable check CODELEAN's rule asks for -- a positive signal, not source bloat --
+    check is the runnable check CURLYCODER's rule asks for -- a positive signal, not source bloat --
     so it is split off here and counted as test LOC instead of penalising the arm that wrote it."""
     try: lines = p.read_text(encoding="utf-8", errors="ignore").splitlines()
     except Exception: return 0, 0, 0, 0
@@ -121,7 +121,7 @@ def code_stats(workdir: Path, selfcheck_as_test: bool = False):
     total_loc counts every non-blank line including comments and docstrings -- the bloat a vibe
     baseline actually produces. src_loc is code-only, for the breakdown. Tests tracked separately,
     never as bloat. selfcheck_as_test (surgical tasks): an in-file __main__/demo() self-check is
-    reclassified from source to test, so following CODELEAN's 'leave a runnable check' rule is not
+    reclassified from source to test, so following CURLYCODER's 'leave a runnable check' rule is not
     counted as code bloat against it."""
     fixture = set()                                   # files that were seeded, not delivered
     fm = workdir / "_fixture_files.json"
@@ -206,15 +206,15 @@ def _selftest_plugin_dir():
     """Plugin-dir resolution must be portable: env override wins, and a missing install
     fails loudly (sys.exit) instead of silently passing a non-existent path to --plugin-dir."""
     fails = 0
-    sentinel = "/tmp/CODELEAN-selftest-plugin-dir"
-    os.environ["CODELEAN_PLUGIN_DIR"] = sentinel
+    sentinel = "/tmp/CURLYCODER-selftest-plugin-dir"
+    os.environ["CURLYCODER_PLUGIN_DIR"] = sentinel
     try:
-        ok_env = _plugin_dir("CODELEAN") == sentinel
+        ok_env = _plugin_dir("CURLYCODER") == sentinel
     finally:
-        del os.environ["CODELEAN_PLUGIN_DIR"]
+        del os.environ["CURLYCODER_PLUGIN_DIR"]
     print(f"{'ok ' if ok_env else 'XX '} plugin_dir   env  override honored")
     fails += 0 if ok_env else 1
-    missing = "CODELEAN-does-not-exist-xyz"          # no env, no cache entry -> must sys.exit
+    missing = "CURLYCODER-does-not-exist-xyz"          # no env, no cache entry -> must sys.exit
     try:
         _plugin_dir(missing); ok_miss = False        # reached only if it did NOT exit -> broken
     except SystemExit:

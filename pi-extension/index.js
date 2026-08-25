@@ -11,15 +11,15 @@ const {
   normalizePersistedMode,
   isDeactivationCommand,
   writeDefaultMode,
-} = require("../hooks/CODELEAN-config.js");
-const { getCODELEANInstructions, filterSkillBodyForMode } = require("../hooks/CODELEAN-instructions.js");
+} = require("../hooks/CURLYCODER-config.js");
+const { getCURLYCODERInstructions, filterSkillBodyForMode } = require("../hooks/CURLYCODER-instructions.js");
 
 export { filterSkillBodyForMode };
 export const readDefaultMode = getDefaultMode;
 export const readQuietStartup = getQuietStartup;
 
 const RUNTIME_MODE_LIST = RUNTIME_MODES.join("|");
-const CODELEAN_COMMAND_DESCRIPTION = `Set mode: ${RUNTIME_MODE_LIST}. Commands: status, default <mode>`;
+const CURLYCODER_COMMAND_DESCRIPTION = `Set mode: ${RUNTIME_MODE_LIST}. Commands: status, default <mode>`;
 
 export function resolveSessionMode(entries, fallbackMode = DEFAULT_MODE) {
   const fallback = normalizePersistedMode(fallbackMode) || DEFAULT_MODE;
@@ -27,7 +27,7 @@ export function resolveSessionMode(entries, fallbackMode = DEFAULT_MODE) {
 
   for (let i = entries.length - 1; i >= 0; i -= 1) {
     const entry = entries[i];
-    if (entry?.type !== "custom" || entry?.customType !== "CODELEAN-mode") continue;
+    if (entry?.type !== "custom" || entry?.customType !== "CURLYCODER-mode") continue;
 
     const mode = normalizePersistedMode(entry?.data?.mode);
     if (mode) return mode;
@@ -36,7 +36,7 @@ export function resolveSessionMode(entries, fallbackMode = DEFAULT_MODE) {
   return fallback;
 }
 
-export function parseCODELEANCommand(text, defaultMode = DEFAULT_MODE) {
+export function parseCURLYCODERCommand(text, defaultMode = DEFAULT_MODE) {
   const fallback = normalizePersistedMode(defaultMode) || DEFAULT_MODE;
   const normalizedText = String(text || "").trim().toLowerCase();
 
@@ -49,7 +49,7 @@ export function parseCODELEANCommand(text, defaultMode = DEFAULT_MODE) {
   if (primary === "status") return { type: "status" };
 
   if (primary === "default") {
-    // CODELEAN: a default must be a runtime level; review is session-only (#377).
+    // CURLYCODER: a default must be a runtime level; review is session-only (#377).
     const mode = normalizeMode(secondary);
     return mode ? { type: "set-default", mode } : { type: "invalid", reason: "invalid-default-mode" };
   }
@@ -60,7 +60,7 @@ export function parseCODELEANCommand(text, defaultMode = DEFAULT_MODE) {
 
 export { writeDefaultMode };
 
-export default function CODELEANExtension(pi) {
+export default function CURLYCODERExtension(pi) {
   let currentMode = DEFAULT_MODE;
   let configuredDefaultMode = getDefaultMode();
   let hideStatus = getHideStatus();
@@ -71,21 +71,21 @@ export default function CODELEANExtension(pi) {
   function syncStatus(ctx) {
     if (ctx) lastCtx = ctx;
     const c = ctx || lastCtx;
-    // CODELEAN: hide the indicator but keep the ruleset active (#324).
+    // CURLYCODER: hide the indicator but keep the ruleset active (#324).
     if (hideStatus) return;
     if (!c?.ui?.setStatus) return;
-    // CODELEAN: try/catch guards against pi-web theme proxy throwing before initTheme
+    // CURLYCODER: try/catch guards against pi-web theme proxy throwing before initTheme
     let theme;
     try { theme = c.ui.theme; if (!theme?.fg) return; } catch { return; }
     if (currentMode === "off") {
-      c.ui.setStatus("CODELEAN", "");
+      c.ui.setStatus("CURLYCODER", "");
       return;
     }
     const levelIcons = { lite: "🌿", full: "⚡", ultra: "🔥" };
     const icon = levelIcons[currentMode] || "";
     const label = currentMode.toUpperCase();
     const indicator = isActive ? theme.fg("accent", "●") : theme.fg("dim", "○");
-    c.ui.setStatus("CODELEAN", indicator + " 🐴 " + theme.fg("muted", "CODELEAN: ") + theme.fg("text", icon + " " + label));
+    c.ui.setStatus("CURLYCODER", indicator + " 🐴 " + theme.fg("muted", "CURLYCODER: ") + theme.fg("text", icon + " " + label));
   }
 
   const setMode = (mode, ctx) => {
@@ -93,9 +93,9 @@ export default function CODELEANExtension(pi) {
     if (!normalized) return;
 
     currentMode = normalized;
-    pi.appendEntry("CODELEAN-mode", { mode: normalized });
+    pi.appendEntry("CURLYCODER-mode", { mode: normalized });
     syncStatus(ctx);
-    ctx?.ui?.notify?.(`CODELEAN mode set to ${normalized}.`, "info");
+    ctx?.ui?.notify?.(`CURLYCODER mode set to ${normalized}.`, "info");
   };
 
   const sendAlias = (skillName, args, ctx) => {
@@ -111,13 +111,13 @@ export default function CODELEANExtension(pi) {
     pi.sendUserMessage(message);
   };
 
-  pi.registerCommand("CODELEAN", {
-    description: CODELEAN_COMMAND_DESCRIPTION,
+  pi.registerCommand("CURLYCODER", {
+    description: CURLYCODER_COMMAND_DESCRIPTION,
     handler: async (args, ctx) => {
-      const parsed = parseCODELEANCommand(args, configuredDefaultMode);
+      const parsed = parseCURLYCODERCommand(args, configuredDefaultMode);
 
       if (parsed.type === "status") {
-        ctx?.ui?.notify?.(`CODELEAN: current ${currentMode} • default ${configuredDefaultMode}`, "info");
+        ctx?.ui?.notify?.(`CURLYCODER: current ${currentMode} • default ${configuredDefaultMode}`, "info");
         return;
       }
 
@@ -127,7 +127,7 @@ export default function CODELEANExtension(pi) {
           if (written) {
             configuredDefaultMode = getDefaultMode();
             const message = configuredDefaultMode === written
-              ? `Default CODELEAN mode set to ${written}.`
+              ? `Default CURLYCODER mode set to ${written}.`
               : `Saved default ${written}, but env override keeps default at ${configuredDefaultMode}.`;
             ctx?.ui?.notify?.(message, "info");
           }
@@ -142,33 +142,33 @@ export default function CODELEANExtension(pi) {
         return;
       }
 
-      ctx?.ui?.notify?.("Unknown or unsupported /CODELEAN mode.", "warning");
+      ctx?.ui?.notify?.("Unknown or unsupported /CURLYCODER mode.", "warning");
     },
   });
 
-  pi.registerCommand("CODELEAN-review", {
-    description: "Run /skill:CODELEAN-review",
-    handler: (_args, ctx) => sendAlias("/skill:CODELEAN-review", "", ctx),
+  pi.registerCommand("CURLYCODER-review", {
+    description: "Run /skill:CURLYCODER-review",
+    handler: (_args, ctx) => sendAlias("/skill:CURLYCODER-review", "", ctx),
   });
 
-  pi.registerCommand("CODELEAN-audit", {
-    description: "Run /skill:CODELEAN-audit",
-    handler: (_args, ctx) => sendAlias("/skill:CODELEAN-audit", "", ctx),
+  pi.registerCommand("CURLYCODER-audit", {
+    description: "Run /skill:CURLYCODER-audit",
+    handler: (_args, ctx) => sendAlias("/skill:CURLYCODER-audit", "", ctx),
   });
 
-  pi.registerCommand("CODELEAN-gain", {
-    description: "Run /skill:CODELEAN-gain",
-    handler: (_args, ctx) => sendAlias("/skill:CODELEAN-gain", "", ctx),
+  pi.registerCommand("CURLYCODER-gain", {
+    description: "Run /skill:CURLYCODER-gain",
+    handler: (_args, ctx) => sendAlias("/skill:CURLYCODER-gain", "", ctx),
   });
 
-  pi.registerCommand("CODELEAN-debt", {
-    description: "Run /skill:CODELEAN-debt",
-    handler: (_args, ctx) => sendAlias("/skill:CODELEAN-debt", "", ctx),
+  pi.registerCommand("CURLYCODER-debt", {
+    description: "Run /skill:CURLYCODER-debt",
+    handler: (_args, ctx) => sendAlias("/skill:CURLYCODER-debt", "", ctx),
   });
 
-  pi.registerCommand("CODELEAN-help", {
-    description: "Run /skill:CODELEAN-help",
-    handler: (_args, ctx) => sendAlias("/skill:CODELEAN-help", "", ctx),
+  pi.registerCommand("CURLYCODER-help", {
+    description: "Run /skill:CURLYCODER-help",
+    handler: (_args, ctx) => sendAlias("/skill:CURLYCODER-help", "", ctx),
   });
 
   pi.on("input", async (event) => {
@@ -187,7 +187,7 @@ export default function CODELEANExtension(pi) {
     currentMode = resolveSessionMode(entries, configuredDefaultMode);
     syncStatus(ctx);
     if (!getQuietStartup()) {
-      ctx?.ui?.notify?.(`CODELEAN loaded: ${currentMode}`, "info");
+      ctx?.ui?.notify?.(`CURLYCODER loaded: ${currentMode}`, "info");
     }
   });
 
@@ -206,6 +206,6 @@ export default function CODELEANExtension(pi) {
     // Guard a null/undefined event or a missing systemPrompt: don't crash, and
     // don't prepend the literal string "undefined" to the prompt (#439, #440).
     const base = event?.systemPrompt ? `${event.systemPrompt}\n\n` : "";
-    return { systemPrompt: `${base}${getCODELEANInstructions(currentMode)}` };
+    return { systemPrompt: `${base}${getCURLYCODERInstructions(currentMode)}` };
   });
 }

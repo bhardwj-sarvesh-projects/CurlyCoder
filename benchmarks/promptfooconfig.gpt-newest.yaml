@@ -1,6 +1,6 @@
-# CODELEAN vs baseline, newest OpenAI: gpt-5.5 (top) + gpt-4.1-mini, gpt-5.4-mini.
+# CURLYCODER vs baseline, newest OpenAI: gpt-5.5 (top) + gpt-4.1-mini, gpt-5.4-mini.
 #   npx promptfoo@latest eval -c benchmarks/promptfooconfig.gpt-newest.yaml --env-file .env --repeat 30
-description: "CODELEAN vs baseline, newest OpenAI (gpt-5.5 + minis). LOC + correctness, cost telemetry."
+description: "CURLYCODER vs baseline, newest OpenAI (gpt-5.5 + minis). LOC + correctness, cost telemetry."
 
 providers:
   - id: openai:gpt-5.5
@@ -13,8 +13,8 @@ providers:
 prompts:
   - id: file://arms/baseline.js
     label: baseline (no skill)
-  - id: file://arms/CODELEAN.js
-    label: CODELEAN
+  - id: file://arms/CURLYCODER.js
+    label: CURLYCODER
 
 defaultTest:
   assert:

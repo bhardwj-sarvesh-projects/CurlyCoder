@@ -1,22 +1,22 @@
-# CODELEAN for Hermes installed
+# CURLYCODER for Hermes installed
 
 Enable it if you did not install with `--enable`:
 
 ```bash
-hermes plugins enable CODELEAN
+hermes plugins enable CURLYCODER
 ```
 
 Restart Hermes or the gateway after enabling.
 
-In shared gateways, restrict `/CODELEAN` to trusted users with Hermes slash-command access controls; runtime mode is process-local.
+In shared gateways, restrict `/CURLYCODER` to trusted users with Hermes slash-command access controls; runtime mode is process-local.
 
 Commands:
 
-- `/CODELEAN [lite|full|ultra|off]`
-- `/CODELEAN-review [target]`
-- `/CODELEAN-audit [target]`
-- `/CODELEAN-debt`
-- `/CODELEAN-gain`
-- `/CODELEAN-help`
+- `/CURLYCODER [lite|full|ultra|off]`
+- `/CURLYCODER-review [target]`
+- `/CURLYCODER-audit [target]`
+- `/CURLYCODER-debt`
+- `/CURLYCODER-gain`
+- `/CURLYCODER-help`
 
-Bundled skills are available as `CODELEAN:CODELEAN`, `CODELEAN:CODELEAN-review`, `CODELEAN:CODELEAN-audit`, `CODELEAN:CODELEAN-debt`, `CODELEAN:CODELEAN-gain`, and `CODELEAN:CODELEAN-help`.
+Bundled skills are available as `CURLYCODER:CURLYCODER`, `CURLYCODER:CURLYCODER-review`, `CURLYCODER:CURLYCODER-audit`, `CURLYCODER:CURLYCODER-debt`, `CURLYCODER:CURLYCODER-gain`, and `CURLYCODER:CURLYCODER-help`.

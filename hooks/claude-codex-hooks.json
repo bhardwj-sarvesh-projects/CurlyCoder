@@ -6,9 +6,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CODELEAN-activate.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CURLYCODER-activate.js\"",
             "timeout": 5,
-            "statusMessage": "Loading CODELEAN mode..."
+            "statusMessage": "Loading CURLYCODER mode..."
           }
         ]
       }
@@ -18,9 +18,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CODELEAN-subagent.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CURLYCODER-subagent.js\"",
             "timeout": 5,
-            "statusMessage": "Loading CODELEAN mode..."
+            "statusMessage": "Loading CURLYCODER mode..."
           }
         ]
       }
@@ -30,9 +30,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CODELEAN-mode-tracker.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/CURLYCODER-mode-tracker.js\"",
             "timeout": 5,
-            "statusMessage": "Tracking CODELEAN mode..."
+            "statusMessage": "Tracking CURLYCODER mode..."
           }
         ]
       }

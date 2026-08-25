@@ -2,9 +2,9 @@
 
 **Task:** "Build me a countdown timer component in React that counts down from a given number of seconds."
 
-Verbatim model output from a benchmark run, Claude Haiku 4.5, no-skill arm vs CODELEAN arm, temperature 1, source `benchmarks/output.json`. Reproduce: `npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml`.
+Verbatim model output from a benchmark run, Claude Haiku 4.5, no-skill arm vs CURLYCODER arm, temperature 1, source `benchmarks/output.json`. Reproduce: `npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml`.
 
-## Without CODELEAN, 267 lines of code
+## Without CURLYCODER, 267 lines of code
 
 # React Countdown Timer Component
 
@@ -369,7 +369,7 @@ export function StyledCountdownTimer({ initialSeconds = 60 }) {
 
 Choose the version that best fits your needs!
 
-## With CODELEAN, 9 lines of code
+## With CURLYCODER, 9 lines of code
 
 ```jsx
 export function CountdownTimer({ seconds }) {

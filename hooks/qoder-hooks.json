@@ -1,12 +1,12 @@
 {
-  "_comment": "Reference template — copy the 'hooks' object into your .qoder/settings.json or ~/.qoder/settings.json. Replace CODELEAN_DIR with the path to your CODELEAN checkout (e.g. ~/.qoder/plugins/CODELEAN or the npm global install path).",
+  "_comment": "Reference template — copy the 'hooks' object into your .qoder/settings.json or ~/.qoder/settings.json. Replace CURLYCODER_DIR with the path to your CURLYCODER checkout (e.g. ~/.qoder/plugins/CURLYCODER or the npm global install path).",
   "hooks": {
     "UserPromptSubmit": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "node CODELEAN_DIR/hooks/CODELEAN-mode-tracker.js"
+            "command": "node CURLYCODER_DIR/hooks/CURLYCODER-mode-tracker.js"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node CODELEAN_DIR/hooks/CODELEAN-subagent.js"
+            "command": "node CURLYCODER_DIR/hooks/CURLYCODER-subagent.js"
           }
         ]
       }

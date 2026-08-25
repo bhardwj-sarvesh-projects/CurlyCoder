@@ -1,4 +1,4 @@
-# CODELEAN benchmark: code size + cost across three arms, same model, same tasks.
+# CURLYCODER benchmark: code size + cost across three arms, same model, same tasks.
 #
 #   Run:   npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml
 #   View:  npx promptfoo@latest view
@@ -6,7 +6,7 @@
 #
 # Needs ANTHROPIC_API_KEY in the environment or a .env file (see benchmarks/README.md).
 # Caveman arm uses JuliusBrussee/caveman SKILL.md (MIT), vendored at arms/caveman-SKILL.md.
-description: "CODELEAN vs caveman vs no-skill: same model, same tasks. Measures code LOC (deterministic) and tokens/cost (API telemetry)."
+description: "CURLYCODER vs caveman vs no-skill: same model, same tasks. Measures code LOC (deterministic) and tokens/cost (API telemetry)."
 
 providers:
   - id: anthropic:messages:claude-haiku-4-5-20251001
@@ -21,8 +21,8 @@ prompts:
     label: baseline (no skill)
   - id: file://arms/caveman.js
     label: caveman
-  - id: file://arms/CODELEAN.js
-    label: CODELEAN
+  - id: file://arms/CURLYCODER.js
+    label: CURLYCODER
 
 defaultTest:
   assert:

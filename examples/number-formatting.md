@@ -2,7 +2,7 @@
 
 **Task:** "Format numbers as currency and with thousand separators."
 
-## Without CODELEAN
+## Without CURLYCODER
 
 ```bash
 npm install numeral
@@ -17,10 +17,10 @@ numeral(0.745).format("0.0%");           // "74.5%"
 numeral(1500).format("0.0a");            // "1.5k"
 ```
 
-## With CODELEAN
+## With CURLYCODER
 
 ```js
-// CODELEAN: Intl.NumberFormat does this, locale-aware
+// CURLYCODER: Intl.NumberFormat does this, locale-aware
 new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" })
   .format(1234567.89);
 // → "$1,234,567.89"

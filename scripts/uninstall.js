@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// CODELEAN — removes state CODELEAN wrote outside the plugin's own files:
+// CURLYCODER — removes state CURLYCODER wrote outside the plugin's own files:
 // the mode flag, the config file, and the statusLine entry it added to
 // settings.json. Plugin files themselves are removed by each host's own
 // uninstall command (see README); this only cleans up what those commands
@@ -7,9 +7,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const { getConfigPath, getClaudeDir } = require('../hooks/CODELEAN-config');
+const { getConfigPath, getClaudeDir } = require('../hooks/CURLYCODER-config');
 
-const STATUSLINE_SCRIPT = 'CODELEAN-statusline';
+const STATUSLINE_SCRIPT = 'CURLYCODER-statusline';
 
 function removeIfExists(filePath, label) {
   try {
@@ -20,7 +20,7 @@ function removeIfExists(filePath, label) {
   }
 }
 
-removeIfExists(path.join(getClaudeDir(), '.CODELEAN-active'), 'mode flag');
+removeIfExists(path.join(getClaudeDir(), '.CURLYCODER-active'), 'mode flag');
 removeIfExists(getConfigPath(), 'config file');
 
 const settingsPath = path.join(getClaudeDir(), 'settings.json');
@@ -28,9 +28,9 @@ try {
   const raw = fs.readFileSync(settingsPath, 'utf8').replace(/^\uFEFF/, '');
   const settings = JSON.parse(raw);
   const cmd = settings.statusLine && settings.statusLine.command;
-  // Only remove the parts CODELEAN owns. If the user combined statuslines
-  // (e.g. caveman && CODELEAN), keep the other plugin's command intact.
-  // CODELEAN: splits on && / ; to detect other segments — good enough; a user
+  // Only remove the parts CURLYCODER owns. If the user combined statuslines
+  // (e.g. caveman && CURLYCODER), keep the other plugin's command intact.
+  // CURLYCODER: splits on && / ; to detect other segments — good enough; a user
   // piping statuslines together is on their own.
   if (typeof cmd === 'string' && cmd.includes(STATUSLINE_SCRIPT)) {
     const parts = cmd
@@ -41,19 +41,19 @@ try {
     if (others.length === 0) {
       delete settings.statusLine;
       fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2), 'utf8');
-      console.log(`Removed CODELEAN statusLine entry from ${settingsPath}`);
+      console.log(`Removed CURLYCODER statusLine entry from ${settingsPath}`);
     } else {
       settings.statusLine.command = others.join(' && ');
       fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2), 'utf8');
-      console.log(`Removed CODELEAN statusLine segment from ${settingsPath}`);
+      console.log(`Removed CURLYCODER statusLine segment from ${settingsPath}`);
     }
   }
 } catch (e) {
   if (e.code === 'ENOENT') {
     // no settings.json — nothing to clean
   } else if (e instanceof SyntaxError) {
-    // CODELEAN: malformed settings.json — can't safely edit it; leave intact, warn
-    console.warn(`settings.json is malformed — could not remove the CODELEAN statusLine entry. Remove it manually from: ${settingsPath} (${e.message})`);
+    // CURLYCODER: malformed settings.json — can't safely edit it; leave intact, warn
+    console.warn(`settings.json is malformed — could not remove the CURLYCODER statusLine entry. Remove it manually from: ${settingsPath} (${e.message})`);
   } else {
     throw e;
   }

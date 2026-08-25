@@ -1,5 +1,5 @@
 {
-  "name": "CODELEAN",
+  "name": "CURLYCODER",
   "version": "4.9.0",
   "description": "Lazy senior dev mode. Forces the simplest, shortest solution that actually works: YAGNI, stdlib first, no unrequested abstractions.",
   "author": {
@@ -13,7 +13,7 @@
   "skills": "./skills/",
   "hooks": "./hooks/claude-codex-hooks.json",
   "interface": {
-    "displayName": "CODELEAN",
+    "displayName": "CURLYCODER",
     "shortDescription": "Lazy senior developer mode",
     "longDescription": "Prefer YAGNI, the standard library, native platform features, and the smallest correct implementation.",
     "developerName": "Sarvesh Bhardwj",
@@ -21,7 +21,7 @@
     "capabilities": ["Instructions", "Lifecycle hooks"],
     "websiteURL": "https://github.com/bhardwj-sarvesh-projects/CODELEAN",
     "defaultPrompt": [
-      "Use CODELEAN mode for this task.",
+      "Use CURLYCODER mode for this task.",
       "Review this diff for over-engineering.",
       "Find the smallest correct implementation."
     ],

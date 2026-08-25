@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// CODELEAN MCP server: serves the lazy-senior-dev ruleset over stdio as a
+// CURLYCODER MCP server: serves the lazy-senior-dev ruleset over stdio as a
 // prompt (user-invoked) and a tool (for hosts that pull context via tools).
 // It does NOT replace the always-on adapters; it's the clean option for hosts
 // whose only injection point is the prompt menu (see #70).
@@ -13,17 +13,17 @@ import { MODES, buildInstructions, resolveMode } from "./instructions.js";
 const { version } = JSON.parse(
   await fs.promises.readFile(new URL("../package.json", import.meta.url), "utf8")
 );
-const server = new McpServer({ name: "CODELEAN", version });
+const server = new McpServer({ name: "CURLYCODER", version });
 
 const modeArg = z
   .enum(MODES)
   .optional()
-  .describe("CODELEAN intensity: lite, full, or ultra. Omit for the configured default.");
+  .describe("CURLYCODER intensity: lite, full, or ultra. Omit for the configured default.");
 
 server.registerPrompt(
-  "CODELEAN",
+  "CURLYCODER",
   {
-    title: "CODELEAN mode",
+    title: "CURLYCODER mode",
     description: "Lazy senior dev instructions: YAGNI, stdlib first, the smallest correct change.",
     argsSchema: { mode: modeArg },
   },
@@ -33,10 +33,10 @@ server.registerPrompt(
 );
 
 server.registerTool(
-  "CODELEAN_instructions",
+  "CURLYCODER_instructions",
   {
-    title: "CODELEAN instructions",
-    description: "Return the CODELEAN ruleset for the given intensity (lite, full, or ultra).",
+    title: "CURLYCODER instructions",
+    description: "Return the CURLYCODER ruleset for the given intensity (lite, full, or ultra).",
     inputSchema: { mode: modeArg },
     outputSchema: { mode: z.string(), instructions: z.string() },
     annotations: { readOnlyHint: true, openWorldHint: false },

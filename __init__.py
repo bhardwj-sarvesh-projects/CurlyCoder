@@ -1,4 +1,4 @@
-"""Hermes plugin for CODELEAN."""
+"""Hermes plugin for CURLYCODER."""
 
 from __future__ import annotations
 
@@ -12,17 +12,17 @@ DEFAULT_MODE = "full"
 RUNTIME_MODES = {"off", "lite", "full", "ultra"}
 CONFIG_MODES = RUNTIME_MODES | {"review"}
 SKILL_COMMANDS = {
-    "CODELEAN-review": "Review the current diff or provided target for over-engineering.",
-    "CODELEAN-audit": "Audit the repo for over-engineering and deletion opportunities.",
-    "CODELEAN-debt": "List every deliberate `CODELEAN:` shortcut and its upgrade path.",
-    "CODELEAN-gain": "Show the measured-impact scoreboard (less code, less cost, more speed).",
-    "CODELEAN-help": "Show the CODELEAN command reference.",
+    "CURLYCODER-review": "Review the current diff or provided target for over-engineering.",
+    "CURLYCODER-audit": "Audit the repo for over-engineering and deletion opportunities.",
+    "CURLYCODER-debt": "List every deliberate `CURLYCODER:` shortcut and its upgrade path.",
+    "CURLYCODER-gain": "Show the measured-impact scoreboard (less code, less cost, more speed).",
+    "CURLYCODER-help": "Show the CURLYCODER command reference.",
 }
 
 ROOT = Path(__file__).resolve().parent
 SKILLS_DIR = ROOT / "skills"
-CODELEAN_SKILL = SKILLS_DIR / "CODELEAN" / "SKILL.md"
-REVIEW_SKILL = SKILLS_DIR / "CODELEAN-review" / "SKILL.md"
+CURLYCODER_SKILL = SKILLS_DIR / "CURLYCODER" / "SKILL.md"
+REVIEW_SKILL = SKILLS_DIR / "CURLYCODER-review" / "SKILL.md"
 
 _current_mode = None
 
@@ -43,14 +43,14 @@ def _normalize_config_mode(mode: str | None) -> str | None:
 
 def _config_dir() -> Path:
     if os.environ.get("XDG_CONFIG_HOME"):
-        return Path(os.environ["XDG_CONFIG_HOME"]) / "CODELEAN"
+        return Path(os.environ["XDG_CONFIG_HOME"]) / "CURLYCODER"
     if os.name == "nt":
-        return Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming")) / "CODELEAN"
-    return Path.home() / ".config" / "CODELEAN"
+        return Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming")) / "CURLYCODER"
+    return Path.home() / ".config" / "CURLYCODER"
 
 
 def _default_mode() -> str:
-    env_mode = _normalize_config_mode(os.environ.get("CODELEAN_DEFAULT_MODE"))
+    env_mode = _normalize_config_mode(os.environ.get("CURLYCODER_DEFAULT_MODE"))
     if env_mode:
         return env_mode
     try:
@@ -89,7 +89,7 @@ def _filter_skill_body_for_mode(body: str, mode: str) -> str:
 
 def _fallback_instructions(mode: str) -> str:
     return (
-        f"CODELEAN MODE ACTIVE — level: {mode}\n\n"
+        f"CURLYCODER MODE ACTIVE — level: {mode}\n\n"
         "You are a lazy senior developer. Lazy means efficient, not careless. "
         "The best code is the code never written.\n\n"
         "Before any code, stop at the first rung that holds: YAGNI, stdlib, "
@@ -103,21 +103,21 @@ def _fallback_instructions(mode: str) -> str:
 
 
 def build_injected_context(mode: str | None = None) -> str:
-    """Return the mode-filtered CODELEAN context injected before LLM turns."""
+    """Return the mode-filtered CURLYCODER context injected before LLM turns."""
     configured = _normalize_config_mode(mode) or _default_mode()
     if configured == "off":
         return ""
     if configured == "review":
         try:
             body = REVIEW_SKILL.read_text(encoding="utf-8")
-            return f"CODELEAN MODE ACTIVE — level: review\n\n{_strip_frontmatter(body)}"
+            return f"CURLYCODER MODE ACTIVE — level: review\n\n{_strip_frontmatter(body)}"
         except OSError:
-            return "CODELEAN MODE ACTIVE — level: review. Review diffs for unnecessary complexity."
+            return "CURLYCODER MODE ACTIVE — level: review. Review diffs for unnecessary complexity."
 
     effective = _normalize_runtime_mode(configured) or DEFAULT_MODE
     try:
-        body = CODELEAN_SKILL.read_text(encoding="utf-8")
-        return f"CODELEAN MODE ACTIVE — level: {effective}\n\n{_filter_skill_body_for_mode(body, effective)}"
+        body = CURLYCODER_SKILL.read_text(encoding="utf-8")
+        return f"CURLYCODER MODE ACTIVE — level: {effective}\n\n{_filter_skill_body_for_mode(body, effective)}"
     except OSError:
         return _fallback_instructions(effective)
 
@@ -132,7 +132,7 @@ def _skill_prompt(command: str, args: str = "") -> str:
     tail = args.strip()
     target = f"\n\nUser arguments: {tail}" if tail else ""
     return (
-        f"Load and follow the Hermes plugin skill `CODELEAN:{command}`. "
+        f"Load and follow the Hermes plugin skill `CURLYCODER:{command}`. "
         f"{SKILL_COMMANDS[command]}{target}"
     )
 
@@ -151,7 +151,7 @@ def _slash_access_denied(event: Any, gateway: Any, command: str) -> bool:
 
 
 def rewrite_gateway_command(event: Any = None, gateway: Any = None, **_: Any) -> dict[str, str] | None:
-    """Rewrite authorized gateway /CODELEAN-* commands into normal agent prompts."""
+    """Rewrite authorized gateway /CURLYCODER-* commands into normal agent prompts."""
     text = str(getattr(event, "text", "") or "").strip()
     if not text.startswith("/"):
         return None
@@ -170,12 +170,12 @@ def _handle_mode_command(raw_args: str) -> str:
     arg = (raw_args or "").strip().lower()
     if not arg:
         mode = _current_mode or _default_mode()
-        return f"CODELEAN mode: {mode}. Use `/CODELEAN lite|full|ultra|off`."
+        return f"CURLYCODER mode: {mode}. Use `/CURLYCODER lite|full|ultra|off`."
     mode = _normalize_runtime_mode(arg)
     if not mode:
-        return "Usage: /CODELEAN [lite|full|ultra|off]"
+        return "Usage: /CURLYCODER [lite|full|ultra|off]"
     _current_mode = mode
-    return f"CODELEAN mode set to {mode}."
+    return f"CURLYCODER mode set to {mode}."
 
 
 def _make_skill_command_handler(ctx: Any, command: str) -> Callable[[str], str]:
@@ -194,19 +194,19 @@ def _make_skill_command_handler(ctx: Any, command: str) -> Callable[[str], str]:
 
 
 def register(ctx: Any) -> None:
-    """Register CODELEAN hooks, skills, and slash commands with Hermes."""
+    """Register CURLYCODER hooks, skills, and slash commands with Hermes."""
     for child in sorted(SKILLS_DIR.iterdir() if SKILLS_DIR.exists() else []):
         skill_md = child / "SKILL.md"
         if child.is_dir() and skill_md.exists():
-            ctx.register_skill(child.name.upper() if child.name == "codelean" else child.name.replace("codelean-", "CODELEAN-", 1), skill_md)
+            ctx.register_skill(child.name.upper() if child.name == "curlycoder" else child.name.replace("curlycoder-", "CURLYCODER-", 1), skill_md)
 
     ctx.register_hook("pre_llm_call", _pre_llm_call)
     ctx.register_hook("pre_gateway_dispatch", rewrite_gateway_command)
 
     ctx.register_command(
-        "CODELEAN",
+        "CURLYCODER",
         _handle_mode_command,
-        description="Set CODELEAN lazy senior dev mode: lite, full, ultra, or off.",
+        description="Set CURLYCODER lazy senior dev mode: lite, full, ultra, or off.",
         args_hint="[lite|full|ultra|off]",
     )
     for command, description in SKILL_COMMANDS.items():

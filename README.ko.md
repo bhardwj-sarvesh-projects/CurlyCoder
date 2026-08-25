@@ -1,32 +1,32 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.png">
-    <img src="assets/logo.png" width="220" alt="CODELEAN, the lazy senior dev">
+    <img src="assets/logo.png" width="220" alt="CURLYCODER, the lazy senior dev">
   </picture>
 </p>
 
-<h1 align="center">CODELEAN</h1>
+<h1 align="center">CURLYCODER</h1>
 
 <p align="center">
   <em>말이 없다. 한 줄을 쓴다. 돌아간다.</em>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/bhardwj-sarvesh-projects/CODELEAN?style=flat-square&color=111111&label=stars" alt="Stars">
-  <img src="https://img.shields.io/github/v/release/bhardwj-sarvesh-projects/CODELEAN?style=flat-square&color=111111&label=release" alt="Release">
+  <img src="https://img.shields.io/github/stars/bhardwj-sarvesh-projects/CURLYCODER?style=flat-square&color=111111&label=stars" alt="Stars">
+  <img src="https://img.shields.io/github/v/release/bhardwj-sarvesh-projects/CURLYCODER?style=flat-square&color=111111&label=release" alt="Release">
   <img src="https://img.shields.io/npm/v/@bhardwj-sarvesh-projects/CODELEAN?style=flat-square&color=111111&label=npm" alt="npm">
   <img src="https://img.shields.io/badge/works%20with-15%20agents-111111?style=flat-square" alt="Works with 15 agents">
   <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
 </p>
 
 <p align="center">
-  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/daily" alt="bhardwj-sarvesh-projects/CODELEAN | Trendshift" width="250" height="55"/></a>
-  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/weekly" alt="bhardwj-sarvesh-projects/CODELEAN | Trendshift" width="250" height="55"/></a>
+  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/daily" alt="bhardwj-sarvesh-projects/CURLYCODER | Trendshift" width="250" height="55"/></a>
+  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/weekly" alt="bhardwj-sarvesh-projects/CURLYCODER | Trendshift" width="250" height="55"/></a>
 </p>
 
 <p align="center">
   <strong>코드 약 54% 감소(최대 94%) &middot; 약 20% 저렴 &middot; 약 27% 빠름 &middot; 100% 안전</strong><br>
-  <sub>실제 오픈소스 저장소(FastAPI + React)를 고치는 실제 Claude Code 세션에서, 스킬을 끈 같은 에이전트와 견줘 측정했다. 약 54%는 기능 작업 12건의 평균이다(Haiku 4.5, n=4). 에이전트가 과하게 짤 여지가 있는 곳(날짜 선택기)에선 94%까지 오르고, 코드가 이미 최소한인 곳에선 0에 가깝다. CODELEAN은 안전 가드를 하나도 빼놓지 않지만, 그냥 "한 줄로 써"라고만 시킨 프롬프트는 그중 하나를 놓친다. (예전 단발성 벤치마크는 80-94%를 단일 수치로 내세웠는데, 공정한 에이전트 기준선에 견주면 그건 평균이 아니라 작업별 상한이다.) <a href="benchmarks/results/2026-06-18-agentic.md">전체 보고서</a> &middot; <a href="benchmarks/">직접 재현하기</a>.</sub>
+  <sub>실제 오픈소스 저장소(FastAPI + React)를 고치는 실제 Claude Code 세션에서, 스킬을 끈 같은 에이전트와 견줘 측정했다. 약 54%는 기능 작업 12건의 평균이다(Haiku 4.5, n=4). 에이전트가 과하게 짤 여지가 있는 곳(날짜 선택기)에선 94%까지 오르고, 코드가 이미 최소한인 곳에선 0에 가깝다. CURLYCODER은 안전 가드를 하나도 빼놓지 않지만, 그냥 "한 줄로 써"라고만 시킨 프롬프트는 그중 하나를 놓친다. (예전 단발성 벤치마크는 80-94%를 단일 수치로 내세웠는데, 공정한 에이전트 기준선에 견주면 그건 평균이 아니라 작업별 상한이다.) <a href="benchmarks/results/2026-06-18-agentic.md">전체 보고서</a> &middot; <a href="benchmarks/">직접 재현하기</a>.</sub>
 </p>
 
 <p align="center">
@@ -36,21 +36,21 @@
 ---
 
 <p align="center">
-  <a href="https://CODELEAN.dev/soon"><img src="assets/waitlist-banner-ko.png" alt="새로운 것이 다가오고 있습니다, 대기자 명단 신청" width="760"></a>
+  <a href="https://CURLYCODER.dev/soon"><img src="assets/waitlist-banner-ko.png" alt="새로운 것이 다가오고 있습니다, 대기자 명단 신청" width="760"></a>
 </p>
 
 이런 사람, 다들 알 거다. 긴 포니테일에 타원형 안경. 버전 관리 시스템보다 회사에 오래 있었다. 코드 쉰 줄을 들이밀면 잠깐 보더니, 말없이 한 줄로 바꿔 놓는다.
 
-CODELEAN은 그를 당신의 AI 에이전트 안에 앉혀 둔다.
+CURLYCODER은 그를 당신의 AI 에이전트 안에 앉혀 둔다.
 
 ## Before / after
 
 날짜 선택기 하나 만들어 달라고 한다. 에이전트는 flatpickr를 깔고, 래퍼 컴포넌트를 짜고, 스타일시트를 붙이더니, 타임존 얘기를 꺼내기 시작한다.
 
-CODELEAN이라면:
+CURLYCODER이라면:
 
 ```html
-<!-- CODELEAN: browser has one -->
+<!-- CURLYCODER: browser has one -->
 <input type="date">
 ```
 
@@ -61,21 +61,21 @@ CODELEAN이라면:
 공정하게 재려면 실제 에이전트에게 실질적인 작업을 시켜 봐야 한다. 헤드리스 Claude Code 세션에게 [tiangolo의 full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)(진짜 FastAPI + React 저장소)을 맡기고, 남긴 `git diff`로 점수를 매겼다. 기능 티켓 12건, 같은 에이전트를 스킬만 켜고 끄며 비교, n=4, Haiku 4.5.
 
 <p align="center">
-  <img src="assets/benchmark-agentic.svg" width="860" alt="Each arm as a percent of the no-skill baseline across LOC, tokens, cost and time (Haiku 4.5). CODELEAN is lowest on every metric (LOC 46%, tokens 78%, cost 80%, time 73%); caveman rises above 100% on tokens, cost and time; yagni-oneliner LOC 67%. Safety, separate adversarial tier: baseline, caveman and CODELEAN 100%, yagni-oneliner 95%.">
+  <img src="assets/benchmark-agentic.svg" width="860" alt="Each arm as a percent of the no-skill baseline across LOC, tokens, cost and time (Haiku 4.5). CURLYCODER is lowest on every metric (LOC 46%, tokens 78%, cost 80%, time 73%); caveman rises above 100% on tokens, cost and time; yagni-oneliner LOC 67%. Safety, separate adversarial tier: baseline, caveman and CURLYCODER 100%, yagni-oneliner 95%.">
 </p>
 
 | 스킬 없는 기준선 대비 | LOC | tokens | cost | time | safe |
 |---|--:|--:|--:|--:|--:|
-| **CODELEAN** | **-54%** | **-22%** | **-20%** | **-27%** | **100%** |
+| **CURLYCODER** | **-54%** | **-22%** | **-20%** | **-27%** | **100%** |
 | caveman (간결한 산문 대조군) | -20% | +7% | +3% | +2% | 100% |
 | "YAGNI + one-liners" 프롬프트 | -33% | -14% | -21% | -30% | 95% |
 
-모든 지표를 깎은 건 CODELEAN뿐이고, 그러면서 안전까지 온전히 지킨 것도 CODELEAN뿐이다. 깎이는 폭은 과잉 구현의 함정이 실제로 있는 곳에서 가장 크다. 컴포넌트 대신 네이티브 `<input>`으로 손이 가니 날짜 선택기는 404줄에서 23줄로, 색상 선택기는 287줄에서 23줄로 줄어든다. 반대로 이미 군더더기 없는 코드에선 거의 0이다. 전체 방법론, 작업별 표, 한계는 [benchmarks/results/2026-06-18-agentic.md](benchmarks/results/2026-06-18-agentic.md)에 있다.
+모든 지표를 깎은 건 CURLYCODER뿐이고, 그러면서 안전까지 온전히 지킨 것도 CURLYCODER뿐이다. 깎이는 폭은 과잉 구현의 함정이 실제로 있는 곳에서 가장 크다. 컴포넌트 대신 네이티브 `<input>`으로 손이 가니 날짜 선택기는 404줄에서 23줄로, 색상 선택기는 287줄에서 23줄로 줄어든다. 반대로 이미 군더더기 없는 코드에선 거의 0이다. 전체 방법론, 작업별 표, 한계는 [benchmarks/results/2026-06-18-agentic.md](benchmarks/results/2026-06-18-agentic.md)에 있다.
 
 <details>
 <summary><strong>예전 단발성 수치 (격리된 생성)</strong></summary>
 
-일상적인 작업 다섯 가지, 모델 셋, 비교군 셋(스킬 없음, [caveman](https://github.com/JuliusBrussee/caveman), CODELEAN), 10회 실행, 중앙값 기준. 프롬프트 하나에 응답 하나, 답변의 줄 수를 셌다:
+일상적인 작업 다섯 가지, 모델 셋, 비교군 셋(스킬 없음, [caveman](https://github.com/JuliusBrussee/caveman), CURLYCODER), 10회 실행, 중앙값 기준. 프롬프트 하나에 응답 하나, 답변의 줄 수를 셌다:
 
 <p align="center">
   <img src="assets/benchmark-3model.svg" width="860" alt="Median lines of code per arm across Haiku, Sonnet and Opus">
@@ -107,17 +107,17 @@ CODELEAN이라면:
 
 ## Install
 
-CODELEAN이 당신에게 요구할 수고의 최대치:
+CURLYCODER이 당신에게 요구할 수고의 최대치:
 
 Claude Code와 Codex 플러그인은 자그마한 Node.js 라이프사이클 훅 두 개를 돌리니, `node`가 PATH에 잡혀 있어야 한다(Nix/nvm 사용자라면 비대화형 셸의 PATH에 있어야 한다). 없어도 스킬은 멀쩡히 돌아간다. 다만 늘 켜져 있던 자동 활성화가 매 프롬프트마다 에러를 뱉는 대신 조용히 비활성으로 남을 뿐이다.
 
 ### Claude Code
 
 ```
-/plugin marketplace add bhardwj-sarvesh-projects/CODELEAN
+/plugin marketplace add bhardwj-sarvesh-projects/CURLYCODER
 ```
 ```
-/plugin install CODELEAN@CODELEAN
+/plugin install CURLYCODER@CURLYCODER
 ```
 (설치가 되려면 두 프롬프트를 따로 보내야 한다)
 
@@ -126,11 +126,11 @@ Claude Code와 Codex 플러그인은 자그마한 Node.js 라이프사이클 훅
 ### Codex
 
 ```bash
-codex plugin marketplace add bhardwj-sarvesh-projects/CODELEAN
+codex plugin marketplace add bhardwj-sarvesh-projects/CURLYCODER
 codex
 ```
 
-`/plugins`를 열어 CODELEAN 마켓플레이스를 고르고 CODELEAN을 설치한다. 그런 다음
+`/plugins`를 열어 CURLYCODER 마켓플레이스를 고르고 CURLYCODER을 설치한다. 그런 다음
 `/hooks`를 열어 라이프사이클 훅 두 개를 검토하고 신뢰한 뒤, 새 스레드를 시작한다.
 
 이 설치 한 번이면 Codex 데스크톱 앱도 같이 잡힌다. 설치 후 앱을 다시 켜면 플러그인을 알아챈다.
@@ -138,28 +138,28 @@ codex
 ### GitHub Copilot CLI
 
 ```bash
-copilot plugin marketplace add bhardwj-sarvesh-projects/CODELEAN
-copilot plugin install CODELEAN@CODELEAN
+copilot plugin marketplace add bhardwj-sarvesh-projects/CURLYCODER
+copilot plugin install CURLYCODER@CURLYCODER
 ```
 
 대화형 Copilot CLI 세션에서는 슬래시 명령으로 똑같이 하면 된다:
 
 ```
-/plugin marketplace add bhardwj-sarvesh-projects/CODELEAN
-/plugin install CODELEAN@CODELEAN
+/plugin marketplace add bhardwj-sarvesh-projects/CURLYCODER
+/plugin install CURLYCODER@CURLYCODER
 ```
 
 Copilot CLI는 플러그인 명령에 그 이름을 네임스페이스로 붙인다. 예를 들면:
 
 ```text
-/CODELEAN:CODELEAN ultra
-/CODELEAN:CODELEAN-review
+/CURLYCODER:CURLYCODER ultra
+/CURLYCODER:CURLYCODER-review
 ```
 
 ### Pi agent harness
 
 ```
-pi install git:github.com/bhardwj-sarvesh-projects/codelean
+pi install git:github.com/bhardwj-sarvesh-projects/curlycoder
 ```
 
 ### OpenCode
@@ -173,10 +173,10 @@ pi install git:github.com/bhardwj-sarvesh-projects/codelean
 체크아웃에서 직접 돌려도 된다(플러그인이 `hooks/`와 `skills/`를 그대로 쓴다):
 
 ```json
-{ "plugin": ["./.opencode/plugins/CODELEAN.mjs"] }
+{ "plugin": ["./.opencode/plugins/CURLYCODER.mjs"] }
 ```
 
-매 턴마다 지금 레벨의 룰셋을 주입하고, `/CODELEAN` 명령들을 붙여 준다([Commands](#commands) 참고). OpenCode는 이 저장소의 `AGENTS.md`도 알아서 불러오니, 플러그인이 없어도 규칙은 살아 있다. 플러그인은 `lite/full/ultra/off` 레벨을 얹어 준다.
+매 턴마다 지금 레벨의 룰셋을 주입하고, `/CURLYCODER` 명령들을 붙여 준다([Commands](#commands) 참고). OpenCode는 이 저장소의 `AGENTS.md`도 알아서 불러오니, 플러그인이 없어도 규칙은 살아 있다. 플러그인은 `lite/full/ultra/off` 레벨을 얹어 준다.
 
 `./` 경로는 프로젝트의 `opencode.json`을 기준으로 풀린다. 체크아웃 하나를 여러 프로젝트에서 같이 쓰려면, 대신 `.mjs`의 절대 경로를 가리키면 된다(그 파일은 제 위치를 기준으로 `hooks/`와 `skills/`를 찾는다).
 
@@ -186,8 +186,8 @@ pi install git:github.com/bhardwj-sarvesh-projects/codelean
 gemini extensions install https://github.com/bhardwj-sarvesh-projects/codelean
 ```
 
-매 세션 룰셋을 늘 켜진 컨텍스트로 불러오고 `/CODELEAN` 명령들을 등록한다. `skills/`도 함께 실리며, 작업에 필요할 때 켜진다.
-Gemini 어댑터는 일부러 루트 `hooks/hooks.json`을 두지 않는다. Gemini는 그 경로를 자동으로 불러오는데, CODELEAN의 라이프사이클 훅은 Claude/Codex 이벤트 이름을 쓰기 때문이다.
+매 세션 룰셋을 늘 켜진 컨텍스트로 불러오고 `/CURLYCODER` 명령들을 등록한다. `skills/`도 함께 실리며, 작업에 필요할 때 켜진다.
+Gemini 어댑터는 일부러 루트 `hooks/hooks.json`을 두지 않는다. Gemini는 그 경로를 자동으로 불러오는데, CURLYCODER의 라이프사이클 훅은 Claude/Codex 이벤트 이름을 쓰기 때문이다.
 
 ### Antigravity CLI
 
@@ -197,7 +197,7 @@ Google이 Gemini CLI를 Antigravity CLI(`agy` 바이너리)로 이름을 바꾸�
 agy plugin install https://github.com/bhardwj-sarvesh-projects/codelean
 ```
 
-이 저장소의 `gemini-extension.json`을 그대로 재사용한다. 차이는 하나다. Antigravity는 `/CODELEAN` 명령들을 스킬로 바꿔 버려서, 슬래시 메뉴에서 고르는 대신 채팅에 직접 친다(예: `/CODELEAN-review`를 메시지로). 전환이 마무리될 때까지(2026년 6월 18일경)는 `gemini extensions install`도 여전히 먹힌다. 늘 켜진 규칙으로 돌리고 싶으면, 룰셋을 `.agents/rules/`에 넣으면 된다.
+이 저장소의 `gemini-extension.json`을 그대로 재사용한다. 차이는 하나다. Antigravity는 `/CURLYCODER` 명령들을 스킬로 바꿔 버려서, 슬래시 메뉴에서 고르는 대신 채팅에 직접 친다(예: `/CURLYCODER-review`를 메시지로). 전환이 마무리될 때까지(2026년 6월 18일경)는 `gemini extensions install`도 여전히 먹힌다. 늘 켜진 규칙으로 돌리고 싶으면, 룰셋을 `.agents/rules/`에 넣으면 된다.
 
 ### CodeWhale
 
@@ -209,58 +209,58 @@ agy plugin install https://github.com/bhardwj-sarvesh-projects/codelean
 
 ```bash
 swival skills add --global https://github.com/bhardwj-sarvesh-projects/codelean  # ~/.config/swival/library에 스테이징
-swival skills add CODELEAN                                             # 이 프로젝트에 컬렉션 설치
-swival skills add --global CODELEAN                                    # 또는 모든 프로젝트에서 켜기
+swival skills add CURLYCODER                                             # 이 프로젝트에 컬렉션 설치
+swival skills add --global CURLYCODER                                    # 또는 모든 프로젝트에서 켜기
 ```
 
 Swival도 프로젝트 루트의 `AGENTS.md`와 전역의 `~/.config/swival/AGENTS.md`를 읽는다. 지시문 전용 폴백이다.
 
-명령줄에서는 `$` 접두사로 스킬을 명시적으로 켠다. 예: `$CODELEAN-review`.
+명령줄에서는 `$` 접두사로 스킬을 명시적으로 켠다. 예: `$CURLYCODER-review`.
 
 ### Devin CLI
 
 ```bash
-devin plugins install bhardwj-sarvesh-projects/CODELEAN
+devin plugins install bhardwj-sarvesh-projects/CURLYCODER
 ```
 
-CODELEAN을 Devin 플러그인으로 설치한다. 스킬은 `/CODELEAN:CODELEAN`, `/CODELEAN:CODELEAN-review` 등으로 쓸 수 있다.
+CURLYCODER을 Devin 플러그인으로 설치한다. 스킬은 `/CURLYCODER:CURLYCODER`, `/CURLYCODER:CURLYCODER-review` 등으로 쓸 수 있다.
 
 ### OpenClaw
 
 ```bash
-clawhub install CODELEAN
+clawhub install CURLYCODER
 ```
 
-ClawHub에서 CODELEAN을 OpenClaw 스킬로 설치한다. review, audit, debt, gain, help 스킬도 같은 식으로 깐다(`clawhub install CODELEAN-review` 등). OpenClaw는 코딩 작업에 이를 적용하고 `/CODELEAN` 명령으로도 열어 준다. ClawHub가 없으면 [`.openclaw/skills/CODELEAN`](.openclaw/skills/)을 `~/.openclaw/skills/`에 복사하면 된다.
+ClawHub에서 CURLYCODER을 OpenClaw 스킬로 설치한다. review, audit, debt, gain, help 스킬도 같은 식으로 깐다(`clawhub install CURLYCODER-review` 등). OpenClaw는 코딩 작업에 이를 적용하고 `/CURLYCODER` 명령으로도 열어 준다. ClawHub가 없으면 [`.openclaw/skills/CURLYCODER`](.openclaw/skills/)을 `~/.openclaw/skills/`에 복사하면 된다.
 
 ### Grok Build
 
 ```bash
-grok plugin install bhardwj-sarvesh-projects/CODELEAN --trust
+grok plugin install bhardwj-sarvesh-projects/CURLYCODER --trust
 ```
 
-플러그인은 기본이 꺼져 있다. `/plugins` → Plugins에서 `CODELEAN`에 Space, 또는 `~/.grok/config.toml`:
+플러그인은 기본이 꺼져 있다. `/plugins` → Plugins에서 `CURLYCODER`에 Space, 또는 `~/.grok/config.toml`:
 
 ```toml
 [plugins]
-enabled = ["CODELEAN"]
+enabled = ["CURLYCODER"]
 ```
 
-새 세션을 열거나 플러그인을 다시 로드한다. 스킬은 `/CODELEAN`, `/CODELEAN-review`, `/CODELEAN-audit`, `/CODELEAN-debt`, `/CODELEAN-gain`, `/CODELEAN-help`로 보인다. `grok inspect`로 확인. Grok은 스킬 설명을 바탕으로 코딩 작업에서 CODELEAN을 자동으로 호출할 수 있다. 명시적으로 활성화해야 하면 `/CODELEAN`(또는 `/CODELEAN lite`, `/CODELEAN full`, `/CODELEAN ultra`)을 사용한다. `SessionStart` 출력으로는 지시문을 주입할 수 없으므로 Grok 라이프사이클 훅은 사용하지 않는다.
+새 세션을 열거나 플러그인을 다시 로드한다. 스킬은 `/CURLYCODER`, `/CURLYCODER-review`, `/CURLYCODER-audit`, `/CURLYCODER-debt`, `/CURLYCODER-gain`, `/CURLYCODER-help`로 보인다. `grok inspect`로 확인. Grok은 스킬 설명을 바탕으로 코딩 작업에서 CURLYCODER을 자동으로 호출할 수 있다. 명시적으로 활성화해야 하면 `/CURLYCODER`(또는 `/CURLYCODER lite`, `/CURLYCODER full`, `/CURLYCODER ultra`)을 사용한다. `SessionStart` 출력으로는 지시문을 주입할 수 없으므로 Grok 라이프사이클 훅은 사용하지 않는다.
 
-체크아웃의 `AGENTS.md`만으로도 지시문 전용 모드는 된다. 제거: `grok plugin uninstall CODELEAN`.
+체크아웃의 `AGENTS.md`만으로도 지시문 전용 모드는 된다. 제거: `grok plugin uninstall CURLYCODER`.
 
 이게 끝이었다. 그 사람이라면 흐뭇해할 거다. 입 밖으로 내진 않겠지만.
 
-매 세션 켜져 있고, 명령 몇 개가 딸려 온다([Commands](#commands) 참고). `/CODELEAN ultra`는 코드베이스가 당신에게 단단히 밉보인 날을 위해 있다. 시작할 때와 모드를 바꿀 때 지금 모드를 보여 준다.
+매 세션 켜져 있고, 명령 몇 개가 딸려 온다([Commands](#commands) 참고). `/CURLYCODER ultra`는 코드베이스가 당신에게 단단히 밉보인 날을 위해 있다. 시작할 때와 모드를 바꿀 때 지금 모드를 보여 준다.
 
-새 세션마다 적용할 레벨은 `CODELEAN_DEFAULT_MODE` 환경 변수(`lite`/`full`/`ultra`/`off`)로, 또는 `~/.config/CODELEAN/config.json`의 `defaultMode` 필드(Windows에선 `%APPDATA%\CODELEAN\config.json`)로 정한다. 기본값은 `full`이다.
+새 세션마다 적용할 레벨은 `CURLYCODER_DEFAULT_MODE` 환경 변수(`lite`/`full`/`ultra`/`off`)로, 또는 `~/.config/CURLYCODER/config.json`의 `defaultMode` 필드(Windows에선 `%APPDATA%\CURLYCODER\config.json`)로 정한다. 기본값은 `full`이다.
 
 Cursor, Windsurf, Cline, GitHub Copilot(에디터), Aider, Kiro, Zed, CodeWhale: 이 저장소에서 맞는 규칙 파일을 복사하면 된다([`.cursor/rules/`](.cursor/rules/), [`.windsurf/rules/`](.windsurf/rules/), [`.clinerules/`](.clinerules/), [`.github/copilot-instructions.md`](.github/copilot-instructions.md), [`AGENTS.md`](AGENTS.md), [`.kiro/steering/`](.kiro/steering/)).
 
-Kiro: `.kiro/steering/CODELEAN.md`를 `~/.kiro/steering/`(전역)이나 프로젝트의 `.kiro/steering/`에 복사한다.
+Kiro: `.kiro/steering/CURLYCODER.md`를 `~/.kiro/steering/`(전역)이나 프로젝트의 `.kiro/steering/`에 복사한다.
 
-GitHub Copilot CLI 폴백(지시문 전용 모드): 프로젝트의 `AGENTS.md`와 `.github/copilot-instructions.md`를 읽거나, 모든 프로젝트에서 CODELEAN을 돌리려면 규칙을 `~/.copilot/copilot-instructions.md`에 복사한다. 이 경로는 늘 켜진 가이드는 살리지만, 플러그인 모드 전환이나 훅은 더해 주지 않는다.
+GitHub Copilot CLI 폴백(지시문 전용 모드): 프로젝트의 `AGENTS.md`와 `.github/copilot-instructions.md`를 읽거나, 모든 프로젝트에서 CURLYCODER을 돌리려면 규칙을 `~/.copilot/copilot-instructions.md`에 복사한다. 이 경로는 늘 켜진 가이드는 살리지만, 플러그인 모드 전환이나 훅은 더해 주지 않는다.
 
 Codex 확장을 쓰는 VS Code는 이 저장소가 함께 싣는 `AGENTS.md`를 읽으니, 저장소 루트에서 설정 없이 돌아간다(`~/.codex/AGENTS.md`를 두면 Codex 전역으로 잡힌다).
 
@@ -270,14 +270,14 @@ Codex 확장을 쓰는 VS Code는 이 저장소가 함께 싣는 `AGENTS.md`를 
 
 | 명령 | 하는 일 |
 |---------|--------------|
-| `/CODELEAN [lite \| full \| ultra \| off]` | 강도를 정하거나, 끈다. 인수가 없으면 지금 레벨을 알려 준다. |
-| `/CODELEAN-review` | 지금 diff를 과잉 구현 관점에서 훑고, 삭제 목록을 돌려준다. |
-| `/CODELEAN-audit` | diff만이 아니라 저장소 전체를 과잉 구현 관점에서 감사한다. |
-| `/CODELEAN-debt` | 미뤄 둔 `CODELEAN:` 간소화들을 장부로 모아, "나중에"가 "영영"이 되지 않게 한다. |
-| `/CODELEAN-gain` | 벤치마크로 잰 효과 스코어보드(코드 절감, 비용 절감, 속도 향상)를 보여 준다. |
-| `/CODELEAN-help` | 위 명령들의 빠른 참조. |
+| `/CURLYCODER [lite \| full \| ultra \| off]` | 강도를 정하거나, 끈다. 인수가 없으면 지금 레벨을 알려 준다. |
+| `/CURLYCODER-review` | 지금 diff를 과잉 구현 관점에서 훑고, 삭제 목록을 돌려준다. |
+| `/CURLYCODER-audit` | diff만이 아니라 저장소 전체를 과잉 구현 관점에서 감사한다. |
+| `/CURLYCODER-debt` | 미뤄 둔 `CURLYCODER:` 간소화들을 장부로 모아, "나중에"가 "영영"이 되지 않게 한다. |
+| `/CURLYCODER-gain` | 벤치마크로 잰 효과 스코어보드(코드 절감, 비용 절감, 속도 향상)를 보여 준다. |
+| `/CURLYCODER-help` | 위 명령들의 빠른 참조. |
 
-명령들은 스킬을 지원하는 호스트가 있어야 돈다(Claude Code, Codex, Devin CLI, OpenCode, Gemini, pi, Swival). Codex에선 스킬이라 `@`로 부른다(`@CODELEAN-review`). 지시문 전용 어댑터(Cursor, Windsurf, Cline, Copilot, Kiro, Antigravity)는 명령 없이 늘 켜진 룰셋만 불러온다.
+명령들은 스킬을 지원하는 호스트가 있어야 돈다(Claude Code, Codex, Devin CLI, OpenCode, Gemini, pi, Swival). Codex에선 스킬이라 `@`로 부른다(`@CURLYCODER-review`). 지시문 전용 어댑터(Cursor, Windsurf, Cline, Copilot, Kiro, Antigravity)는 명령 없이 늘 켜진 룰셋만 불러온다.
 
 ## Development
 
@@ -295,7 +295,7 @@ OpenClaw 스킬 패키지(`.openclaw/skills/`)는 `skills/`에서 생성된다. 
 ## FAQ
 
 **설정 파일이 필요한가?**
-아니다. 선택 사항인 `~/.config/CODELEAN/config.json`이나 `CODELEAN_DEFAULT_MODE` 환경 변수로 기본 레벨을 정할 순 있지만, 꼭 있어야 하는 건 없다.
+아니다. 선택 사항인 `~/.config/CURLYCODER/config.json`이나 `CURLYCODER_DEFAULT_MODE` 환경 변수로 기본 레벨을 정할 순 있지만, 꼭 있어야 하는 건 없다.
 
 **그래도 120줄짜리 캐시 클래스가 정말 필요하다면?**
 필요 없다. 그래도 우기면 그가 만들어 준다. 천천히. 정확하게. 당신을 쳐다보면서.
@@ -303,7 +303,7 @@ OpenClaw 스킬 패키지(`.openclaw/skills/`)는 `skills/`에서 생성된다. 
 **확장은 되나?**
 당신이 안 쓴 코드는 무한히 확장된다. 버그 0, CVE 0, 가동률 100%. 예나 지금이나.
 
-**왜 하필 "CODELEAN"인가?**
+**왜 하필 "CURLYCODER"인가?**
 당신은 이유를 정확히 안다.
 
 ## Sponsors
@@ -323,10 +323,10 @@ OpenClaw 스킬 패키지(`.openclaw/skills/`)는 `skills/`에서 생성된다. 
 
 ## Star History
 
-<a href="https://www.star-history.com/bhardwj-sarvesh-projects/CODELEAN#history">
+<a href="https://www.star-history.com/bhardwj-sarvesh-projects/CURLYCODER#history">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=bhardwj-sarvesh-projects/CODELEAN&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=bhardwj-sarvesh-projects/CODELEAN&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=bhardwj-sarvesh-projects/CODELEAN&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=bhardwj-sarvesh-projects/CURLYCODER&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=bhardwj-sarvesh-projects/CURLYCODER&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=bhardwj-sarvesh-projects/CURLYCODER&type=Date" />
  </picture>
 </a>
