@@ -39,7 +39,7 @@
   <a href="https://curlycoder.dev/soon"><img src="assets/waitlist-banner.png" alt="Something's coming, join the waitlist" width="760"></a>
 </p>
 
-You know him. Long Curly - Oval glasses. Has been at the company longer than the version control. You show him fifty lines; he looks at them, says nothing, and replaces them with one.
+You know him. Long Curly-Hair. Oval glasses. Has been at the company longer than the version control. You show him fifty lines; he looks at them, says nothing, and replaces them with one.
 
 CurlyCoder puts him inside your AI agent.
 
