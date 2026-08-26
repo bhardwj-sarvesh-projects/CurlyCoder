@@ -8,7 +8,15 @@
 <h1 align="center">CurlyCoder</h1>
 
 <p align="center">
-  <em>He says nothing. He writes one line. It works.</em>
+  <strong>Give AI coding agents a bias toward simpler, safer implementations.</strong>
+</p>
+
+<p align="center">
+  <em>Understand the problem first. Reuse what already exists. Build only what is necessary.</em>
+</p>
+
+<p align="center">
+  <strong>Current release: v5.7.4</strong>
 </p>
 
 <p align="center">
@@ -30,7 +38,7 @@
 </p>
 
 <p align="center">
-  <sub><a href="README.es.md">EspaÃ±ol</a> &middot; <a href="README.ko.md">í•œêµ­ì–´</a></sub>
+  <sub><a href="README.es.md">Español</a> &middot; <a href="README.ko.md">한국어</a></sub>
 </p>
 
 ---
@@ -92,12 +100,12 @@ This showed **80-94% less code**. [#126](https://github.com/bhardwj-sarvesh-proj
 Before writing code, the agent stops at the first rung that holds:
 
 ```
-1. Does this need to exist?   â†’ no: skip it (YAGNI)
-2. Already in this codebase?  â†’ reuse it, don't rewrite
-3. Stdlib does it?            â†’ use it
-4. Native platform feature?   â†’ use it
-5. Installed dependency?      â†’ use it
-6. One line?                  â†’ one line
+1. Does this need to exist?   → no: skip it (YAGNI)
+2. Already in this codebase?  → reuse it, don't rewrite
+3. Stdlib does it?            → use it
+4. Native platform feature?   → use it
+5. Installed dependency?      → use it
+6. One line?                  → one line
 7. Only then: the minimum that works
 ```
 
@@ -121,7 +129,7 @@ The Claude Code and Codex plugins run two tiny Node.js lifecycle hooks, so `node
 ```
 (You have to send two separate prompts for the install to work) 
 
-Same steps in the Claude Code Desktop app's Code tab: type the two `/plugin` commands above into the prompt box, or click the **+** button next to it, choose **Plugins** â†’ **Add plugin** to browse your configured marketplaces, and manage marketplaces from **Customize** in the sidebar.
+Same steps in the Claude Code Desktop app's Code tab: type the two `/plugin` commands above into the prompt box, or click the **+** button next to it, choose **Plugins** → **Add plugin** to browse your configured marketplaces, and manage marketplaces from **Customize** in the sidebar.
 
 ### Codex
 
@@ -252,7 +260,7 @@ Installs CurlyCoder as an OpenClaw skill from ClawHub; the review, audit, debt, 
 grok plugin install bhardwj-sarvesh-projects/curlycoder --trust
 ```
 
-Enable the plugin (off by default): `/plugins` â†’ Plugins â†’ Space on `curlycoder`, or in `~/.grok/config.toml`:
+Enable the plugin (off by default): `/plugins` → Plugins → Space on `curlycoder`, or in `~/.grok/config.toml`:
 
 ```toml
 [plugins]
@@ -279,7 +287,7 @@ GitHub Copilot CLI fallback (instruction-only mode): it reads `AGENTS.md` and `.
 
 VS Code with the Codex extension reads `AGENTS.md`, which this repo ships, so it works from the repo root with no setup (`~/.codex/AGENTS.md` makes Codex global).
 
-JetBrains Junie can read `AGENTS.md` once you point it there in Settings â†’ Tools â†’ Junie â†’ Project Settings â†’ Guidelines Path (it is not automatic yet). This repo ships `AGENTS.md`; `.junie/guidelines.md` is Junie's legacy path.
+JetBrains Junie can read `AGENTS.md` once you point it there in Settings → Tools → Junie → Project Settings → Guidelines Path (it is not automatic yet). This repo ships `AGENTS.md`; `.junie/guidelines.md` is Junie's legacy path.
 
 Amp (Sourcegraph) reads `AGENTS.md` from the working directory and parent directories up to `$HOME`, which this repo ships, so it works with no setup (`~/.config/amp/AGENTS.md` works globally).
 

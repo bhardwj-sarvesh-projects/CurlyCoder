@@ -1,6 +1,6 @@
-{
+﻿{
   "name": "CurlyCoder-mcp",
-  "version": "4.9.0",
+  "version": "5.7.4",
   "description": "MCP server that serves CurlyCoder's lazy-senior-dev instructions as a prompt and a tool.",
   "private": true,
   "type": "module",
@@ -11,3 +11,4 @@
     "zod": "^3.23.0"
   }
 }
+

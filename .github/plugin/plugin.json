@@ -1,7 +1,7 @@
-{
+﻿{
   "name": "CURLYCODER",
   "description": "Lazy senior dev mode. Forces the simplest, shortest solution that actually works: YAGNI, stdlib first, no unrequested abstractions.",
-  "version": "4.9.0",
+  "version": "5.7.4",
   "author": {
     "name": "Sarvesh Bhardwj",
     "url": "https://github.com/bhardwj-sarvesh-projects"
@@ -14,3 +14,4 @@
   "skills": "skills/",
   "hooks": "hooks/copilot-hooks.json"
 }
+

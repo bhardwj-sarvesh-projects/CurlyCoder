@@ -1,6 +1,6 @@
-{
+﻿{
   "name": "CURLYCODER",
-  "version": "4.9.0",
+  "version": "5.7.4",
   "description": "Lazy senior dev mode. Forces the simplest, shortest solution that actually works: YAGNI, stdlib first, no unrequested abstractions.",
   "author": {
     "name": "Sarvesh Bhardwj",
@@ -14,3 +14,4 @@
   "rules": "./.qoder/rules/",
   "hooks": "./hooks/qoder-hooks.json"
 }
+

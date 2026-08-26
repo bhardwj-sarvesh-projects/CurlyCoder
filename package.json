@@ -1,6 +1,6 @@
-{
+﻿{
   "name": "@bhardwj-sarvesh-projects/curlycoder",
-  "version": "4.9.0",
+  "version": "5.7.4",
   "description": "Lazy senior dev mode for AI agents. The best code is the code you never wrote.",
   "keywords": ["opencode-plugin", "opencode", "curlycoder", "pi-package", "pi", "skills", "qoder"],
   "license": "MIT",
@@ -45,3 +45,4 @@
     "access": "public"
   }
 }
+
