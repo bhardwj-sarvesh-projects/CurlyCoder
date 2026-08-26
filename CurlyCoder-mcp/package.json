@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "CurlyCoder-mcp",
   "version": "5.7.4",
   "description": "MCP server that serves CurlyCoder's lazy-senior-dev instructions as a prompt and a tool.",
