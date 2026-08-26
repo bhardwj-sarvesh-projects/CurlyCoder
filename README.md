@@ -354,7 +354,7 @@ You know exactly why.
 ## Sponsored by
 
 <a href="https://blockonmate.com">
-  <img src="./assets/YOUR-BLOCKONMATE-IMAGE.png" alt="BlockOnMate">
+  <img src="./assets/blockonmate-logo.png" alt="BlockOnMate">
 </a>
 
 **BlockOnMate** is a technology company specializing in **Blockchain, Web3, AI, and modern software engineering**, building secure and scalable solutions for startups, enterprises, and digital businesses.
